@@ -1,1 +1,15 @@
 <h3>All Classes will appear in card form...</h3>
+
+{{#each allClasses}}
+    <div>
+        <div class="data">{{this.classCode}}</div>
+        <div class="data">{{this.className}}</div>
+        <div class="data">{{this.classDescription}}</div>
+        <div class="data">{{this.classTeacher}}</div>
+        <div class="data">{{this.classTeacherId}}</div>
+        <div class="data" style="width: 100px; height:100px; border: 1px solid red">
+            <img src="{{this.classTeacherImage}}" alt="Prof ki photo">
+        </div>
+        <br><br>
+    </div>
+{{/each}}

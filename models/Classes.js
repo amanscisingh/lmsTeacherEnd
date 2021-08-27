@@ -21,6 +21,10 @@ const allClasses = new mongoose.Schema({
         type: String,
         required: true
     },
+    classTeacherImage: {
+        type: String,
+        required: false
+    },
     classStudents: [
         {
             type: String,

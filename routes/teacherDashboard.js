@@ -5,10 +5,14 @@ const Users = require('../models/Users.js');
 
 
 // /teacherDashboard
-teacherDashboardRoute.get('/', (req, res) => {
+teacherDashboardRoute.get('/', async (req, res) => {
     try {
         // passing all the class details in form of array to the template
-        res.render('teacherDashboard', { layout: 'teacherLoggedIn' });
+        const googleId = req.cookies['user-id'];
+        let allClasses = await Classes.find({ classTeacherId: googleId }).lean();
+        console.log(allClasses);
+
+        res.render('teacherDashboard', { layout: 'teacherLoggedIn', allClasses: allClasses  });
     } catch (error) {
         res.send(error);
     }
@@ -42,6 +46,7 @@ teacherDashboardRoute.post('/create', async (req, res) => {
             classCode: classCode,
             classTeacher: user['firstName'] + ' ' + user['lastName'],
             classTeacherId: googleId,
+            classTeacherImage: user['image'],
         });
 
         await newClass.save();
