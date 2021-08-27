@@ -10,6 +10,7 @@ authRoute.post('/login', (req, res)=> {
     try {
         let token = req.body.token;
         let userid;
+        let email;
 
         async function verify() {
             const ticket = await client.verifyIdToken({
@@ -18,6 +19,7 @@ authRoute.post('/login', (req, res)=> {
             });
             const payload = ticket.getPayload();
             userid = payload['sub'];
+            email = payload['email'];
             let userData = await User.findOne({googleId: userid});
             console.log(payload);
             if (userData == null) {
@@ -44,6 +46,7 @@ authRoute.post('/login', (req, res)=> {
             // Storing token and googleId in the cookie storage
             res.cookie('session-cookie', token);
             res.cookie('userid', userid);
+            res.cookie('email', email);
             res.send("success");
         })
         .catch(console.error);
@@ -52,6 +55,56 @@ authRoute.post('/login', (req, res)=> {
     }
 })
 
+// /customSignup
+authRoute.post('/customSignup', async (req, res)=> {
+    try {
+        let email = req.body.email;
+        let password = req.body.password;
+        let confirmPassword = req.body.confirmPassword;
+        let firstName = req.body.firstName;
+        let lastName = req.body.lastName;
+        let newUser = new User({
+            email: email,
+            password: password,
+            firstName: firstName,
+            lastName: lastName,
+            designation: 'teacher',
+        });
 
+        if (password === confirmPassword) {
+            await newUser.save();
+            res.cookie('email', email);
+            res.redirect('/teacherDashboard');
+        }
+        else {
+            res.send('password mismatch');
+        }
+
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+// /customLogin
+authRoute.post('/customLogin', async (req, res)=> {
+    try {
+        let email = req.body.email;
+        let password = req.body.password;
+        let userData = await User.findOne({email: email});
+        if (userData) {
+            if (userData.password === password) {
+                res.redirect('/teacherDashboard');
+            }
+            else {
+                res.send('password mismatch');
+            }
+        }
+        else {
+            res.send('user not found');
+        }
+    } catch (error) {
+        res.send(error);
+    }
+});
 
 module.exports = authRoute;
