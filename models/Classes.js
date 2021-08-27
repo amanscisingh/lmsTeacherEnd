@@ -17,7 +17,7 @@ const allClasses = new mongoose.Schema({
         type: String,
         required: true
     },
-    classTeacherId : {
+    classTeacherEmail : {
         type: String,
         required: true
     },

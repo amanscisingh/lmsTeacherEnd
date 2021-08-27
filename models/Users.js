@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const userSchema = new mongoose.Schema( {
     googleId: {
         type: String, //payload['sub']
-        required: true,
+        required: false,
     },
     firstName: { 
         type: String, //givenName
@@ -14,9 +14,13 @@ const userSchema = new mongoose.Schema( {
     },
     image: {
         type: String,
-        required: true,
+        required: false,
     },
     email: {
+        type: String,
+        required: true,
+    },
+    password: {
         type: String,
         required: false,
     },

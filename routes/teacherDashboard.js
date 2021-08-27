@@ -8,8 +8,8 @@ const Users = require('../models/Users.js');
 teacherDashboardRoute.get('/', async (req, res) => {
     try {
         // passing all the class details in form of array to the template
-        const googleId = req.cookies['user-id'];
-        let allClasses = await Classes.find({ classTeacherId: googleId }).lean();
+        const email = req.cookies['email'];
+        let allClasses = await Classes.find({ classTeacherEmail: email }).lean();
         console.log(allClasses);
 
         res.render('teacherDashboard', { layout: 'teacherLoggedIn', allClasses: allClasses  });
@@ -37,16 +37,17 @@ teacherDashboardRoute.post('/create', async (req, res) => {
         console.log('post request revied');
             
         let classCode = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 3) + '-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 3) + '-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 3);
-        let googleId = req.cookies['user-id'];
-        let user = await Users.findOne({ googleId: googleId });
+        let email = req.cookies['email'];
+        let user = await Users.findOne({ email: email });
+        console.log(user);
 
         var newClass = new Classes({
             className: req.body.className,
             classDescription: req.body.classDescription,
             classCode: classCode,
             classTeacher: user['firstName'] + ' ' + user['lastName'],
-            classTeacherId: googleId,
-            classTeacherImage: user['image'],
+            classTeacherEmail: email,
+            classTeacherImage: user['image'] || 'https://ui-avatars.com/api/?background=0D8ABC&color=fff&name=' + user['firstName'] + '+' + user['lastName'] + "&size=96",
         });
 
         await newClass.save();
