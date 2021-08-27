@@ -11,8 +11,8 @@ app.use(bodyParser.json());
 
 // using dotenv
 require('dotenv').config({ path: './config/.env' })
-const URL = p
-const PORT = process.env.PORTrocess.env.MONGODB_URI.toString();;
+const URL = process.env.MONGODB_URI.toString();
+const PORT = process.env.PORT;
 
 // setting templating engineapp.engine('.hbs', exphbs({helpers:{ formatDate, indexing }, defaultLayout: 'main', extname: '.hbs'}));
 app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}));
