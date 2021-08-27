@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 const exphbs = require('express-handlebars');
+const cookieParser = require('cookie-parser');
 
 const app = express();
 
@@ -28,7 +29,8 @@ mongoose.connect(URL, {
     console.log('Error: ', err.message);
 })
 
-
+// using cokie parser
+app.use(cookieParser());
 
 // routes
 app.use('/', require('./routes/index'));
