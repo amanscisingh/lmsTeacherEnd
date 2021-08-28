@@ -35,10 +35,11 @@ teacherDashboardRoute.get('/:classCode', async (req, res) => {
     try {
         // passing all the class details in form of array to the template
         const classCode = req.params.classCode;
-        let allClasses = await Classes.findOne({ classCode: classCode });
+        let allClasses = await Classes.findOne({ classCode: classCode }).lean();
+        let allAssignments = await Assignments.find({ classCode: classCode }).lean();
         console.log(allClasses);
 
-        res.render('classDashboard', { layout: 'singleClass', allClasses: allClasses , classCode: classCode });
+        res.render('classDashboard', { layout: 'singleClass', allClasses: allClasses , classCode, allAssignments: allAssignments });
     } catch (error) {
         res.send(error);
     }
@@ -117,5 +118,19 @@ teacherDashboardRoute.post('/:classCode/create/:filename', async (req, res) => {
     }
 });
 
+
+// teacherDashboard/:classCode/:assignmentId
+teacherDashboardRoute.get('/:classCode/:assignmentId', async (req, res) => {
+    try {
+        const classCode = req.params.classCode;
+        const assignmentId = req.params.assignmentId;
+        let assignment = await Assignments.findOne({ _id: assignmentId }).lean();
+        console.log(assignment);
+
+        res.render('assignmentDashboard', { layout: 'blank', classCode, assignment: assignment });
+    } catch (error) {
+        res.send(error);
+    }
+});
 
 module.exports = teacherDashboardRoute;

@@ -18,7 +18,14 @@
     }
 </style>
 
-<h1>{{allClasses.classCode}}</h1>
+
+{{#each allAssignments}}
+
+    <h3>{{this.title}}</h3>
+    <h3>{{this.description}}</h3>
+    <br>
+    
+{{/each}}
 <div class="mainContainer">
 
     <div class="subjectContainer">
