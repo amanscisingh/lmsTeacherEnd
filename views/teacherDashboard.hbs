@@ -72,13 +72,15 @@
 }
 
 </style>
+
+
 <div class="box">
 {{#each allClasses}}
 
-    <div class="card" id={{@key}}>
+    <div class="card" id="card-{{@key}}">
         <div class="upperPart">
             <div class="delete_class_code">
-            <div class="data">{{this.classCode}}</div><div class="delete" onclick="deleteCard({{@key}})">❌</div>
+            <div class="data" id="class-{{@key}}">{{this.classCode}}</div><div class="delete" onclick="editCard({{@key}})">🛠</div>
             </div>
             <div class="data">{{this.className}}</div>
             <div class="data">{{this.classTeacher}}</div>
@@ -102,8 +104,10 @@
 </div>
 
 <script>
-    function deleteCard(id){
-        console.log('id');
-        document.getElementById(id).style.display="none";
+    function editCard(key){
+        console.log(key);
+        let id = `class-${key}`;
+        console.log(id);
+        location.assign('/teacherDashboard/'+document.getElementById(id).innerHTML);
     }
 </script>

@@ -93,6 +93,7 @@ authRoute.post('/customLogin', async (req, res)=> {
         let userData = await User.findOne({email: email});
         if (userData) {
             if (userData.password === password) {
+                res.cookie('email', email);
                 res.redirect('/teacherDashboard');
             }
             else {

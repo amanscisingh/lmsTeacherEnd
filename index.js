@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var bodyParser = require('body-parser')
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 
 const app = express();
 
@@ -16,8 +17,17 @@ const URL = process.env.MONGODB_URI.toString();
 const PORT = process.env.PORT;
 
 // setting templating engineapp.engine('.hbs', exphbs({helpers:{ formatDate, indexing }, defaultLayout: 'main', extname: '.hbs'}));
-app.engine('.hbs', exphbs({ defaultLayout: 'main', extname: '.hbs'}));
+function parseToString(input) {
+    return input.toString();
+};
+
+
+app.engine('.hbs', exphbs({helpers:{ parseToString }, defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
+
+// setting up public folder
+const __dirname__ = path.resolve();
+app.use(express.static(path.join(__dirname__, 'public')));
 
 // connecting to db and starting the server
 mongoose.connect(URL, {

@@ -10,7 +10,7 @@ teacherDashboardRoute.get('/', async (req, res) => {
         // passing all the class details in form of array to the template
         const email = req.cookies['email'];
         let allClasses = await Classes.find({ classTeacherEmail: email }).lean();
-        console.log(allClasses);
+        // console.log(allClasses);
 
         res.render('teacherDashboard', { layout: 'teacherLoggedIn', allClasses: allClasses  });
     } catch (error) {
@@ -28,6 +28,21 @@ teacherDashboardRoute.get('/create', (req, res) => {
         res.send(error);
     }
 })
+
+// /teacherDashboard/:classCode
+teacherDashboardRoute.get('/:classCode', async (req, res) => {
+    try {
+        // passing all the class details in form of array to the template
+        const classCode = req.params.classCode;
+        let allClasses = await Classes.findOne({ classCode: classCode });
+        console.log(allClasses);
+
+        res.render('classDashboard', { layout: 'singleClass', allClasses: allClasses , classCode: classCode });
+    } catch (error) {
+        res.send(error);
+    }
+});
+
 
 // /teacherDashboard/create
 // @POST request to create an antity in db
