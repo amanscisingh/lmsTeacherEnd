@@ -1,52 +1,109 @@
-<h3>All Classes will appear in card form...</h3>
 <style>
     .card{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
+        border: 0.5px solid rgb(194, 189, 189);
+        height: 300px;
         border-radius: 5px;
         margin: 10px;
-        text-align: center;
-        width: 250px;
-        font-family: sans-serif;
+        width: 300px;
+        margin-top: 30px;
+
+        font-family: sans-serif;    
+    }
+    .card:hover{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;      
     }
     .data{
         padding: 2px;
-    }
-    .box{
-        display: flex;
+
     }
     img {
         border-radius: 50px;
         margin-top: 10px;
+        position: relative;
+        top: 0%;
+        left: 31%;
+        z-index: 1;
+
     }
     .upperPart{
-        background-color: rgb(136, 156, 65);
-        color: black;
+        {{!-- background-color: '#' + Math.floor(Math.random()*16777215).toString(16); --}}
+        background-image: linear-gradient(rgb(205, 218, 132), white);
+        color: rgb(44, 24, 24);
         border-radius: 5px;
+        text-align: center;
+        padding: 15px;
     }
     .lowerPart{
         padding: 30px;
+        display: flex;
+        overflow-y: scroll;
+        margin-bottom: 20px ;
     }
+    .nameAndPhoto{
+        display: flex;
+        padding: 20px;
+    }
+    .description{
+        {{!-- overflow-y: scroll; --}}
+        height: 110px;
+    }
+    ::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+  }
+.delete_class_code{
+    display: flex;
+    border: 2px solid red;
+    margin-left: 10%;
+}
+.delete{
+    margin-left: 15%;
+    border: 2px solid red;
+}
+.delete:hover{
+    cursor: pointer;
+}
+.box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: .5rem;
+    margin: 5%;
+}
+
 </style>
 <div class="box">
 {{#each allClasses}}
 
-    <div class="card">
+    <div class="card" id={{@key}}>
         <div class="upperPart">
-            <div class="data">{{this.classCode}}</div>
+            <div class="delete_class_code">
+            <div class="data">{{this.classCode}}</div><div class="delete" onclick="deleteCard({{@key}})">❌</div>
+            </div>
             <div class="data">{{this.className}}</div>
             <div class="data">{{this.classTeacher}}</div>
-        
-        </div>
-        <div class="lowerPart">
-            <div class="data">{{this.classDescription}}</div>
-            {{!-- <div class="data">{{this.classTeacherId}}</div> --}}
-            <div class="data">
-                <img src="{{this.classTeacherImage}}" alt="Prof ki photo">
+            <div>
+                <hr>
+                
             </div>
+            
         </div>
         
+        <div class="lowerPart">
+            <div class="data description">{{this.classDescription}}</div>
+            <div class="data">{{this.classTeacherId}}</div>
+            
+            
+        </div>
+
         <br><br>
     </div>
 {{/each}}
 </div>
+
+<script>
+    function deleteCard(id){
+        console.log('id');
+        document.getElementById(id).style.display="none";
+    }
+</script>
