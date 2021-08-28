@@ -3,6 +3,13 @@
         padding: 5px;
         border-radius: 5px;
         background-color: aquamarine;
+        border: none;
+        width: 150px;
+        height: 40px;
+    }
+    .btn:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 4px 2px rgb(79, 211, 167);
     }
     .margin{
         margin: 10px;
@@ -12,14 +19,14 @@
         border-radius: 5px;
     }
     .formContainer{
-        margin-top: 20%;
+        margin-top: 8%;
     }
     .textArea{
         border-radius: 5px;
     }
 </style>
 <div style="text-align: center;" class="formContainer margin">
-    <h4>Form To Create Class</h4>
+    <h2>Form To Create Class</h2>
 
     <form action="/teacherDashboard/create" method="POST" class="margin">
         <input type="text" name="className" placeholder="Class Name" class="margin className"> 

@@ -1,47 +1,84 @@
 <style>
+    .mainContainer{
+        background-image: url('https://c8.alamy.com/comp/2BW8349/open-notepad-and-pen-on-laptop-with-copy-space-2BW8349.jpg');
+        background-size: cover;
+        height: 89vh;
+        padding-top: 5%;
+    }
     .btn{
         padding: 5px;
         border-radius: 5px;
-        background-color: aquamarine;
+        background-color: #b2aefc;
+        border: none;
+        width: 150px;
+        height: 40px;
+        font-size: large;
+    }
+    .btn:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 4px 2px #8a86ce;
     }
     .margin{
         margin: 10px;
     }
-    .className{
+    /* .className{
         padding: 7px;
         border-radius: 5px;
-    }
+    } */
     .formContainer{
-        margin-top: 20%;
+        width: 25%;
+        padding: 20px;
+        margin: 0%;
+        /* margin-top: 3%; */
+        margin-left: 60%;
+        background-color: #4b4949;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 14px 8px black;
     }
     .textArea{
         border-radius: 5px;
     }
+    .className{
+        padding: 10px;
+        border-radius: 8px;
+    }
+    #description{
+        border-radius: 8px;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
 </style>
 
-
-<div style="text-align: center;" class="formContainer margin">
-    <h4>Form To Create Assignment</h4>
-
-    <form id="createAssignmentForm" action="#" method="POST" class="margin">
-        <input type="text" name="title" placeholder="Assignment Title" class="margin className"> 
-        <br>
-        <textarea name="description" id="description" cols="30" rows="10" class="margin textArea" placeholder="Type Assignment Description"></textarea>
-        <br>
-        <input type="number" name="totalMarks" id="totalMarks" placeholder="Total marks">
-        <br>
-        <input type="date" name="deadline" id="deadline" placeholder="Deadline">
-        <br>
-        <div style="border: 1px solid black;">
-            <input type="file" name="file" id="file" class="custom-file-input">
+<div class="mainContainer">
+    <div style="text-align: center;" class="formContainer margin">
+        <h2>Form To Create Assignment</h2>
+    
+        <form id="createAssignmentForm" action="#" method="POST" class="margin">
+            <input type="text" name="title" placeholder="Assignment Title" class="margin className"> 
             <br>
-            <label for="file" id="fileLabel">You Have Not Choosen Any File Yet!!!</label>
-        </div>
-        <br>
-        
-        
-        <input type="submit" value="Create Class" id="createAssignment" class="btn margin">
-    </form>
+            <textarea name="description" id="description" class="margin" cols="30" rows="10" class="margin textArea" placeholder="Type Assignment Description"></textarea>
+            <br>
+            <input type="number" name="totalMarks" id="totalMarks" class="margin className" placeholder="Total marks">
+            <br>
+            <input type="date" name="deadline" id="deadline" class="margin className" placeholder="Deadline">
+            <br>
+            <div>
+                <input type="file" name="file" id="file" class="custom-file-input margin">
+                <br>
+                <label for="file" id="fileLabel">You Have Not Choosen Any File Yet!!!</label>
+            </div>
+            <br>
+            
+            
+            <input type="submit" value="Create Class" id="createAssignment" class="btn margin">
+        </form>
+    </div>
+    <!-- <div class="formContainer margin">
+        <img src="" alt="side ki photo" class="assignmentFormImage">
+    </div> -->
 </div>
 
 <script>
@@ -73,5 +110,4 @@
             
     }); 
     });
-        
 </script>
