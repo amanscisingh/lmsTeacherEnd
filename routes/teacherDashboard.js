@@ -2,6 +2,7 @@ const express = require('express');
 const teacherDashboardRoute = express.Router();
 const Classes = require('../models/Classes.js');
 const Users = require('../models/Users.js');
+const Assignments = require('../models/Assignments.js');
 
 
 // /teacherDashboard
@@ -72,4 +73,49 @@ teacherDashboardRoute.post('/create', async (req, res) => {
         res.send(error);
     }
 })
+
+
+// teacherDashboard/:classCode/create
+teacherDashboardRoute.get('/:classCode/create', async (req, res) => {
+    try {
+        res.render('createAssignment', { layout: 'blank' })
+    } catch (error) {
+        res.send(error);
+    }
+})
+
+
+// teacherDashboard/:classCode/create
+// @POST 
+teacherDashboardRoute.post('/:classCode/create/:filename', async (req, res) => {
+    try {
+        const classCode = req.params.classCode;
+        const fileUploadName = req.params.filename;
+        const title = req.body.title;
+        const description = req.body.description;
+        const totalMarks = req.body.totalMarks;
+        const deadline = req.body.deadline;
+        const email = req.cookies['email'];
+
+        let newAssignment = new Assignments({
+            classCode: classCode,
+            fileUploadName: fileUploadName,
+            title: title,
+            description: description,
+            totalMarks: totalMarks,
+            deadline: deadline,
+            profEmail: email,
+        });
+
+        await newAssignment.save();
+
+        res.redirect('/teacherDashboard/' + classCode);
+        
+        
+    } catch (error) {
+        res.send(error);
+    }
+});
+
+
 module.exports = teacherDashboardRoute;

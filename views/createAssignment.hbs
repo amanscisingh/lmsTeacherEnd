@@ -1,0 +1,77 @@
+<style>
+    .btn{
+        padding: 5px;
+        border-radius: 5px;
+        background-color: aquamarine;
+    }
+    .margin{
+        margin: 10px;
+    }
+    .className{
+        padding: 7px;
+        border-radius: 5px;
+    }
+    .formContainer{
+        margin-top: 20%;
+    }
+    .textArea{
+        border-radius: 5px;
+    }
+</style>
+
+
+<div style="text-align: center;" class="formContainer margin">
+    <h4>Form To Create Assignment</h4>
+
+    <form id="createAssignmentForm" action="#" method="POST" class="margin">
+        <input type="text" name="title" placeholder="Assignment Title" class="margin className"> 
+        <br>
+        <textarea name="description" id="description" cols="30" rows="10" class="margin textArea" placeholder="Type Assignment Description"></textarea>
+        <br>
+        <input type="number" name="totalMarks" id="totalMarks" placeholder="Total marks">
+        <br>
+        <input type="date" name="deadline" id="deadline" placeholder="Deadline">
+        <br>
+        <div style="border: 1px solid black;">
+            <input type="file" name="file" id="file" class="custom-file-input">
+            <br>
+            <label for="file" id="fileLabel">You Have Not Choosen Any File Yet!!!</label>
+        </div>
+        <br>
+        
+        
+        <input type="submit" value="Create Class" id="createAssignment" class="btn margin">
+    </form>
+</div>
+
+<script>
+    const createAssignment = document.getElementById('createAssignment');
+    // createAssignment.disabled = true;
+    const createAssignmentForm = document.getElementById('createAssignmentForm');
+    const file = document.getElementById('file');
+    let fileName;
+
+    // add event listener to file
+    file.addEventListener('change', (file)=>{
+        // get the file
+        console.log('click to hua yrr');
+        console.log(file.target.files[0]);
+        let formData = new FormData();           
+        formData.append("file", file.target.files[0]);
+        fetch('/upload', {
+            method: "POST",
+            body: formData
+        }).then(res => res.json()).then(data => {
+            fileName = data["file"].filename;
+            let action = location.pathname + '/' + fileName;
+            createAssignmentForm.setAttribute('action', action);
+            console.log('unique file name: ' , fileName);
+            fileLabel.innerText = data["file"].originalname;
+            file.disabled = true; 
+            createAssignment.disabled = false;  
+            // dataDisplay.innerText = data.file.filename;   
+            
+    }); 
+    });
+        
+</script>
