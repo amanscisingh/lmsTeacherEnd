@@ -1,98 +1,75 @@
-<style>
-    .card{
-        border: 0.5px solid rgb(194, 189, 189);
-        height: 288px;
-        border-radius: 10px;
-        margin: 30px;
-        width: 370px;
-        margin-top: 30px;
-        font-family: sans-serif;    
-    }
-    .center{
-        text-align: center;
-        margin-top: 5%;
-    }
-    .card:hover{
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;  
-        cursor: pointer;    
-    }
-    .mainContainer{
-        display: flex;
-        justify-content: center;
-        height: 35%;
-        width: 100%;
-        margin-top: 30px;
-    }
-    .subjectContainer{
-        height: 100%;
-        width: 60%;
-        text-align: left;
-        color: white;
-        border-radius: 10px;
-        background-image: url('https://www.gstatic.com/classroom/themes/img_backtoschool.jpg');
-        font-family: cursive;
-        padding: 0px 20px ;
-    }
-    .classNavbar{
-        display: flex;
-        justify-content: center;
-        height: 30%;
-    }
-    .box{
-        width: 28%;
-        height: 100%;
-        background-image: linear-gradient(rgb(0, 153, 255),#f77da5,#f7bb97, white);
-        text-align: center;
-        padding: 10px;
-        color: white;
-    }
-    .box-1{
-        border-right: 0.5px solid black
-    }
-</style>
 
 
 <div class="mainContainer">
     <div class="subjectContainer">
-        <h2>Subject</h2>
-        <h2>Total strength</h2>
-        <h2>Meet link</h2> 
+        <h2>{{classInfo.className}}</h2>
+        <h2>Students Enrolled-{{classInfo.classStudents.length}}</h2>
+        <h2>https://meet.google.com/{{classCode}}</h2>
     </div>
 </div>
 <div class="classNavbar">
-    <div class="box box-1">
-        <h3 onclick="openAssignments()">ASSIGNMENTS/TESTS</h3>
+    <div class="box1" id="box-1">
+        <h3 onclick="openAssignments()">ASSIGNMENTS / TESTS</h3>
     </div>
-    <div class="box box-2">
+    <div class="box1" id="box-2">
         <h3 onclick="openClassShedule()">CLASSES</h3>
     </div>
 </div>
-<div>
-    <h1 class="center">All assignments here👇👇</h1>
-{{#each allAssignments}}
+<div id="allAssignments">
+    
+    {{#each allAssignments}}
 
-    <div class="card" id="card-{{@key}}">
+    <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
         <div class="upperPart">
-            <div class="delete_class_code">
-            <div class="data" id="class-{{@key}}">{{this.classCode}}</div>
-            </div>
-            <div class="data">{{this.title}}</div>
-            <div class="data">{{this.description}}</div>
+            <div>{{this.title}}</div>
             <div>
-                <hr>
+                <hr style="margin: 4%;">
             </div>
+            <div class="data">{{this.description}}</div>
             
         </div>
     </div>
-    
-{{/each}}
+
+    {{/each}}
 
 </div>
+<div id="allSchedule">
+    {{#each allScheduledClasses}}
 
+    <div class="card" id="card-{{@key}}" onclick="editCard({{@key}}">
+        <div class="upperPart">
+            <div>{{this.title}}</div>
+            <div>
+                <hr style="margin: 4%;">
+            </div>
+        <div class="data">{{this.description}}</div>
+            
+        </div>
+    </div>
+
+    {{/each}}
+
+</div>
 <script>
-    function openAssignments(){
+    document.getElementById("box-1").addEventListener("click", function() {
+        document.getElementById("allAssignments").style.display="flex";
+        document.getElementById("allSchedule").style.display="none";
+        document.getElementById("box-1").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da582, #f7bb97, white)";
+        document.getElementById("box-2").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da5, #f7bb97, white)";
+    });
+    document.getElementById("box-2").addEventListener("click", function() {
+        document.getElementById("allSchedule").style.display="flex";
+        document.getElementById("allAssignments").style.display="none";
+        document.getElementById("box-2").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da582, #f7bb97, white)";
+        document.getElementById("box-1").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da5, #f7bb97, white)";
+    });
+        
+    function editCard(key){
+        console.log(key);
+        let id1 = `class-${key}`;
+        console.log('kkkk'+id1);
 
+        location.assign('/teacherDashboard/'+code+'assignment'+id);
     }
-</script>
 
+</script>
