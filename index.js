@@ -30,8 +30,12 @@ function parseToString(input) {
     return input.toString();
 };
 
+// helper functions
+function formatDate(date, format) {
+  return moment(date).format(format)
+};
 
-app.engine('.hbs', exphbs({helpers:{ parseToString }, defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', exphbs({helpers:{ parseToString, formatDate }, defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 // setting up public folder
