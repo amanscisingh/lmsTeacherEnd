@@ -19,7 +19,7 @@
     
     {{#each allAssignments}}
 
-    <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
+    <div class="assignment {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
         <div class="upperPart">
             <div>{{this.title}}</div>
             <div>
@@ -70,6 +70,14 @@
         console.log('kkkk'+id1);
 
         location.assign('/teacherDashboard/'+code+'assignment'+id);
+    }
+
+    function openAssignment(key){
+        console.log(key);
+        let id1 = `assignment-${key}`;
+        console.log(id1);
+
+        location.assign( location.pathname+'/assignment/'+ document.getElementById(id1).classList[1]);
     }
 
 </script>

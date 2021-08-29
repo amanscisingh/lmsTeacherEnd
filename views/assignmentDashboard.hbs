@@ -25,8 +25,39 @@
     <div><h3>Assignment Deadline    :</h3> {{assignment.deadline}}</div>
     <div><h3>ClassCode              :</h3> {{assignment.classCode}}</div>
     <div><h3>Uploaded File Name     :</h3> {{assignment.fileUploadName}}</div>
-    <div><h3>All Submissions        :</h3> {{assignment.allSubmissions}}</div>
+    <div><h3>All Submissions👇👇👇 </h3></div>
     
 </div>
 </div>
+<h1 id="classCode" style="display: none;">{{assignment._id}} </h1>
+<h1 id="arraylength" style="display: none;">{{assignment.allSubmissions.length}} </h1>
 
+{{#each assignment.allSubmissions }}
+    <div>
+        <div>{{this.studentInfo.studentEmail}}</div>
+        <div>{{this.studentInfo.studentName}}</div>
+        <div>{{this.submission.originalFileName}}</div>
+        <div>{{this.submission.uploadedFileName}}</div>
+        <div>{{this.submission.marksAssigned}}</div>
+        <div>{{formatDate this.submission.submissionTime "MMMM Do YYYY, h:mm:ss a"}}</div>
+        <form action="/{{this.studentInfo.studentEmail}}/" method="POST" id="{{@key}}">
+            <label for="marksAssigned"></label>
+            <br>
+            <input type="number" name="marksAssigned" id="marksAssigned" placeholder="{{this.submission.marksAssigned}}">
+            <input type="submit" value="Assign✌"   >
+        </form>
+    </div>
+
+{{/each}}
+
+
+<script>
+    const classCode = document.getElementById('classCode').innerHTML;
+    const arraylength = document.getElementById('arraylength').innerHTML;
+    for (let i=0;i<arraylength;i++){
+        const form = document.getElementById(i);
+        let action = '/teacherDashboard/' + form.action.split('/')[3] + '/' + classCode;
+        form.setAttribute('action',action);
+    }
+
+</script>

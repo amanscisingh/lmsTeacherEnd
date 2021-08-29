@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const cors = require('cors');
+const moment = require('moment');
 
 // imports for the file upload feature
 const crypto = require('crypto');
