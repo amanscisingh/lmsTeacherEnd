@@ -2,19 +2,35 @@
     .mainContainer{
         display: flex;
         justify-content: center;
-        height: 30%;
+        height: 35%;
         width: 100%;
+        margin-top: 30px;
     }
     .subjectContainer{
         height: 100%;
         width: 60%;
         text-align: left;
         color: white;
-        margin: 40px;
         border-radius: 10px;
         background-image: url('https://www.gstatic.com/classroom/themes/img_backtoschool.jpg');
         font-family: cursive;
-        padding: 20px;
+        padding: 0px 20px ;
+    }
+    .classNavbar{
+        display: flex;
+        justify-content: center;
+        height: 30%;
+    }
+    .box{
+        width: 28%;
+        height: 100%;
+        background-image: linear-gradient(rgb(0, 153, 255),#f77da5,#f7bb97, white);
+        text-align: center;
+        padding: 10px;
+        color: white;
+    }
+    .box-1{
+        border-right: 0.5px solid black
     }
 </style>
 
@@ -27,11 +43,23 @@
     
 {{/each}}
 <div class="mainContainer">
-
     <div class="subjectContainer">
         <h2>Subject</h2>
         <h2>Total strength</h2>
         <h2>Meet link</h2> 
     </div>
 </div>
+<div class="classNavbar">
+    <div class="box box-1">
+        <h3 onclick="openAssignments()">ASSIGNMENTS/TESTS</h3>
+    </div>
+    <div class="box box-2">
+        <h3 onclick="openClassShedule()">CLASSES</h3>
+    </div>
+</div>
+<script>
+    function openAssignments(){
+        
+    }
+</script>
 
