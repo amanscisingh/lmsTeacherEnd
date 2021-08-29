@@ -120,19 +120,7 @@ teacherDashboardRoute.post('/:classCode/create/:filename', async (req, res) => {
     }
 });
 
-// teacherDashboard/:classCode
-teacherDashboardRoute.get('/:classCode', async (req, res) => {
-    try {
-        const classCode = req.params.classCode;
-        console.log(classCode);
-        let assignment = await Assignments.find({ classCode: classCode }).lean();
-        console.log('-->',assignment);
 
-        res.render('teacherDashboard', { layout: 'blank', assignment: assignment });
-    } catch (error) {
-        res.send(error);
-    }
-});
 
 // teacherDashboard/:classCode/:assignmentId
 teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async (req, res) => {
