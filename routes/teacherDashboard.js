@@ -8,14 +8,14 @@ const ScheduledClasses = require('../models/ScheduledClasses.js');
 
 
 // /teacherDashboard
-teacherDashboardRoute.get('/', async (req, res) => {
+teacherDashboardRoute.get('/', async(req, res) => {
     try {
         // passing all the class details in form of array to the template
         const email = req.cookies['email'];
         let allClasses = await Classes.find({ classTeacherEmail: email }).lean();
         // console.log(allClasses);
 
-        res.render('teacherDashboard', { layout: 'teacherLoggedIn', allClasses: allClasses  });
+        res.render('teacherDashboard', { layout: 'teacherLoggedIn', allClasses: allClasses });
     } catch (error) {
         res.send(error);
     }
@@ -33,15 +33,15 @@ teacherDashboardRoute.get('/create', (req, res) => {
 })
 
 // /teacherDashboard/:classCode
-teacherDashboardRoute.get('/:classCode', async (req, res) => {
+teacherDashboardRoute.get('/:classCode', async(req, res) => {
     try {
         // passing all the class details in form of array to the template
         const classCode = req.params.classCode;
         let classInfo = await Classes.findOne({ classCode: classCode }).lean();
         let allAssignments = await Assignments.find({ classCode: classCode }).lean();
-        let allScheduledClasses =  await ScheduledClasses.find({ classCode: classCode }).lean();
+        let allScheduledClasses = await ScheduledClasses.find({ classCode: classCode }).lean();
 
-        res.render('classDashboard', { layout: 'singleClass', classInfo: classInfo , classCode, allAssignments: allAssignments, allScheduledClasses: allScheduledClasses });
+        res.render('classDashboard', { layout: 'singleClass', classInfo: classInfo, classCode, allAssignments: allAssignments, allScheduledClasses: allScheduledClasses });
     } catch (error) {
         res.send(error);
     }
@@ -50,15 +50,15 @@ teacherDashboardRoute.get('/:classCode', async (req, res) => {
 
 // /teacherDashboard/create
 // @POST request to create an antity in db
-teacherDashboardRoute.post('/create', async (req, res) => {
+teacherDashboardRoute.post('/create', async(req, res) => {
     try {
         // passing all the class details in form of array to the template
         console.log('post request revied');
-            
+
         let classCode = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 3) + '-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 3) + '-' + Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 3);
         let email = req.cookies['email'];
         let user = await Users.findOne({ email: email });
-        console.log(user);
+        // console.log(user);
 
         var newClass = new Classes({
             className: req.body.className,
@@ -70,7 +70,7 @@ teacherDashboardRoute.post('/create', async (req, res) => {
         });
 
         await newClass.save();
-        console.log(newClass);
+        // console.log(newClass);
         res.redirect('/teacherDashboard');
     } catch (error) {
         res.send(error);
@@ -79,7 +79,7 @@ teacherDashboardRoute.post('/create', async (req, res) => {
 
 
 // teacherDashboard/:classCode/create
-teacherDashboardRoute.get('/:classCode/create', async (req, res) => {
+teacherDashboardRoute.get('/:classCode/create', async(req, res) => {
     try {
         res.render('createAssignment', { layout: 'blank' })
     } catch (error) {
@@ -90,7 +90,7 @@ teacherDashboardRoute.get('/:classCode/create', async (req, res) => {
 
 // teacherDashboard/:classCode/create
 // @POST 
-teacherDashboardRoute.post('/:classCode/create/:filename', async (req, res) => {
+teacherDashboardRoute.post('/:classCode/create/:filename', async(req, res) => {
     try {
         const classCode = req.params.classCode;
         const fileUploadName = req.params.filename;
@@ -113,8 +113,8 @@ teacherDashboardRoute.post('/:classCode/create/:filename', async (req, res) => {
         await newAssignment.save();
 
         res.redirect('/teacherDashboard/' + classCode);
-        
-        
+
+
     } catch (error) {
         res.send(error);
     }
@@ -123,12 +123,12 @@ teacherDashboardRoute.post('/:classCode/create/:filename', async (req, res) => {
 
 
 // teacherDashboard/:classCode/:assignmentId
-teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async (req, res) => {
+teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async(req, res) => {
     try {
         const classCode = req.params.classCode;
         const assignmentId = mongoose.Types.ObjectId(req.params.assignmentId);
         let assignment = await Assignments.findOne({ _id: assignmentId }).lean();
-        console.log(assignment);
+        // console.log(assignment);
 
         res.render('assignmentDashboard', { layout: 'blank', classCode, assignment: assignment });
     } catch (error) {
@@ -138,10 +138,10 @@ teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async (req, re
 
 
 // teacherDashboard/:classCode/scheduleClass
-teacherDashboardRoute.get('/:classCode/scheduleClass', async (req, res) => {
+teacherDashboardRoute.get('/:classCode/scheduleClass', async(req, res) => {
     try {
         let classCode = req.params.classCode;
-        console.log(classCode);
+        // console.log(classCode);
         res.render('scheduleClass', { layout: 'blank' })
     } catch (error) {
         console.error(error);
@@ -152,10 +152,10 @@ teacherDashboardRoute.get('/:classCode/scheduleClass', async (req, res) => {
 
 // teacherDashboard/:classCode/scheduleClass
 // @POST
-teacherDashboardRoute.post('/:classCode/scheduleClass', async (req, res) => {
+teacherDashboardRoute.post('/:classCode/scheduleClass', async(req, res) => {
     try {
         let classCode = req.params.classCode;
-        
+
         let newScheduledClass = new ScheduledClasses({
             classCode: classCode,
             title: req.body.title,
@@ -166,7 +166,7 @@ teacherDashboardRoute.post('/:classCode/scheduleClass', async (req, res) => {
             classPassword: req.body.classPassword,
             classTeacherEmail: req.cookies['email'],
         });
-        
+
         await newScheduledClass.save();
 
         res.send(newScheduledClass);
