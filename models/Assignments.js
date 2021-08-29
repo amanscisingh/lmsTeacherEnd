@@ -62,8 +62,8 @@ const assignmentSchema = new mongoose.Schema({
                     required: false
                 },
                 {
-                    type: String,   // file name - takking input from user side
-                    required: false
+                    type: Date,    // time of submission
+                    default: Date.now
                 },
             ]
         }
