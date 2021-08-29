@@ -8,6 +8,10 @@
         margin-top: 30px;
         font-family: sans-serif;    
     }
+    .center{
+        text-align: center;
+        margin-top: 5%;
+    }
     .card:hover{
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         transition: 0.3s;  
@@ -64,8 +68,9 @@
         <h3 onclick="openClassShedule()">CLASSES</h3>
     </div>
 </div>
-
-{{#each assignment}}
+<div>
+    <h1 class="center">All assignments here👇👇</h1>
+{{#each allAssignments}}
 
     <div class="card" id="card-{{@key}}">
         <div class="upperPart">
@@ -82,6 +87,8 @@
     </div>
     
 {{/each}}
+
+</div>
 
 <script>
     function openAssignments(){
