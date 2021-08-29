@@ -1,4 +1,18 @@
 <style>
+    .card{
+        border: 0.5px solid rgb(194, 189, 189);
+        height: 288px;
+        border-radius: 10px;
+        margin: 30px;
+        width: 370px;
+        margin-top: 30px;
+        font-family: sans-serif;    
+    }
+    .card:hover{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;  
+        cursor: pointer;    
+    }
     .mainContainer{
         display: flex;
         justify-content: center;
@@ -35,13 +49,6 @@
 </style>
 
 
-{{#each allAssignments}}
-
-    <h3>{{this.title}}</h3>
-    <h3>{{this.description}}</h3>
-    <br>
-    
-{{/each}}
 <div class="mainContainer">
     <div class="subjectContainer">
         <h2>Subject</h2>
@@ -57,9 +64,28 @@
         <h3 onclick="openClassShedule()">CLASSES</h3>
     </div>
 </div>
+
+{{#each assignment}}
+
+    <div class="card" id="card-{{@key}}">
+        <div class="upperPart">
+            <div class="delete_class_code">
+            <div class="data" id="class-{{@key}}">{{this.classCode}}</div>
+            </div>
+            <div class="data">{{this.title}}</div>
+            <div class="data">{{this.description}}</div>
+            <div>
+                <hr>
+            </div>
+            
+        </div>
+    </div>
+    
+{{/each}}
+
 <script>
     function openAssignments(){
-        
+
     }
 </script>
 
