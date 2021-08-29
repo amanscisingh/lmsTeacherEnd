@@ -21,6 +21,10 @@ const ScheduledClassesSchema = new mongooose.Schema({
         type: Number,
         required: true
     },
+    classTeacherEmail : {
+        type: String,
+        required: true
+    },
     classLink: {
         type: String,
         required: true

@@ -37,10 +37,11 @@ teacherDashboardRoute.get('/:classCode', async (req, res) => {
     try {
         // passing all the class details in form of array to the template
         const classCode = req.params.classCode;
-        let allClasses = await Classes.findOne({ classCode: classCode }).lean();
+        let classInfo = await Classes.findOne({ classCode: classCode }).lean();
         let allAssignments = await Assignments.find({ classCode: classCode }).lean();
+        let allScheduledClasses =  await ScheduledClasses.find({ classCode: classCode }).lean();
 
-        res.render('classDashboard', { layout: 'singleClass', allClasses: allClasses , classCode, allAssignments: allAssignments });
+        res.render('classDashboard', { layout: 'singleClass', classInfo: classInfo , classCode, allAssignments: allAssignments, allScheduledClasses: allScheduledClasses });
     } catch (error) {
         res.send(error);
     }
@@ -162,6 +163,7 @@ teacherDashboardRoute.post('/:classCode/scheduleClass', async (req, res) => {
             duration: req.body.duration,
             classLink: req.body.classLink,
             classPassword: req.body.classPassword,
+            classTeacherEmail: req.cookies['email'],
         });
         
         await newScheduledClass.save();
