@@ -36,8 +36,12 @@ const assignmentSchema = new mongoose.Schema({
     },
     allSubmissions: [
         {
-            type: String,
+            type: String,   //file name - takking input from user side
             required: false
+        },
+        {
+            type: String,   //unique file name to download the file
+            required: true
         }
     ],
     createdAt: {

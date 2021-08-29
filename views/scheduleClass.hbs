@@ -1,0 +1,89 @@
+<style>
+    .mainContainer{
+        background-image: url('https://c8.alamy.com/comp/2BW8349/open-notepad-and-pen-on-laptop-with-copy-space-2BW8349.jpg');
+        background-size: cover;
+        height: 89vh;
+        padding-top: 5%;
+    }
+    .btn{
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #b2aefc;
+        border: none;
+        width: 150px;
+        height: 40px;
+        font-size: large;
+    }
+    .btn:hover{
+        cursor: pointer;
+        box-shadow: 0px 0px 4px 2px #8a86ce;
+    }
+    .margin{
+        margin: 10px;
+    }
+    /* .className{
+        padding: 7px;
+        border-radius: 5px;
+    } */
+    .formContainer{
+        width: 25%;
+        padding: 20px;
+        margin: 0%;
+        /* margin-top: 3%; */
+        margin-left: 60%;
+        background-color: #4b4949;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 14px 8px black;
+    }
+    .textArea{
+        border-radius: 5px;
+    }
+    .className{
+        padding: 10px;
+        border-radius: 8px;
+    }
+    #description{
+        border-radius: 8px;
+    }
+    *{
+        margin: 0;
+        padding: 0;
+    }
+</style>
+
+<div class="mainContainer">
+    <div style="text-align: center;" class="formContainer margin">
+        <h2>Form To Schedule Class</h2>
+    
+        <form id="createScheduledClassForm" action="#" method="POST" class="margin">
+            <input type="text" name="title" placeholder="Class Title" class="margin className" required> 
+            <br>
+            <textarea name="description" id="description" class="margin" cols="30" rows="5" class="margin textArea" placeholder="Type Class Description And Instruction" required></textarea>
+            <br>
+            <label for="startTime" class="margin className">Start Time of Class</label>
+            <br>
+            <input type="datetime-local" name="startTime" id="startTime" class="margin className" placeholder="Start Time Of Class" required>
+            <br>
+            <input type="number" name="duration" id="totalMarks" class="margin className" placeholder="Duration of Class (in hours)" required>
+            <br>
+            <input type="text" id="classLink" name="classLink" placeholder="Class Link" class="margin className" required> 
+            <br>
+            <input type="text" name="classPassword" placeholder="Class PassCode If Any" class="margin className"> 
+            <br>            
+            
+            <input type="submit" value="Create Class" id="createScheduledClass" class="btn margin">
+        </form>
+    </div>
+    <!-- <div class="formContainer margin">
+        <img src="" alt="side ki photo" class="ScheduledClassFormImage">
+    </div> -->
+</div>
+
+<script>
+    const createScheduledClass = document.getElementById('createScheduledClass');
+    const createScheduledClassForm = document.getElementById('createScheduledClassForm');
+    const classLink = document.getElementById('classLink');
+    let action = location.pathname
+    createScheduledClassForm.setAttribute('action', action);
+</script>

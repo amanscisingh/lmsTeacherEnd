@@ -3,6 +3,8 @@ const teacherDashboardRoute = express.Router();
 const Classes = require('../models/Classes.js');
 const Users = require('../models/Users.js');
 const Assignments = require('../models/Assignments.js');
+const mongoose = require('mongoose');
+const ScheduledClasses = require('../models/ScheduledClasses.js');
 
 
 // /teacherDashboard
@@ -37,7 +39,6 @@ teacherDashboardRoute.get('/:classCode', async (req, res) => {
         const classCode = req.params.classCode;
         let allClasses = await Classes.findOne({ classCode: classCode }).lean();
         let allAssignments = await Assignments.find({ classCode: classCode }).lean();
-        console.log(allClasses);
 
         res.render('classDashboard', { layout: 'singleClass', allClasses: allClasses , classCode, allAssignments: allAssignments });
     } catch (error) {
@@ -120,10 +121,10 @@ teacherDashboardRoute.post('/:classCode/create/:filename', async (req, res) => {
 
 
 // teacherDashboard/:classCode/:assignmentId
-teacherDashboardRoute.get('/:classCode/:assignmentId', async (req, res) => {
+teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async (req, res) => {
     try {
         const classCode = req.params.classCode;
-        const assignmentId = req.params.assignmentId;
+        const assignmentId = mongoose.Types.ObjectId(req.params.assignmentId);
         let assignment = await Assignments.findOne({ _id: assignmentId }).lean();
         console.log(assignment);
 
@@ -132,5 +133,44 @@ teacherDashboardRoute.get('/:classCode/:assignmentId', async (req, res) => {
         res.send(error);
     }
 });
+
+
+// teacherDashboard/:classCode/scheduleClass
+teacherDashboardRoute.get('/:classCode/scheduleClass', async (req, res) => {
+    try {
+        let classCode = req.params.classCode;
+        console.log(classCode);
+        res.render('scheduleClass', { layout: 'blank' })
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
+})
+
+
+// teacherDashboard/:classCode/scheduleClass
+// @POST
+teacherDashboardRoute.post('/:classCode/scheduleClass', async (req, res) => {
+    try {
+        let classCode = req.params.classCode;
+        
+        let newScheduledClass = new ScheduledClasses({
+            classCode: classCode,
+            title: req.body.title,
+            description: req.body.description,
+            startTime: req.body.startTime,
+            duration: req.body.duration,
+            classLink: req.body.classLink,
+            classPassword: req.body.classPassword,
+        });
+        
+        await newScheduledClass.save();
+
+        res.send(newScheduledClass);
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
+})
 
 module.exports = teacherDashboardRoute;
