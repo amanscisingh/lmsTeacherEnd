@@ -1,5 +1,28 @@
-
-
+<style>
+    body{    
+        background-color: rgb(231 237 239);
+    }
+    #allSchedule{
+        justify-content: center;
+    }
+    th, td{
+        border: 1px solid black;
+    }
+    table{
+        margin-top: 5%;
+        width: 60%;
+        height: auto;
+    }
+    tr>th{
+        font-size: large;
+        background-color: blanchedalmond;
+        padding: 20px;
+    }
+    tr>td{
+        background-color: blanchedalmond;
+        padding: 20px;
+    }
+</style>
 <div class="mainContainer">
     <div class="subjectContainer">
         <h2>{{classInfo.className}}</h2>
@@ -25,8 +48,7 @@
             <div>
                 <hr style="margin: 4%;">
             </div>
-            <div class="data">{{this.description}}</div>
-            
+            <div class="data" style="color: rgb(143, 138, 138);">{{this.description}}</div>     
         </div>
     </div>
 
@@ -34,32 +56,43 @@
 
 </div>
 <div id="allSchedule">
+    <table class="timeTable">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>start time</th>
+            <th>Duration</th>
+            <th>Class Link</th>
+        </tr>
+    </thead>
     {{#each allScheduledClasses}}
 
-    <div class="card" id="card-{{@key}}" onclick="editCard({{@key}}">
-        <div class="upperPart">
-            <div>{{this.title}}</div>
-            <div>
-                <hr style="margin: 4%;">
-            </div>
-        <div class="data">{{this.description}}</div>
-            
-        </div>
-    </div>
-
+    <tbody>
+        <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.description}}</td>
+            <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
+            <td>{{this.duration}}</td>
+            <td>{{this.classLink}}</td>
+        </tr>
+    </tbody>
     {{/each}}
-
+    </table>
 </div>
+<br><br>
 <script>
     document.getElementById("box-1").addEventListener("click", function() {
         document.getElementById("allAssignments").style.display="flex";
         document.getElementById("allSchedule").style.display="none";
+        document.getElementById( 'allAssignments' ).scrollIntoView();
         document.getElementById("box-1").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da582, #f7bb97, white)";
         document.getElementById("box-2").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da5, #f7bb97, white)";
     });
     document.getElementById("box-2").addEventListener("click", function() {
         document.getElementById("allSchedule").style.display="flex";
         document.getElementById("allAssignments").style.display="none";
+        document.getElementById( 'allSchedule' ).scrollIntoView();
         document.getElementById("box-2").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da582, #f7bb97, white)";
         document.getElementById("box-1").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da5, #f7bb97, white)";
     });

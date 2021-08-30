@@ -12,40 +12,39 @@
             font-size: large;
         }
         body{
-            background-color: #c9d0d0;
+            background-color: rgb(224 229 231);
         }
-        {{!-- .header{
+        .header{
             display : flex;
             justify-content: flex-end;
             padding: 27px;
-            box-shadow: 2px 2px 10px 2px gray;
+            box-shadow: 0 0 10px 1px gray;
             background-color: white;
             z-index: 1;
         }
-        .add_class_icon{
+        .addClassIcon{
             text-decoration: none;
             position: absolute;
-            top: 4%;
-            right: 9%;
+            top: 2.3%;
+            right: 8%;
         }
-        .heading_logo_text{
-            position: absolute;
-            left: 5rem;
+        .plusIcon{
+            border-radius: 100%;
+            padding: 10px;
         }
-        .heading_logo_img{
-            height: 50px;
-            width: 50px;
-            position: absolute;
-            left: 1rem; top: 0.4rem;
-            {{!-- border: 2px solid blue; --}}
-        } --}}
+        .plusIcon:hover{
+            background-color: rgba(0, 0, 0, 0.384);
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.285);
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="heading_logo_img"/>
+        <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="teacher_heading_logo_img"/>
         <h3 class="heading_logo_text">IIT BHU</h3>
-        <a href="/teacherDashboard/create" class="add_class_icon">✔ create class</a>
+        <a href="/teacherDashboard/create" class="addClassIcon">
+        <input type="image" src="https://icon-library.com/images/plus-icon-transparent/plus-icon-transparent-16.jpg" class="plusIcon" name="submit" width="31" height="35" alt="submit"/>  
+        </a>
         <h3 class="login_icon">👍</h3>
     </div>
     {{{ body }}}
