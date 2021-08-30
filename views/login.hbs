@@ -1,14 +1,19 @@
-<h3>login page</h3>
-
-<div class="g-signin2" data-onsuccess="onSignIn">
-
+<div class="heading">
+    <h1>Login page</h1>
 </div>
 
-<a href="#" onclick="signOut();">Sign out</a>
-<hr>
-<div class="headContainer">
-    <div class="formContainer2">
-        <h1>Enter Credentials Here:</h1>
+<div class="headContainer"> 
+    <div class="upperFlexBox">
+        <h1>Sign in With Google</h1>
+        <div class="googleForm">
+            <div class="g-signin2" id="googleSignIn" data-onsuccess="onSignIn"></div>
+        </div> 
+    </div>   
+
+    <h2 class="or">OR</h2>
+    
+    <div class="formContainer">
+        <h1 >Sign In with Email</h1>
         <form id="form" action="" method="POST">
             <input name="email" type="email" placeholder="Enter Email here" id="email"> <a id='checkEmailBtn'>👉👉👉</a> <br>
             <input name="firstName" type="text" style="visibility: hidden;" placeholder="Enter First Name here" id="firstName">
@@ -21,11 +26,42 @@
 </div>
 
 <style>
-    {{!-- .headContainer{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
+body{
+    background-image: url('images/loginBackground.jpg');
+    background-size: cover;
+}
+
+.heading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 60px;
+    background-color: rgb(11, 88, 107);
+    color: white;
+    {{!-- width: 100px; --}}
+}
+
+.googleForm{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.upperFlexBox{
+    border: 2px solid red;
+    width: 300px;
+    border-radius: 5px;
+    border: 1px solid lightgray;
+    padding: 20px;
+    background-color: #94d8f8cb;
+    box-shadow: 0px 0px 6px 3px rgb(94 93 93);
+}
+
+.or{
+    margin-top: 30px;
 }
 
 .formContainer {
@@ -39,10 +75,36 @@
 }
 
 .formContainer > h1 {
-    font-weight: 500;
+    font-weight: bold;
     margin-bottom: 20px;
+    margin-left: 10px;
   }
 
+{{!-- .headContainer > h1 {
+    font-weight: 500;
+    margin-bottom: 20px;
+  } --}}
+
+#googleSignIn{
+    background: #c32f10;
+}
+
+#signOutButton{
+    border: 2px solid white;
+    width: 115px;
+    background-color: white;
+    color: #757575;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    height: 30px;
+}
+
+#signOutButton:hover{
+    color:black;
+}
 
 #email{
     height: 30px;

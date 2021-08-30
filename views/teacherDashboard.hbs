@@ -76,16 +76,27 @@
             <tr>
                 <th>Title</th>
                 <th>Description</th>
-                <th>Total Students</th>
+                <th>Start Time</th>
+                <th>Duration</th>
+                <th>Link (click to open) </th>
+                <th>Passcode </th>
             </tr>
         </thead>
-        {{#each allClasses}}
+        {{#each allScheduledClasses}}
 
         <tbody>
             <tr>
-                <td>{{this.className}}</td>
-                <td>{{this.classDescription}}</td>
-                <td>{{this.classStudents.length}}</td>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                <td>{{this.duration}} Hours</td>
+                <td id="btn-{{@key}}" onclick="openClassinNewWindow({{@key}})">{{this.classLink}}</td>
+                <td>
+                    {{#if this.classPassword}}
+                        {{this.classPassword}}
+                    {{/if}}
+                        No Password
+                </td>
             </tr>
         </tbody>
         {{/each}}
@@ -103,4 +114,14 @@
         console.log(id);
         location.assign('/teacherDashboard/'+document.getElementById(id).innerHTML);
     }
+
+
+
+    function openClassinNewWindow(key){
+        let meetLink = document.getElementById(`btn-${key}`).innerText;
+        window.open(meetLink);
+    }
+
+
+    
 </script>

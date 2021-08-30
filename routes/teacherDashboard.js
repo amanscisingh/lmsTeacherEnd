@@ -13,9 +13,11 @@ teacherDashboardRoute.get('/', async(req, res) => {
         // passing all the class details in form of array to the template
         const email = req.cookies['email'];
         let allClasses = await Classes.find({ classTeacherEmail: email }).lean();
-        // console.log(allClasses);
+        
+        let allScheduledClasses = await ScheduledClasses.find({ classTeacherEmail: email }).lean();
+        console.log(allScheduledClasses);
 
-        res.render('teacherDashboard', { layout: 'teacherLoggedIn', allClasses: allClasses });
+        res.render('teacherDashboard', { layout: 'teacherLoggedIn', allClasses: allClasses , allScheduledClasses: allScheduledClasses});
     } catch (error) {
         res.send(error);
     }
