@@ -43,10 +43,25 @@
         <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="teacher_heading_logo_img"/>
         <h3 class="heading_logo_text">IIT BHU</h3>
         <a href="/teacherDashboard/create" class="addClassIcon">
-        <input type="image" src="https://icon-library.com/images/plus-icon-transparent/plus-icon-transparent-16.jpg" class="plusIcon" name="submit" width="31" height="35" alt="submit"/>  
+        <input type="image" id='image' src="#" class="plusIcon" name="submit" width="31" height="35" alt="submit"/>  
         </a>
         <h3 class="login_icon">👍</h3>
     </div>
+    <script>
+        // %3A - :
+        // %2F - /
+        // %3D - =
+
+        let imageLink = document.cookie.split(';')[6].split('=')[1];
+        imageLink = imageLink.replaceAll("%3A", ":");
+        imageLink = imageLink.replaceAll("%2F", "/");
+        imageLink = imageLink.replaceAll("%3D", "=");
+
+        const image = document.getElementById('image');
+        image.src = imageLink;
+        console.log(imageLink);
+        
+    </script>
     {{{ body }}}
 </body>
 </html>
