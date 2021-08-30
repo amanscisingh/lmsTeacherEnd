@@ -3,6 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="665729303262-pvgu50j2sjrbafq2jjibo4t08qmha2pr.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Dashboard</title>
     <style>
@@ -102,11 +103,14 @@
                 <img src="https://www.downloadclipart.net/large/plus-transparent-png.png" class="plusIcon" name="submit" style="height: 40px; width: 40px; padding: 7px" alt="plus"/>
                 </a>
                 <div class="addClassIcon2 container-element"><img style="height: 60px; width: 60px;" id='image' src="#" class="plusIcon">  </div>
-                <a href="#" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
+                <a href="#" onclick="signOut()" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
             </span>
             
         </div>
     </div> 
+
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
     <script>
         // %3A - :
         // %2F - /
@@ -127,6 +131,26 @@
         const image = document.getElementById('image');
         image.src = imageLink;
         console.log(imageLink);
+
+        function signOut(user) {
+            console.log('btn clicked');
+            window.gapi.load('auth2', () => {
+            window.gapi.auth2
+                .init({
+                client_id:
+                    '665729303262-pvgu50j2sjrbafq2jjibo4t08qmha2pr.apps.googleusercontent.com'
+                })
+                .then(() => {
+                window.gapi.auth2
+                    .getAuthInstance()
+                    .signOut()
+                    .then(function() {
+                    console.log('User signed out.');
+                    location.assign('/');
+                    });
+                });
+            });
+        }
         
     </script>
     {{{ body }}}

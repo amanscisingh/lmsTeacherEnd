@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-signin-client_id" content="665729303262-sq2ni10fgiju2vu557tl65cgovb1tnj2.apps.googleusercontent.com">
+    <meta name="google-signin-client_id" content="665729303262-pvgu50j2sjrbafq2jjibo4t08qmha2pr.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Class</title>
     <style>
@@ -65,41 +65,47 @@
                     <img src="/images/assignmentDesign.svg" name="submit" style="height: 100%; width: 100%;" alt="plus"/>
                 </a>
                 <a id='scheduleClass' href="#" class="container-element"><img style="height: 100%; width: 100%;" src="/images/classScheduleDesign.svg">  </a>
-                <a href="#" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
+                <a href="#" onclick="signOut()" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
             </span>
             
         </div>
 
 
     </div>
+
+
+    
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <script>
+        const createAssignment = document.getElementById('createAssignment');
+        const scheduleClass = document.getElementById('scheduleClass');
+        createAssignment.href = location.pathname + '/create';
+        scheduleClass.href = location.pathname + '/scheduleClass';
+
+        function signOut(user) {
+            console.log('btn');
+            window.gapi.load('auth2', () => {
+        window.gapi.auth2
+            .init({
+            client_id:
+                '665729303262-pvgu50j2sjrbafq2jjibo4t08qmha2pr.apps.googleusercontent.com'
+            })
+            .then(() => {
+            window.gapi.auth2
+                .getAuthInstance()
+                .signOut()
+                .then(function() {
+                console.log('User signed out.');
+                location.assign('/');
+                });
+            });
+        });
+        }
+    </script>
+
+
     {{{ body }}}
 </body>
 
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<script>
-    const createAssignment = document.getElementById('createAssignment');
-    const scheduleClass = document.getElementById('scheduleClass');
-    createAssignment.href = location.pathname + '/create';
-    scheduleClass.href = location.pathname + '/scheduleClass';
-
-    function signOut(user) {
-        window.gapi.load('auth2', () => {
-      window.gapi.auth2
-        .init({
-          client_id:
-            '665729303262-sq2ni10fgiju2vu557tl65cgovb1tnj2.apps.googleusercontent.com'
-        })
-        .then(() => {
-          window.gapi.auth2
-            .getAuthInstance()
-            .signOut()
-            .then(function() {
-              console.log('User signed out.');
-              location.assign('/');
-            });
-        });
-    });
-    }
-</script>
 </html>
