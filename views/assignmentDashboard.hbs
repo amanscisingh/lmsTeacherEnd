@@ -4,7 +4,7 @@
         display: flex;
     }
 
-    
+
 
     th,
     td {
@@ -12,7 +12,7 @@
     }
 
     table {
-        margin-top: 3%;
+        margin-top: 0.5%;
         width: 60%;
         height: auto;
     }
@@ -28,10 +28,7 @@
         padding: 20px;
     }
 
-    .eachSubmission {
-        {{!-- display: flex; --}}
-
-    }
+    
 
     h2 {
         background-color: #d2f6ff;
@@ -42,12 +39,10 @@
 
     .AssignmentCard {
         border: 0.5px solid rgb(194, 189, 189);
-        {{!-- width: 370px; --}}
         margin: 15px;
         margin-top: 5px;
         font-family: sans-serif;
         background-color: #fff;
-        {{!-- height: 10%; --}}
         padding: 15px;
     }
 
@@ -56,86 +51,70 @@
         transition: 0.3s;
         cursor: pointer;
     }
-    .assignmentEntry{
+
+    .assignmentEntry {
         display: flex;
     }
 </style>
+<h2>Assignment Details👇👇👇 </h2>
+<div class="tableContainer">
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>total Marks</th>
+                <th>created At</th>
+                <th>deadline</th>
+                <th>Uploaded Assignment </th>
+            </tr>
+        </thead>
 
-    <div class="tableContainer">
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>total Marks</th>
-                    <th>created At</th>
-                    <th>deadline</th>
-                    <th>Uploaded File Name </th>
-                </tr>
-            </thead>
+        <tbody>
+            <tr>
+                <td>{{assignment.title}}</td>
+                <td>{{assignment.description}}</td>
+                <td>{{assignment.totalMarks}}</td>
+                <td>{{formatDate assignment.createdAt "MMMM Do YYYY, h:mm:ss a"}}</td>
+                <td>{{formatDate assignment.deadline "MMMM Do YYYY, h:mm:ss a"}}</td>
+                <td><button>Download</button></td>
+            </tr>
+        </tbody>
+    </table>
 
+</div>
+<h2>All Submissions👇👇👇 </h2>
+<div class="tableContainer">
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>Student Email</th>
+                <th>Download ⬇ </th>
+                <th>Submission Time</th>
+                <th>Assign marks</th>
+            </tr>
+        </thead>
+        {{#each assignment.allSubmissions }}
             <tbody>
                 <tr>
-                    <td>{{assignment.title}}</td>
-                    <td>{{assignment.description}}</td>
-                    <td>{{assignment.totalMarks}}</td>
-                    <td>{{formatDate assignment.createdAt "MMMM Do YYYY, h:mm:ss a"}}</td>
-                    <td>{{formatDate assignment.deadline "MMMM Do YYYY, h:mm:ss a"}}</td>
-                    <td>{{assignment.fileUploadName}}</td>
+                    <td>{{this.studentInfo.studentName}}</td>
+                    <td>{{this.studentInfo.studentEmail}}</td>
+                    <td><button>Download</button></td>
+                    <td>{{formatDate this.submission.submissionTime "MMMM Do YYYY, h:mm:ss a"}}</td>
+                    <td>
+                        <form action="/{{this.studentInfo.studentEmail}}/" method="POST" id="{{@key}}">
+                            <input type="number" name="marksAssigned" id="marksAssigned"
+                                placeholder="{{this.submission.marksAssigned}}">
+                            <input type="submit" value="Assign✌">
+                        </form>
+                    </td>
                 </tr>
             </tbody>
-        </table>
-
-
-
-
-
-
-
-    </div>
-    {{!-- <div>
-        <h3>Assignment Title :</h3> {{assignment.title}}
-    </div>
-    <div>
-        <h3>Assignment Description :</h3> {{assignment.description}}
-    </div>
-    <div>
-        <h3>Assignment Total Marks :</h3> {{assignment.totalMarks}}
-    </div>
-    <div>
-        <h3>Assignment created At :</h3> {{assignment.createdAt}}
-    </div>
-    <div>
-        <h3>Assignment Deadline :</h3> {{assignment.deadline}}
-    </div>
-    <div>
-        <h3>ClassCode :</h3> {{assignment.classCode}}
-    </div>
-    <div>
-        <h3>Uploaded File Name :</h3> {{assignment.fileUploadName}}
-    </div> --}}
-    <h2>All Submissions👇👇👇 </h2>
-
-    <div class="eachSubmission">
-        {{#each assignment.allSubmissions }}
-        <div class="AssignmentCard">
-            <div class="assignmentEntry"><h3>Student Name ➡ </h3>{{this.studentInfo.studentName}}</div>
-            <div class="assignmentEntry"><h3>Student Email ➡ </h3>{{this.studentInfo.studentEmail}}</div>
-            <div class="assignmentEntry"><h3>Original File Name ➡ </h3>{{this.submission.originalFileName}}</div>
-            <div class="assignmentEntry"><h3>Uploaded File Name ➡ </h3>{{this.submission.uploadedFileName}}</div>
-            <div class="assignmentEntry"><h3>Submission Time ➡ </h3>{{formatDate this.submission.submissionTime "MMMM Do YYYY, h:mm:ss a"}}</div>
-            <div class="assignmentEntry"><h3>Marks Assingned ➡ </h3>{{this.submission.marksAssigned}}</div>
-            <form action="/{{this.studentInfo.studentEmail}}/" method="POST" id="{{@key}}">
-                <label for="marksAssigned"></label>
-                <br>
-                <input type="number" name="marksAssigned" id="marksAssigned"
-                    placeholder="{{this.submission.marksAssigned}}">
-                <input type="submit" value="Assign✌">
-            </form>
-        </div>
-
         {{/each}}
-    </div>
+    </table>
+</div>
 
 <script>
     const classCode = document.getElementById('classCode').innerHTML;
@@ -146,7 +125,7 @@
         let action = '/teacherDashboard/' + form.action.split('/')[3] + '/' + classCode;
         form.setAttribute('action', action);
         console.log(form);
-        
+
     }
 
 </script>
