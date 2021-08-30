@@ -38,10 +38,20 @@ teacherDashboardRoute.get('/:classCode', async(req, res) => {
         // passing all the class details in form of array to the template
         const classCode = req.params.classCode;
         let classInfo = await Classes.findOne({ classCode: classCode }).lean();
-        let allAssignments = await Assignments.find({ classCode: classCode }).lean();
+        let allAssignmentsandTests = await Assignments.find({ classCode: classCode }).lean();
+        let allAssignments = [];
+        let allTests = [];
+        for (let i = 0; i < allAssignmentsandTests.length; i++) {
+            if (allAssignmentsandTests[i].type == 'assignment') {
+                allAssignments.push(allAssignmentsandTests[i]);
+            } else {
+                allTests.push(allAssignmentsandTests[i]);
+            }
+        }
+
         let allScheduledClasses = await ScheduledClasses.find({ classCode: classCode }).lean();
 
-        res.render('classDashboard', { layout: 'singleClass', classInfo: classInfo, classCode, allAssignments: allAssignments, allScheduledClasses: allScheduledClasses });
+        res.render('classDashboard', { layout: 'singleClass', classInfo: classInfo, classCode, allAssignments: allAssignments, allTests: allTests, allScheduledClasses: allScheduledClasses });
     } catch (error) {
         res.send(error);
     }

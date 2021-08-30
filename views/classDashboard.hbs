@@ -1,4 +1,7 @@
 <style>
+    *{
+        font-family: 'Open Sans', sans-serif;
+    }
     body{    
         background-color: rgb(231 237 239);
     }
@@ -15,91 +18,193 @@
     }
     tr>th{
         font-size: large;
-        background-color: blanchedalmond;
+        background-color: #d2f6ff;
         padding: 20px;
     }
     tr>td{
-        background-color: blanchedalmond;
+        background-color: #f0fbff;
         padding: 20px;
     }
+    
+
     .supremeClassDashboard{
-        
+        height: 25%;
+        margin: 10px auto;
+    }
+
+    .middleClassDashboard{
+        height: 10%;
+        margin: 10px auto;
+    }
+
+    .bottomClassDashboard{
+        height: 40%;
+        margin: 10px auto;
+    }
+    .mainContainer{
+        margin: 1.5% 10%;
+        padding: 3px;
+        background-color: #AEDAE4;
+        background-image: url('/images/backgroundImage2.svg');
+        background-size: cover;
+        height: 70%;
+        text-align: center;
+        box-shadow: 0 0 15px 1px #c7c7c7;
+        border-radius: 2px;
+        text-align: start;
+        overflow-y: scroll;
+    }
+
+    .mainContainer-element{
+        margin: 0% 2% 0 20%;
+    }
+
+    ::-webkit-scrollbar {
+        width: 0;
+        background: transparent;
     }
 </style>
+
+
+
 <div class="supremeClassDashboard">
     <div class="mainContainer">
-    <div class="subjectContainer">
-        <h2>{{classInfo.className}}</h2>
-        <h2>Students Enrolled-{{classInfo.classStudents.length}}</h2>
-        <h2>https://meet.google.com/{{classCode}}</h2>
+            <h1 style="font-size: xxx-large; padding: 5px;" class="mainContainer-element">{{classInfo.className}}</h1>
+            <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">Students Enrolled: {{classInfo.classStudents.length}}</h2>
+            <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">{{classInfo.classDescription}}</h2>
     </div>
-</div>
-<div class="classNavbar">
-    <div class="box1" id="box-1">
-        <h3 onclick="openAssignments()">ASSIGNMENTS / TESTS</h3>
-    </div>
-    <div class="box1" id="box-2">
-        <h3 onclick="openClassShedule()">CLASSES</h3>
-    </div>
-</div>
-</div>
-<div id="allAssignments">
-    
-    {{#each allAssignments}}
 
-    <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
-        <div class="upperPart">
-            <div>{{this.title}}</div>
-            <div>
-                <hr style="margin: 4%;">
-            </div>
-            <div class="data" style="color: rgb(143, 138, 138);">{{this.description}}</div>     
+</div>
+
+
+<div class="middleClassDashboard">
+    <div class="classNavbar">
+        <div class="box1" id="box-1">
+            <h3 style="font-size: x-large" onclick="openAssignments()">ASSIGNMENTS</h3>
         </div>
+        <div class="box1" id="box-3">
+            <h3 style="font-size: x-large" onclick="openTests()">TESTS</h3>
+        </div>
+        <div style="font-size: x-large" class="box1" id="box-2">
+            <h3 onclick="openClassShedule()">CLASSES</h3>
+        </div>
+        
+    </div>
+</div>
+
+
+<div class="bottomClassDashboard">
+    <div id="allAssignments">
+    
+        {{#each allAssignments}}
+
+        <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
+            <div class="upperPart">
+                <div style="font-size: xx-large;">{{this.title}}</div>
+                <div>
+                    <hr style="margin: 4%;">
+                </div>
+                <div class="data" style="color: rgb(143, 138, 138);">{{this.description}}</div>     
+            </div>
+        </div>
+
+        {{/each}}
+
     </div>
 
-    {{/each}}
 
-</div>
-<div id="allSchedule">
-    <table class="timeTable">
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Description</th>
-            <th>start time</th>
-            <th>Duration</th>
-            <th>Class Link</th>
-        </tr>
-    </thead>
-    {{#each allScheduledClasses}}
+    <div id="allTests">
+    
+        {{#each allTests}}
 
-    <tbody>
-        <tr>
-            <td>{{this.title}}</td>
-            <td>{{this.description}}</td>
-            <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
-            <td>{{this.duration}}</td>
-            <td>{{this.classLink}}</td>
-        </tr>
-    </tbody>
-    {{/each}}
-    </table>
-</div>
-<br><br>
+        <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
+            <div class="upperPart">
+                <div>{{this.title}}</div>
+                <div>
+                    <hr style="margin: 4%;">
+                </div>
+                <div class="data" style="color: rgb(143, 138, 138);">{{this.description}}</div>     
+            </div>
+        </div>
+
+        {{/each}}
+
+    </div>
+
+
+
+    <div id="allSchedule">
+        <table class="timeTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>start time</th>
+                <th>Duration</th>
+                <th>Class Link</th>
+            </tr>
+        </thead>
+        {{#each allScheduledClasses}}
+
+        <tbody>
+            <tr>
+                <td>{{this.title}}</td>
+                <td>{{this.description}}</td>
+                <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                <td>{{this.duration}}</td>
+                <td>{{this.classLink}}</td>
+            </tr>
+        </tbody>
+             {{/each}}
+         </table>
+      </div>
+    </div>
+
+
+
 <script>
+    document.getElementById("allAssignments").style.display="flex";
+    document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
+    document.getElementById("box-1").style.backgroundColor="#f0fbff";
+
     document.getElementById("box-1").addEventListener("click", function() {
         document.getElementById("allAssignments").style.display="flex";
         document.getElementById("allSchedule").style.display="none";
+        document.getElementById("allTests").style.display="none";
         document.getElementById( 'allAssignments' ).scrollIntoView();
         document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
         document.getElementById("box-2").style.borderBottom="none";
+        document.getElementById("box-3").style.borderBottom="none";
+        document.getElementById("box-1").style.backgroundColor="#f0fbff";
+        document.getElementById("box-2").style.backgroundColor="#E7EDEF";
+        document.getElementById("box-3").style.backgroundColor="#E7EDEF";
     });
     document.getElementById("box-2").addEventListener("click", function() {
         document.getElementById("allSchedule").style.display="flex";
         document.getElementById("allAssignments").style.display="none";
+        document.getElementById("allTests").style.display="none";
         document.getElementById( 'allSchedule' ).scrollIntoView();
         document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
         document.getElementById("box-1").style.borderBottom="none";
+        document.getElementById("box-3").style.borderBottom="none";
+        document.getElementById("box-2").style.backgroundColor="#f0fbff";
+        document.getElementById("box-1").style.backgroundColor="#E7EDEF";
+        document.getElementById("box-3").style.backgroundColor="#E7EDEF";
+
+    });
+
+
+    document.getElementById("box-3").addEventListener("click", function() {
+        document.getElementById("allTests").style.display="flex";
+        document.getElementById("allAssignments").style.display="none";
+        document.getElementById("allSchedule").style.display="none";
+        document.getElementById( 'allSchedule' ).scrollIntoView();
+        document.getElementById("box-3").style.borderBottom="2px solid #1e8dff";
+        document.getElementById("box-1").style.borderBottom="none";
+        document.getElementById("box-2").style.borderBottom="none";
+        document.getElementById("box-3").style.backgroundColor="#f0fbff";
+        document.getElementById("box-1").style.backgroundColor="#E7EDEF";
+        document.getElementById("box-2").style.backgroundColor="#E7EDEF";
     });
         
     function editCard(key){
