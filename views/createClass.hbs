@@ -1,13 +1,48 @@
 <style>
     body{
-        background-image: linear-gradient(#fad19b,#1a2a2e);
+        background-color: rgb(224 229 231);
+        overflow: hidden;
+    }
+    .triangleRight{
+        position: absolute;
+        right: -3%;
+        top: 50%;
+        transform: rotate(90deg);
+        height: 20rem;
+        width: 0;
+        animation: triangle 1s linear 1s forwards;
+    }
+    .triangleLeft{
+        height: 20rem;
+        width: 0;
+        position: absolute;
+        left: -5%;
+        top: 6%;
+        transform: rotate(270deg);
+        animation: triangle 1s linear 0.5s forwards;
+    }
+    @keyframes triangle{
+        0%{
+            width: 0px;
+        }
+        50%{
+            width: 40rem;
+        }
+        75%{
+            width: 30rem;
+        }
+        100%{
+            width: 25rem;
+        }
+
     }
 </style>
 <div style="text-align: center;" class="createClassContainer ">
 
-    <img src="https://cdn.shopify.com/s/files/1/0987/4294/products/online-learning-4_382bb79e-ba35-4d00-91cc-072c7dc824d6.jpg?v=1608246571" alt="classroomImage" class="imgCreateClass">
+    <img src="https://www.fne.com/wp-content/uploads/light-blue-triangle-down.png" alt="triangle" class="triangleRight"/>
+    <img src="https://www.fne.com/wp-content/uploads/light-blue-triangle-down.png" alt="triangle" class="triangleLeft"/>
 
-    <div class="formContainer1">
+    <div class="formContainer" style="margin-top: 10%;">
         <h2 class="headingH2" style="margin-bottom: 15px;">Form To Create Class</h2>
     <form action="/teacherDashboard/create" method="POST" class="margin">
         <input type="text" name="className" placeholder="Class Name" class="margin className"> 
