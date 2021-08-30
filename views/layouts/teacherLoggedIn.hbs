@@ -7,40 +7,9 @@
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Dashboard</title>
     <style>
-        {{!-- *{
-            margin: 0;
-            padding: 0;
-            font-size: large;
+        *{
+            font-family: 'Open Sans', sans-serif;
         }
-        body{
-            background-color: rgb(224 229 231);
-        }
-        .header{
-            display : flex;
-            justify-content: flex-end;
-            padding: 27px;
-            box-shadow: 0 0 10px 1px gray;
-            background-color: white;
-            z-index: 1;
-        }
-        .addClassIcon{
-            text-decoration: none;
-            position: absolute;
-            top: 2.3%;
-            right: 15%;
-        }
-        .addClassIcon2{
-            text-decoration: none;
-            position: absolute;
-            top: 1%;
-            right: 8%;
-        }
-
-               *{
-            margin: 0;
-            padding: 0;
-            font-size: large;
-        } --}}
         body{
             background-color: rgb(224 229 231);
         }
@@ -121,7 +90,7 @@
         </div>
     </div> 
 
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer> </script>
 
     <script>
 
@@ -161,19 +130,21 @@
                     console.log('User signed out.');
                     location.assign('/');
                     });
-                });
             });
+        })
+        }
                 
 
         document.getElementById("plusIcon").addEventListener("mouseover", function(e) {
-        document.getElementById("joinClass").style.display="flex";
-        document.getElementById("joinClass").style.justifyContent="center";
-        console.log('event fired')
-    });
+            document.getElementById("joinClass").style.display="flex";
+            document.getElementById("joinClass").style.justifyContent="center";
+            console.log('event fired')
+        });
         document.getElementById("plusIcon").addEventListener("mouseout", function() {
-        document.getElementById("joinClass").style.display="none";
-        console.log('event fired')
-    });
+            document.getElementById("joinClass").style.display="none";
+            console.log('event fired')
+        });
+
     </script>
     {{{ body }}}
 </body>
