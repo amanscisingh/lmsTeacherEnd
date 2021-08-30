@@ -50,9 +50,31 @@
         margin: 0;
         padding: 0;
     }
+    body{
+        background-color: rgb(224 229 231);
+    }
+    .triangleRight{
+        position: absolute;
+        right: -3%;
+        top: 50%;
+        transform: rotate(90deg);
+        height: 20rem;
+        width: 25rem;
+        animation: triangle1;;
+    }
+    .triangleLeft{
+        height: 20rem;
+        width: 25rem;
+        position: absolute;
+        left: -5%;
+        top: 6%;
+        transform: rotate(270deg);
+    }
 </style>
 
 <div class="mainContainer2">
+<img src="https://www.fne.com/wp-content/uploads/light-blue-triangle-down.png" alt="triangle" class="triangleRight"/>
+<img src="https://www.fne.com/wp-content/uploads/light-blue-triangle-down.png" alt="triangle" class="triangleLeft"/>
     <div style="text-align: center;" class="formContainer margin">
         <h2 style="margin: 3%;">Form To Create Assignment</h2>
     
@@ -73,7 +95,7 @@
             <br>
             
             
-            <input type="submit" value="Create Assignment" id="createAssignment" class="btn margin">
+            <input type="submit" value="Create Assignment" id="createAssignment" class="btn1 margin">
         </form>
     </div>
     <!-- <div class="formContainer margin">

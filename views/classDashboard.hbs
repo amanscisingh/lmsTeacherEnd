@@ -22,8 +22,12 @@
         background-color: blanchedalmond;
         padding: 20px;
     }
+    .supremeClassDashboard{
+        
+    }
 </style>
-<div class="mainContainer">
+<div class="supremeClassDashboard">
+    <div class="mainContainer">
     <div class="subjectContainer">
         <h2>{{classInfo.className}}</h2>
         <h2>Students Enrolled-{{classInfo.classStudents.length}}</h2>
@@ -38,11 +42,12 @@
         <h3 onclick="openClassShedule()">CLASSES</h3>
     </div>
 </div>
+</div>
 <div id="allAssignments">
     
     {{#each allAssignments}}
 
-    <div class="assignment {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
+    <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
         <div class="upperPart">
             <div>{{this.title}}</div>
             <div>
@@ -86,15 +91,15 @@
         document.getElementById("allAssignments").style.display="flex";
         document.getElementById("allSchedule").style.display="none";
         document.getElementById( 'allAssignments' ).scrollIntoView();
-        document.getElementById("box-1").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da582, #f7bb97, white)";
-        document.getElementById("box-2").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da5, #f7bb97, white)";
+        document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
+        document.getElementById("box-2").style.borderBottom="none";
     });
     document.getElementById("box-2").addEventListener("click", function() {
         document.getElementById("allSchedule").style.display="flex";
         document.getElementById("allAssignments").style.display="none";
         document.getElementById( 'allSchedule' ).scrollIntoView();
-        document.getElementById("box-2").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da582, #f7bb97, white)";
-        document.getElementById("box-1").style.backgroundImage= "linear-gradient(rgb(2 119 189), #f77da5, #f7bb97, white)";
+        document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
+        document.getElementById("box-1").style.borderBottom="none";
     });
         
     function editCard(key){

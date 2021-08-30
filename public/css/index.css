@@ -15,7 +15,7 @@
 }
 
 
-/* css for classDashboard */
+/* css for classDashboard ..........................................................*/
 
 .center {
     text-align: center;
@@ -31,7 +31,7 @@
 .mainContainer {
     display: flex;
     justify-content: center;
-    height: 35%;
+    height: 15%;
     width: 100%;
     margin-top: 30px;
 }
@@ -50,17 +50,16 @@
 .classNavbar {
     display: flex;
     justify-content: center;
-    height: 30%;
+    height: 10%;
     margin-top: 2.5%;
 }
 
 .box1 {
     width: 24.49%;
-    height: 80%;
-    background-image: linear-gradient(rgb(2 119 189), #f77da5, #f7bb97, white);
+    height: 10%;
     text-align: center;
     padding: 20px;
-    color: white;
+    color: black;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
@@ -75,29 +74,22 @@
 }
 
 
-/* css for createAssignment */
+/* css for createAssignment ..................................................*/
 
-.mainContainer2 {
-    background-image: url('https://c8.alamy.com/comp/2BW8349/open-notepad-and-pen-on-laptop-with-copy-space-2BW8349.jpg');
-    background-size: cover;
-    height: 89vh;
-    padding-top: 5%;
-}
-
-.btn {
+.btn1 {
     padding: 5px;
-    border-radius: 5px;
-    background-color: #b2aefc;
+    background-color: #4cbdff;
     border: none;
-    width: 150px;
+    width: 170px;
     height: 40px;
     font-size: large;
     margin: 5px;
+    color: black;
 }
 
-.btn:hover {
+.btn1:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 4px 2px #8a86ce;
+    box-shadow: 0px 0px 4px 2px #44a8e2;
 }
 
 
@@ -115,25 +107,15 @@
     width: 25%;
     padding: 20px;
     margin: 0%;
-    /* margin-top: 3%; */
-    margin-left: 60%;
-    background-color: #4b4949;
-    color: white;
-    border-radius: 8px;
-    box-shadow: 0px 0px 14px 8px black;
-}
-
-.textArea {
-    border-radius: 5px;
+    margin-top: 3%;
+    margin-left: 37%;
+    background-color: #94d8f8cb;
+    box-shadow: 0px 0px 6px 3px rgb(94, 93, 93);
+    color: black;
 }
 
 .className {
     padding: 10px;
-    border-radius: 8px;
-}
-
-#description {
-    border-radius: 8px;
 }
 
 * {
@@ -154,11 +136,11 @@
 
 .btn {
     padding: 5px;
-    border-radius: 5px;
-    background-color: rgb(127, 208, 255);
+    background-color: #4cbdff;
     border: none;
     width: 150px;
     height: 40px;
+    color: black;
 }
 
 .btn:hover {
@@ -168,7 +150,6 @@
 
 .className {
     padding: 7px;
-    border-radius: 5px;
 }
 
 .formContainer1 {
@@ -182,10 +163,6 @@
 }
 .formContainer1>input{
     margin: 10px;
-}
-
-.textArea {
-    border-radius: 5px;
 }
 
 .imgCreateClass {
@@ -210,7 +187,6 @@
     height: fit-content;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
     border: 1px solid lightgray;
     padding: 20px;
 }
@@ -273,7 +249,7 @@ input {
 .btn {
     padding: 5px;
     border-radius: 5px;
-    background-color: #b2aefc;
+    background-color: #4cbdff;
     border: none;
     width: 150px;
     height: 40px;
@@ -308,30 +284,10 @@ input {
     box-shadow: 0px 0px 14px 8px black;
 }*/
 
-.textArea {
-    border-radius: 5px;
-}
-
-.className {
-    padding: 10px;
-    border-radius: 8px;
-}
-
-#description {
-    border-radius: 8px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-
 /* css forteacherDashboard */
 
 .card {
     border: 0.5px solid rgb(194, 189, 189);
-    border-radius: 10px;
     margin: 30px;
     width: 370px;
     margin-top: 30px;
@@ -433,21 +389,7 @@ input {
     display: flex;
     justify-content: flex-end;
     padding: 27px;
-    box-shadow: 2px 2px 10px 2px gray;
-}
-
-.add_assignment_icon {
-    text-decoration: none;
-    position: absolute;
-    top: 4%;
-    right: 20%;
-}
-
-.add_class_icon {
-    text-decoration: none;
-    position: absolute;
-    top: 4%;
-    right: 10%;
+    box-shadow: 0px 0px 10px 1px gray;
 }
 
 .heading_logo_text {
@@ -468,7 +410,7 @@ input {
     display: flex;
     justify-content: flex-end;
     padding: 27px;
-    box-shadow: 2px 2px 10px 2px gray;
+    box-shadow: 0px 0px 10px 1px gray;
     background-color: white;
     z-index: 1;
 }

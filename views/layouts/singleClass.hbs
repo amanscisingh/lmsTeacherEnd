@@ -12,27 +12,34 @@
             
         }
         .createAssignmentButton{
-            background-image: linear-gradient(to right, rgb(45 132 231), rgb(124 193 255), rgb(43 132 231));
-            color: white;
-            width: 8rem;
-            border: none;
-            height: 40px;
-            border-radius: 2rem;
+            width: 3.3rem;
+            height: 45px;
             font-weight: 600;
+            position: absolute;
+            right: 50%;
+            top: 22%;
         }
         .createAssignmentButton:hover{
             cursor: pointer;
         }
         .scheduleClassButton{
-            background-image: linear-gradient(to right, rgb(45 132 231), rgb(124 193 255), rgb(43 132 231));
-            color: white;
-            width: 7rem;
-            border: none;
-            height: 40px;
-            border-radius: 2rem;
+            width: 3.3rem;
+            height: 45px;
+            font-weight: 600;
+            position: absolute;
+            right: 5%;
+            top: 20%;
+
         }
         .scheduleClassButton:hover{
             cursor: pointer;
+        }
+        .assignmentAndClasses{
+            position: absolute;
+            top: 0%;
+            right: 10%;
+            width: 15rem;
+            height: 5rem;
         }
     </style>
 </head>
@@ -40,11 +47,14 @@
     <div class="header">
         <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="single_heading_logo_img"/>
         <h3 class="heading_logo_text">IIT BHU</h3>
+        <div class="assignmentAndClasses">
         <a href="#" id="createAssignment" class="add_assignment_icon">
-            <img src="/images/assignmentDesign.jpg">
-            <button class="createAssignmentButton">➕ Create Assignment</button>
+            <img src="/images/assignmentDesign.jpg" class="createAssignmentButton">
         </a>
-        <a href="#" id="scheduleClass" class="add_class_icon"><button class="scheduleClassButton">🕗 Schedule Class</button></a>
+        <a href="#" id="scheduleClass" class="add_class_icon">
+            <img src="/images/classScheduleDesign.jpg" class="scheduleClassButton">
+        </a>
+        </div>
         <h3 class="login_icon">👍</h3>
     </div>
     {{{ body }}}
