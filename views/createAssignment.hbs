@@ -1,51 +1,4 @@
 <style>
-    {{!-- .mainContainer{
-        background-image: url('https://c8.alamy.com/comp/2BW8349/open-notepad-and-pen-on-laptop-with-copy-space-2BW8349.jpg');
-        background-size: cover;
-        height: 89vh;
-        padding-top: 5%;
-    }
-    .btn{
-        padding: 5px;
-        border-radius: 5px;
-        background-color: #b2aefc;
-        border: none;
-        width: 150px;
-        height: 40px;
-        font-size: large;
-    }
-    .btn:hover{
-        cursor: pointer;
-        box-shadow: 0px 0px 4px 2px #8a86ce;
-    }
-    .margin{
-        margin: 10px;
-    }
-    /* .className{
-        padding: 7px;
-        border-radius: 5px;
-    } */
-    .formContainer{
-        width: 25%;
-        padding: 20px;
-        margin: 0%;
-        /* margin-top: 3%; */
-        margin-left: 60%;
-        background-color: #4b4949;
-        color: white;
-        border-radius: 8px;
-        box-shadow: 0px 0px 14px 8px black;
-    }
-    .textArea{
-        border-radius: 5px;
-    }
-    .className{
-        padding: 10px;
-        border-radius: 8px;
-    }
-    #description{
-        border-radius: 8px;
-    } --}}
     *{
         margin: 0;
         padding: 0;
@@ -59,22 +12,40 @@
         top: 50%;
         transform: rotate(90deg);
         height: 20rem;
-        width: 25rem;
-        animation: triangle1;;
+        width: 0;
+        animation: triangle 1s linear 1s forwards;
     }
     .triangleLeft{
         height: 20rem;
-        width: 25rem;
+        width: 0;
         position: absolute;
         left: -5%;
         top: 6%;
         transform: rotate(270deg);
+        animation: triangle 1s linear 0.5s forwards;
+    }
+    @keyframes triangle{
+        0%{
+            width: 0px;
+        }
+        50%{
+            width: 40rem;
+        }
+        75%{
+            width: 30rem;
+        }
+        100%{
+            width: 25rem;
+        }
+
     }
 </style>
 
 <div class="mainContainer2">
+
 <img src="https://www.fne.com/wp-content/uploads/light-blue-triangle-down.png" alt="triangle" class="triangleRight"/>
 <img src="https://www.fne.com/wp-content/uploads/light-blue-triangle-down.png" alt="triangle" class="triangleLeft"/>
+
     <div style="text-align: center;" class="formContainer margin">
         <h2 style="margin: 3%;">Form To Create Assignment</h2>
     
