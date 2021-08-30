@@ -1,33 +1,96 @@
 <style>
 
-body{
-    background-color: rgb(231 237 239);
-}
-
+    body{
+        background-color: rgb(231 237 239);
+    }
+    .tableTeacherDashboard{
+        display: flex;
+        justify-content: center;
+    }
+    th, td{
+        border: 1px solid black;
+    }
+    table{
+        margin-top: 5%;
+        width: 60%;
+        height: auto;
+    }
+    tr>th{
+        font-size: large;
+        background-color: #d2f6ff;
+        padding: 20px;
+    }
+    tr>td{
+        background-color: #f0fbff;
+        padding: 20px;
+    }
+    
 </style>
+<div> 
+    <div class="box">
+    {{#each allClasses}}
 
-<div class="box">
-{{#each allClasses}}
-
-    <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
-        <div class="upperPart">
-            <div class="data teacherDashClassName">{{this.className}}</div>
-            <div class="delete_class_code">
-            <div class="data" id="class-{{@key}}">{{this.classCode}}</div>
+        <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
+            <div class="upperPart">
+                <div class="data teacherDashClassName">{{this.className}}</div>
+                <div class="delete_class_code">
+                <div class="data" id="class-{{@key}}">{{this.classCode}}</div>
+                </div>
+                <div class="data">{{this.classTeacher}}</div>
+                <div>
+                    <hr> 
+                </div>
             </div>
-            <div class="data">{{this.classTeacher}}</div>
-            <div>
-                <hr> 
+            
+            <div class="lowerPart">
+                <div class="data description" >{{this.classDescription}}</div>
+                <div class="data">{{this.classTeacherId}}</div>
+            </div>
+            <br><br>
+        </div>
+    {{/each}}
+
+    <div id="allAssignments">
+    
+        {{#each allAssignments}}
+
+        <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
+            <div class="upperPart">
+                <div>{{this.title}}</div>
+                <div>
+                    <hr style="margin: 4%;">
+                </div>
+                <div class="data" style="color: rgb(143, 138, 138);">{{this.description}}</div>     
             </div>
         </div>
-        
-        <div class="lowerPart">
-            <div class="data description" >{{this.classDescription}}</div>
-            <div class="data">{{this.classTeacherId}}</div>
+
+        {{/each}}
+
         </div>
-        <br><br>
     </div>
-{{/each}}
+
+<hr>
+    <div class="tableTeacherDashboard">
+        <table border="2" class="timeTable">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Total Students</th>
+            </tr>
+        </thead>
+        {{#each allClasses}}
+
+        <tbody>
+            <tr>
+                <td>{{this.className}}</td>
+                <td>{{this.classDescription}}</td>
+                <td>{{this.classStudents.length}}</td>
+            </tr>
+        </tbody>
+        {{/each}}
+        </table>
+    </div>
 </div>
 
 <script>

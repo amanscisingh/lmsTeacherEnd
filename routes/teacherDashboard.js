@@ -26,7 +26,7 @@ teacherDashboardRoute.get('/', async(req, res) => {
 teacherDashboardRoute.get('/create', (req, res) => {
     try {
         // passing all the class details in form of array to the template
-        res.render('createClass', { layout: 'teacherLoggedIn' });
+        res.render('createClass', { layout: 'blank' });
     } catch (error) {
         res.send(error);
     }
