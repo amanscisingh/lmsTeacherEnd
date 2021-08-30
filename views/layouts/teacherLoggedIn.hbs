@@ -26,11 +26,16 @@
             text-decoration: none;
             position: absolute;
             top: 2.3%;
+            right: 15%;
+        }
+        .addClassIcon2{
+            text-decoration: none;
+            position: absolute;
+            top: 1%;
             right: 8%;
         }
         .plusIcon{
             border-radius: 100%;
-            padding: 10px;
         }
         .plusIcon:hover{
             background-color: rgba(0, 0, 0, 0.384);
@@ -40,21 +45,28 @@
 </head>
 <body>
     <div class="header">
-        <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="teacher_heading_logo_img"/>
+        <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" style="height: 60px; width: 60px;" class="teacher_heading_logo_img"/>
         <h3 class="heading_logo_text">IIT BHU</h3>
         <a href="/teacherDashboard/create" class="addClassIcon">
-        <img src="https://www.downloadclipart.net/large/plus-transparent-png.png" class="plusIcon" name="submit" width="31" height="35" alt="plus"/>
+        <img src="https://www.downloadclipart.net/large/plus-transparent-png.png" class="plusIcon" name="submit" style="height: 45px; width: 45px;" alt="plus"/>
         </a>
         
-        <input type="image" id='image' src="#" class="plusIcon" name="submit" width="31" height="35" alt="submit"/>  
-        <h3 class="login_icon">👍</h3>
+        <div class="addClassIcon2"><img style="height: 60px; width: 60px;" id='image' src="#" class="plusIcon">  </div>
+        <h3 class="login_icon">🔴</h3>
     </div>
     <script>
         // %3A - :
         // %2F - /
         // %3D - =
 
-        let imageLink = document.cookie.split(';')[6].split('=')[1];
+        let allCookie = document.cookie.split(';');
+        let imageLink;
+        for(let i=0;i<allCookie.length;i++){
+            if(allCookie[i].includes('image=')){
+                imageLink = allCookie[i].split('=')[1];
+            }
+        }
+
         imageLink = imageLink.replaceAll("%3A", ":");
         imageLink = imageLink.replaceAll("%2F", "/");
         imageLink = imageLink.replaceAll("%3D", "=");

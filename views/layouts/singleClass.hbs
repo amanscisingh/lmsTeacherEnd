@@ -3,67 +3,102 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-signin-client_id" content="665729303262-sq2ni10fgiju2vu557tl65cgovb1tnj2.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Class</title>
     <style>
         *{
             margin: 0;
             padding: 0;
-            
+            font-size: large;
         }
-        .createAssignmentButton{
-            width: 3.3rem;
-            height: 45px;
-            font-weight: 600;
-            position: absolute;
-            right: 50%;
-            top: 22%;
+        body{
+            background-color: rgb(224 229 231);
         }
-        .createAssignmentButton:hover{
-            cursor: pointer;
+        .header{
+            display : flex;
+            justify-content: flex-end;
+            padding: 10px;
+            box-shadow: 0 0 10px 1px gray;
+            background-color: white;
+            z-index: 1;
         }
-        .scheduleClassButton{
-            width: 3.3rem;
-            height: 45px;
-            font-weight: 600;
-            position: absolute;
-            right: 5%;
-            top: 20%;
+        .container{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            width: 100%;
 
         }
-        .scheduleClassButton:hover{
-            cursor: pointer;
+
+        .container-span{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            justify-content: center;
+
         }
-        .assignmentAndClasses{
-            position: absolute;
-            top: 0%;
-            right: 10%;
-            width: 15rem;
-            height: 5rem;
+
+        .container-element{
+            margin: 0px auto 0px auto;
+        }
+        
+        .container-element:hover{
+            background-color: rgba(0, 0, 0, 0.384);
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.285);
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="single_heading_logo_img"/>
-        <h3 class="heading_logo_text">IIT BHU</h3>
-        <div class="assignmentAndClasses">
-        <a href="#" id="createAssignment" class="add_assignment_icon">
-            <img src="/images/assignmentDesign.jpg" class="createAssignmentButton">
-        </a>
-        <a href="#" id="scheduleClass" class="add_class_icon">
-            <img src="/images/classScheduleDesign.jpg" class="scheduleClassButton">
-        </a>
+
+        <div class="container">            
+            <span class="container-span" style="width:15%;">
+                <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" style="height: 60px; width: 60px;"/>
+                <h3 style="padding-left: 5%; padding-top:10%;">IIT-BHU</h3>
+            </span>
+            <span style="width: 65%;">
+
+            </span>
+            
+            <span class="container-span" style="width:20%;">
+                <a href="#" id="createAssignment" class="container-element"><img src="/images/assignmentDesign.svg" name="submit" style="height: 100%; width: 100%;" alt="plus"/></a>
+                <a id='scheduleClass' href="#" class="container-element"><img style="height: 100%; width: 100%;" src="/images/classScheduleDesign.svg">  </a>
+                <a href="#" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
+            </span>
+            
         </div>
-        <h3 class="login_icon">👍</h3>
+
+
     </div>
     {{{ body }}}
 </body>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <script>
     const createAssignment = document.getElementById('createAssignment');
     const scheduleClass = document.getElementById('scheduleClass');
     createAssignment.href = location.pathname + '/create';
     scheduleClass.href = location.pathname + '/scheduleClass';
+
+    function signOut(user) {
+        window.gapi.load('auth2', () => {
+      window.gapi.auth2
+        .init({
+          client_id:
+            '665729303262-sq2ni10fgiju2vu557tl65cgovb1tnj2.apps.googleusercontent.com'
+        })
+        .then(() => {
+          window.gapi.auth2
+            .getAuthInstance()
+            .signOut()
+            .then(function() {
+              console.log('User signed out.');
+              location.assign('/');
+            });
+        });
+    });
+    }
 </script>
 </html>
