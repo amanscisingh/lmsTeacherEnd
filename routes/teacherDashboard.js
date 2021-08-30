@@ -130,7 +130,7 @@ teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async(req, res
         let assignment = await Assignments.findOne({ _id: assignmentId }).lean();
         // console.log(assignment);
 
-        res.render('assignmentDashboard', { layout: 'blank', classCode, assignment: assignment });
+        res.render('assignmentDashboard', { layout: 'teacherLoggedIn', classCode, assignment: assignment });
     } catch (error) {
         res.send(error);
     }
@@ -175,5 +175,37 @@ teacherDashboardRoute.post('/:classCode/scheduleClass', async(req, res) => {
         res.send(error);
     }
 })
+
+
+
+//  teacherDashboard/:studentEmail/:assignmentId
+// @POST
+teacherDashboardRoute.post('/:studentEmail/:assignmentId', async(req, res) => {
+    try {
+        let studentEmail = req.params.studentEmail;
+        let assignmentId = mongoose.Types.ObjectId(req.params.assignmentId);
+        let assignment = await Assignments.findOne({ _id: mongoose.Types.ObjectId(assignmentId) }).lean();
+        
+        let allSubmissions = assignment.allSubmissions;
+
+        for (let i = 0; i < allSubmissions.length; i++) {
+            if (allSubmissions[i].studentInfo.studentEmail === studentEmail) {
+                allSubmissions[i].submission.marksAssigned = req.body.marksAssigned;
+            } else {
+                res.send('Student not found');
+            }
+            
+        }
+        assignment.allSubmissions = allSubmissions;
+        await Assignments.updateOne({ _id: mongoose.Types.ObjectId(assignmentId) }, assignment, {new: true});
+
+        res.redirect('/teacherDashboard/' + assignment.classCode  + '/assignment/' + assignmentId);
+
+    } catch (error) {
+        console.error(error);
+        res.send(error);
+    }
+});
+
 
 module.exports = teacherDashboardRoute;

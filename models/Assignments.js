@@ -36,13 +36,36 @@ const assignmentSchema = new mongoose.Schema({
     },
     allSubmissions: [
         {
-            type: String,   //file name - takking input from user side
-            required: false
-        },
-        {
-            type: String,   //unique file name to download the file
-            required: true
-        }
+            studentInfo:{
+                studentEmail: {  // unique email of student
+                    type: String,
+                    required: true
+                },
+                studentName: { // name of student
+                    type: String,
+                    required: true
+                },
+            },
+            submission: {
+                originalFileName: {
+                    type: String,
+                    required: true
+                },
+                uploadedFileName: {
+                    type: String,
+                    required: true
+                },
+                marksAssigned: {
+                    type: Number,
+                    required: true,
+                    default: -1
+                },
+                submissionTime: {
+                    type: Date,
+                    default: Date.now
+                }                
+            },
+         }
     ],
     createdAt: {
         type: Date,
