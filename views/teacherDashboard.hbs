@@ -1,28 +1,36 @@
+<style>
+
+body{
+    background-color: rgb(231 237 239);
+}
+
+</style>
 
 <div class="box">
 {{#each allClasses}}
 
     <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
         <div class="upperPart">
+            <div class="data teacherDashClassName">{{this.className}}</div>
             <div class="delete_class_code">
             <div class="data" id="class-{{@key}}">{{this.classCode}}</div>
             </div>
-            <div class="data">{{this.className}}</div>
             <div class="data">{{this.classTeacher}}</div>
             <div>
-                <hr>
-                
+                <hr> 
             </div>
-            
         </div>
         
         <div class="lowerPart">
-            <div class="data description">{{this.classDescription}}</div>
+            <div class="data description" >{{this.classDescription}}</div>
             <div class="data">{{this.classTeacherId}}</div>
-            
-            
         </div>
-
+            <div>
+                <hr>
+                <div class="data">
+                    <img src="{{this.classTeacherImage}}" alt="Prof ki photo">
+                </div>
+            </div>
         <br><br>
     </div>
 {{/each}}

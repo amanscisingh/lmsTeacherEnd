@@ -11,15 +11,40 @@
             padding: 0;
             
         }
-        
+        .createAssignmentButton{
+            background-image: linear-gradient(to right, rgb(45 132 231), rgb(124 193 255), rgb(43 132 231));
+            color: white;
+            width: 8rem;
+            border: none;
+            height: 40px;
+            border-radius: 2rem;
+            font-weight: 600;
+        }
+        .createAssignmentButton:hover{
+            cursor: pointer;
+        }
+        .scheduleClassButton{
+            background-image: linear-gradient(to right, rgb(45 132 231), rgb(124 193 255), rgb(43 132 231));
+            color: white;
+            width: 7rem;
+            border: none;
+            height: 40px;
+            border-radius: 2rem;
+        }
+        .scheduleClassButton:hover{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="heading_logo_img"/>
+        <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" class="single_heading_logo_img"/>
         <h3 class="heading_logo_text">IIT BHU</h3>
-        <a href="#" id="createAssignment" class="add_assignment_icon">✔ Create Assignment</a>
-        <a href="#" id="scheduleClass" class="add_class_icon">✔ Schedule Class</a>
+        <a href="#" id="createAssignment" class="add_assignment_icon">
+            <img src="/images/assignmentDesign.jpg">
+            <button class="createAssignmentButton">➕ Create Assignment</button>
+        </a>
+        <a href="#" id="scheduleClass" class="add_class_icon"><button class="scheduleClassButton">🕗 Schedule Class</button></a>
         <h3 class="login_icon">👍</h3>
     </div>
     {{{ body }}}
