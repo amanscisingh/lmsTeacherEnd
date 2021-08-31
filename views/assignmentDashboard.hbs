@@ -2,9 +2,8 @@
     .tableContainer {
         justify-content: center;
         display: flex;
+        margin: 0px auto;
     }
-
-
 
     th,
     td {
@@ -13,7 +12,7 @@
 
     table {
         margin-top: 0.5%;
-        width: 60%;
+        width: 100%;
         height: auto;
     }
 
@@ -28,10 +27,7 @@
         padding: 20px;
     }
 
-    
-
     h2 {
-        background-color: #d2f6ff;
         margin: 20px 0px;
         padding: 4px;
         text-align: center;
@@ -55,77 +51,163 @@
     .assignmentEntry {
         display: flex;
     }
+
+    .middleClassDashboard{
+        height: 10%;
+        margin: 10px auto;
+    }
+
+    .bottomClassDashboard{
+        height: 40%;
+        margin: 10px auto;
+    }
+
+    .assignmentInfo{
+        width: 70%;
+    }
+
+    .assignmentInfo h3{
+        margin: 10px auto;
+    }
+
+    .assignmentInfo button{
+        background-color: #f0fbff;
+        padding: 3px;
+        border: 1px solid #0090e5;
+        font-size: large;
+    }
 </style>
-<h2>Assignment Details👇👇👇 </h2>
-<div class="tableContainer">
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>total Marks</th>
-                <th>created At</th>
-                <th>deadline</th>
-                <th>Uploaded Assignment </th>
-            </tr>
-        </thead>
 
-        <tbody>
-            <tr>
-                <td>{{assignment.title}}</td>
-                <td>{{assignment.description}}</td>
-                <td>{{assignment.totalMarks}}</td>
-                <td>{{formatDate assignment.createdAt "MMMM Do YYYY, h:mm:ss a"}}</td>
-                <td>{{formatDate assignment.deadline "MMMM Do YYYY, h:mm:ss a"}}</td>
-                <td><button>Download</button></td>
-            </tr>
-        </tbody>
-    </table>
+
+<p style="display: none;" id="assignmentId">{{assignment._id}}</p>
+<p style="display: none;" id="arrayLength">{{assignment.allSubmissions.length}}</p>
+<p style="display: none;" id="totalMarks">{{assignment.totalMarks}}</p>
+
+<h2>{{assignment.title}}</h2>
+
+<div class="middleClassDashboard">
+    <div class="classNavbar">
+        <div class="box1" id="box-1">
+            <h3 style="font-size: x-large" onclick="openAssignments()">DETAILS</h3>
+        </div>
+        <div style="font-size: x-large" class="box1" id="box-2">
+            <h3 onclick="openClassShedule()">SUBMISSIONS</h3>
+        </div>
+        
+    </div>
+</div>
+
+
+<div class="bottomClassDashboard">
+    <div id="allAssignments">
+        <div class="assignmentInfo">
+            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Description:</span>  {{assignment.description}}</h3>
+            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Maximum Marks:</span>  {{assignment.totalMarks}}</h3>
+            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Created At:</span>  {{formatDate assignment.createdAt "MMMM Do YYYY, h:mm:ss a"}}</h3>
+            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Deadline:</span>  {{formatDate assignment.deadline "MMMM Do YYYY, h:mm:ss a"}}</h3>
+            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Total Submissions:</span>  {{assignment.allSubmissions.length}}</h3>
+            <div style="width: 100%; text-align: center;"><button class="{{assignment.fileUploadName}}" id="downloadAssignment">Click Here to Download the Assignment</button></div>
+            
+        </div>
+        
+
+    </div>
+
+
+    <div id="allSchedule">
+        <div class="tableContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Student Email</th>
+                        <th>Download </th>
+                        <th>Submission Time</th>
+                        <th>Assign marks</th>
+                    </tr>
+                </thead>
+                {{#each assignment.allSubmissions }}
+                    <tbody>
+                        <tr>
+                            <td>{{this.studentInfo.studentName}}</td>
+                            <td>{{this.studentInfo.studentEmail}}</td>
+                            <td class="{{this.submission.uploadedFileName}}" id="download-{{@key}}">Click to Download</td>
+                            <td>{{formatDate this.submission.submissionTime "MMMM Do YYYY, h:mm:ss a"}}</td>
+                            <td>
+                                <form action="/{{this.studentInfo.studentEmail}}/" method="POST" id="{{@key}}">
+                                    <input type="number" name="marksAssigned" id="marksAssigned-{{@key}}"
+                                        placeholder="{{this.submission.marksAssigned}}">
+                                    <input style="background-color: #f0fbff; padding: 3px; border: 1px solid #0090e5;" type="submit" value="Assign✔">
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                {{/each}}
+            </table>
+
+        </div>
+    </div>
+
 
 </div>
-<h2>All Submissions👇👇👇 </h2>
-<div class="tableContainer">
-    <table>
-        <thead>
-            <tr>
-                <th>Student Name</th>
-                <th>Student Email</th>
-                <th>Download ⬇ </th>
-                <th>Submission Time</th>
-                <th>Assign marks</th>
-            </tr>
-        </thead>
-        {{#each assignment.allSubmissions }}
-            <tbody>
-                <tr>
-                    <td>{{this.studentInfo.studentName}}</td>
-                    <td>{{this.studentInfo.studentEmail}}</td>
-                    <td><button>Download</button></td>
-                    <td>{{formatDate this.submission.submissionTime "MMMM Do YYYY, h:mm:ss a"}}</td>
-                    <td>
-                        <form action="/{{this.studentInfo.studentEmail}}/" method="POST" id="{{@key}}">
-                            <input type="number" name="marksAssigned" id="marksAssigned"
-                                placeholder="{{this.submission.marksAssigned}}">
-                            <input type="submit" value="Assign✌">
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        {{/each}}
-    </table>
-</div>
+
+
 
 <script>
-    const classCode = document.getElementById('classCode').innerHTML;
-    const arraylength = document.getElementById('arraylength').innerHTML;
-    for (let i = 0; i < arraylength; i++) {
-        const form = document.getElementById(i);
+    const downloadAssignment = document.getElementById('downloadAssignment');
+    downloadAssignment.addEventListener('click', () => {
+        const fileUploadName = downloadAssignment.classList[0];
+        window.open(location.origin + '/open/' + fileUploadName);
+    })
+
+    const assignmentId = document.getElementById('assignmentId').innerHTML;
+    const arrayLength = document.getElementById('arrayLength').innerHTML;
+    const totalMarks = document.getElementById('totalMarks').innerHTML;
+    for (let i = 0; i < arrayLength; i++) {
+        let marksAssigned = document.getElementById('marksAssigned-' + i);
+        marksAssigned.setAttribute('max', totalMarks);
+        let form = document.getElementById(i);
         console.log(form);
-        let action = '/teacherDashboard/' + form.action.split('/')[3] + '/' + classCode;
+        let action = '/teacherDashboard/' + form.action.split('/')[3] + '/' + assignmentId;
         form.setAttribute('action', action);
-        console.log(form);
+        let button = document.getElementById('download-' + i);
+        button.style.cursor = 'pointer';
+        button.addEventListener('click', () => {
+            let fileUploadName = button.classList[0];
+            window.open(location.origin + '/open/' + fileUploadName);
+        });
+
 
     }
+
+
+    ////////////
+
+    document.getElementById("allSchedule").style.display="none";
+    document.getElementById("allAssignments").style.display="flex";
+    document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
+    document.getElementById("box-1").style.backgroundColor="#f0fbff";
+
+    document.getElementById("box-1").addEventListener("click", function() {
+        document.getElementById("allAssignments").style.display="flex";
+        document.getElementById("allSchedule").style.display="none";
+        document.getElementById( 'allAssignments' ).scrollIntoView();
+        document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
+        document.getElementById("box-2").style.borderBottom="none";
+        document.getElementById("box-1").style.backgroundColor="#f0fbff";
+        document.getElementById("box-2").style.backgroundColor="#E7EDEF";
+    });
+    document.getElementById("box-2").addEventListener("click", function() {
+        document.getElementById("allSchedule").style.display="flex";
+        document.getElementById("allAssignments").style.display="none";
+        document.getElementById( 'allSchedule' ).scrollIntoView();
+        document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
+        document.getElementById("box-1").style.borderBottom="none";
+        document.getElementById("box-2").style.backgroundColor="#f0fbff";
+        document.getElementById("box-1").style.backgroundColor="#E7EDEF";
+
+    });
+
+
 
 </script>

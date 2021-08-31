@@ -74,6 +74,14 @@
     box-shadow: 0px 0px 4px 2px #44a8e2;
 }
 
+.btn1:disabled {
+    color: white;
+}
+.btn1:disabled:hover {
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
 .formContainer {
     width: 25%;
     padding: 20px;

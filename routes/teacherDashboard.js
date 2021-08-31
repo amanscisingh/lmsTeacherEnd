@@ -142,7 +142,7 @@ teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async(req, res
         let assignment = await Assignments.findOne({ _id: assignmentId }).lean();
         // console.log(assignment);
 
-        res.render('assignmentDashboard', { layout: 'teacherLoggedIn', classCode, assignment: assignment });
+        res.render('assignmentDashboard', { layout: 'singleClass', classCode, assignment: assignment });
     } catch (error) {
         res.send(error);
     }
