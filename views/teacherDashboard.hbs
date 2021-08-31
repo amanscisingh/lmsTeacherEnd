@@ -24,10 +24,24 @@
         background-color: #f0fbff;
         padding: 20px;
     }
-
+    .middleClassDashboard {
+        height: 10%;
+        margin: 10px auto;
+    }
 </style>
+<div class="middleClassDashboard">
+    <div class="classNavbar">
+        <div class="box1" id="box-1">
+            <h3 style="font-size: x-large" onclick="openAssignments()">Card View</h3>
+        </div>
+        <div class="box1" id="box-2">
+            <h3 style="font-size: x-large" onclick="openTests()">Table View</h3>
+        </div>
+    </div>
+</div>
+
 <div> 
-    <div class="box">
+    <div class="box" id="cardView">
     {{#each allClasses}}
 
         <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
@@ -67,8 +81,7 @@
         </div>
     </div>
 
-<hr>
-    <div class="tableTeacherDashboard">
+    <div class="tableTeacherDashboard" id="tableView">
         <table border="2" class="timeTable">
         <thead>
             <tr>
@@ -120,6 +133,26 @@
         window.open(meetLink);
     }
 
-
+    document.getElementById("tableView").style.display = "none";
+    document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
+    document.getElementById("box-1").style.backgroundColor = "#f0fbff";
     
+    document.getElementById("box-1").addEventListener("click", function () {
+    document.getElementById("cardView").style.display = "grid";
+    document.getElementById("tableView").style.display = "none";
+    document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
+    document.getElementById("box-2").style.borderBottom = "none";
+    document.getElementById("box-1").style.backgroundColor = "#f0fbff";
+    document.getElementById("box-3").style.backgroundColor = "#E7EDEF";
+});
+
+    document.getElementById("box-2").addEventListener("click", function () {
+    document.getElementById("tableView").style.display = "flex";
+    document.getElementById("cardView").style.display = "none";
+    document.getElementById('tableView').scrollIntoView();
+    document.getElementById("box-2").style.borderBottom = "2px solid #1e8dff";
+    document.getElementById("box-1").style.borderBottom = "none";
+    document.getElementById("box-2").style.backgroundColor = "#f0fbff";
+    document.getElementById("box-1").style.backgroundColor = "#E7EDEF";
+});
 </script>
