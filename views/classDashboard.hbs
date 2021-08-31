@@ -148,6 +148,12 @@
         grid-gap: 5.5rem;
         margin: 5%;
     }
+
+    #allAssignments{
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-gap: 5.5rem;
+        margin: 5%;
+    }
 </style>
 
 
@@ -227,26 +233,33 @@
     <div id="allSchedule">
         <table class="timeTable">
             <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>start time</th>
-                    <th>Duration</th>
-                    <th>Class Link</th>
-                </tr>
-            </thead>
-            {{#each allScheduledClasses}}
+            <tr>
+                <th>Title</th>
+                <th style="width: 30rem;">Description</th>
+                <th>Start Time</th>
+                <th>Duration</th>
+                <th>Link (click to open) </th>
+                <th>Passcode </th>
+            </tr>
+        </thead>
+        {{#each allScheduledClasses}}
 
-            <tbody>
-                <tr>
-                    <td>{{this.title}}</td>
-                    <td>{{this.description}}</td>
-                    <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
-                    <td>{{this.duration}}</td>
-                    <td>{{this.classLink}}</td>
-                </tr>
-            </tbody>
-            {{/each}}
+        <tbody>
+            <tr>
+                <td>{{this.title}}</td>
+                <td>
+                    <p style="overflow-y: scroll; width: 250px; height: 100px;">{{this.description}}</p>
+                </td>
+                <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                <td>{{this.duration}} Hours</td>
+                <td style="cursor: pointer;" id="btn-{{@key}}" onclick="openClassinNewWindow({{@key}})">{{this.classLink}}</td>
+                <td>
+                    {{formatPassword this.classPassword}}
+                    
+                </td>
+            </tr>
+        </tbody>
+        {{/each}}
         </table>
     </div>
 </div>
@@ -254,15 +267,14 @@
 
 
 <script>
-    document.getElementById("allAssignments").style.display = "flex";
+    document.getElementById("allAssignments").style.display = "grid";
     document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
     document.getElementById("box-1").style.backgroundColor = "#f0fbff";
 
     document.getElementById("box-1").addEventListener("click", function () {
-        document.getElementById("allAssignments").style.display = "flex";
+        document.getElementById("allAssignments").style.display = "grid";
         document.getElementById("allSchedule").style.display = "none";
         document.getElementById("allTests").style.display = "none";
-        document.getElementById('allAssignments').scrollIntoView();
         document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
         document.getElementById("box-2").style.borderBottom = "none";
         document.getElementById("box-3").style.borderBottom = "none";
@@ -274,7 +286,6 @@
         document.getElementById("allSchedule").style.display = "flex";
         document.getElementById("allAssignments").style.display = "none";
         document.getElementById("allTests").style.display = "none";
-        document.getElementById('allSchedule').scrollIntoView();
         document.getElementById("box-2").style.borderBottom = "2px solid #1e8dff";
         document.getElementById("box-1").style.borderBottom = "none";
         document.getElementById("box-3").style.borderBottom = "none";
@@ -289,7 +300,6 @@
         document.getElementById("allTests").style.display = "flex";
         document.getElementById("allAssignments").style.display = "none";
         document.getElementById("allSchedule").style.display = "none";
-        document.getElementById('allSchedule').scrollIntoView();
         document.getElementById("box-3").style.borderBottom = "2px solid #1e8dff";
         document.getElementById("box-1").style.borderBottom = "none";
         document.getElementById("box-2").style.borderBottom = "none";
@@ -312,6 +322,11 @@
         console.log(id1);
 
         location.assign(location.pathname + '/assignment/' + document.getElementById(id1).classList[2]);
+    }
+
+    function openClassinNewWindow(key){
+        let meetLink = document.getElementById(`btn-${key}`).innerText;
+        window.open(meetLink);
     }
 
 </script>

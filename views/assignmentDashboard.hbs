@@ -64,6 +64,7 @@
 
     .assignmentInfo{
         width: 70%;
+        margin: 0px auto;
     }
 
     .assignmentInfo h3{
@@ -88,10 +89,10 @@
 <div class="middleClassDashboard">
     <div class="classNavbar">
         <div class="box1" id="box-1">
-            <h3 style="font-size: x-large" onclick="openAssignments()">DETAILS</h3>
+            <h3 style="font-size: x-large">DETAILS</h3>
         </div>
         <div style="font-size: x-large" class="box1" id="box-2">
-            <h3 onclick="openClassShedule()">SUBMISSIONS</h3>
+            <h3>SUBMISSIONS</h3>
         </div>
         
     </div>
@@ -99,6 +100,7 @@
 
 
 <div class="bottomClassDashboard">
+
     <div id="allAssignments">
         <div class="assignmentInfo">
             <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Description:</span>  {{assignment.description}}</h3>
@@ -184,14 +186,13 @@
     ////////////
 
     document.getElementById("allSchedule").style.display="none";
-    document.getElementById("allAssignments").style.display="flex";
+    document.getElementById("allAssignments").style.display="grid";
     document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
     document.getElementById("box-1").style.backgroundColor="#f0fbff";
 
     document.getElementById("box-1").addEventListener("click", function() {
-        document.getElementById("allAssignments").style.display="flex";
+        document.getElementById("allAssignments").style.display="grid";
         document.getElementById("allSchedule").style.display="none";
-        document.getElementById( 'allAssignments' ).scrollIntoView();
         document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
         document.getElementById("box-2").style.borderBottom="none";
         document.getElementById("box-1").style.backgroundColor="#f0fbff";
@@ -200,7 +201,6 @@
     document.getElementById("box-2").addEventListener("click", function() {
         document.getElementById("allSchedule").style.display="flex";
         document.getElementById("allAssignments").style.display="none";
-        document.getElementById( 'allSchedule' ).scrollIntoView();
         document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
         document.getElementById("box-1").style.borderBottom="none";
         document.getElementById("box-2").style.backgroundColor="#f0fbff";

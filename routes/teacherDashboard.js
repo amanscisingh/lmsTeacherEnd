@@ -140,7 +140,7 @@ teacherDashboardRoute.get('/:classCode/assignment/:assignmentId', async(req, res
         const classCode = req.params.classCode;
         const assignmentId = mongoose.Types.ObjectId(req.params.assignmentId);
         let assignment = await Assignments.findOne({ _id: assignmentId }).lean();
-        // console.log(assignment);
+        console.log(assignment);
 
         res.render('assignmentDashboard', { layout: 'singleClass', classCode, assignment: assignment });
     } catch (error) {

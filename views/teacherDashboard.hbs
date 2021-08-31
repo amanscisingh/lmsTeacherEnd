@@ -24,10 +24,35 @@
         background-color: #f0fbff;
         padding: 20px;
     }
+    .middleClassDashboard{
+        height: 10%;
+        margin: 10px auto;
+    }
+
+    .bottomClassDashboard{
+        height: 40%;
+        margin: 10px auto;
+    }
 
 </style>
-<div> 
-    <div class="box">
+
+
+<div class="middleClassDashboard">
+    <div class="classNavbar">
+        <div class="box1" id="box-1">
+            <h3 style="font-size: x-large">CLASSES</h3>
+        </div>
+        <div style="font-size: x-large" class="box1" id="box-2">
+            <h3>SCHEDULE</h3>
+        </div>
+        
+    </div>
+</div>
+
+
+<div class="bottomClassDashboard"> 
+
+    <div class="box" id="allAssignments">
     {{#each allClasses}}
 
         <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
@@ -67,8 +92,7 @@
         </div>
     </div>
 
-<hr>
-    <div class="tableTeacherDashboard">
+    <div class="tableTeacherDashboard" id="allSchedule">
         <table border="2" class="timeTable">
         <thead>
             <tr>
@@ -100,10 +124,32 @@
         {{/each}}
         </table>
     </div>
+    
 </div>
 
 <script>
+    document.getElementById("allSchedule").style.display="none";
+    document.getElementById("allAssignments").style.display="grid";
+    document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
+    document.getElementById("box-1").style.backgroundColor="#f0fbff";
 
+    document.getElementById("box-1").addEventListener("click", function() {
+        document.getElementById("allAssignments").style.display="grid";
+        document.getElementById("allSchedule").style.display="none";
+        document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
+        document.getElementById("box-2").style.borderBottom="none";
+        document.getElementById("box-1").style.backgroundColor="#f0fbff";
+        document.getElementById("box-2").style.backgroundColor="#E7EDEF";
+    });
+    document.getElementById("box-2").addEventListener("click", function() {
+        document.getElementById("allSchedule").style.display="flex";
+        document.getElementById("allAssignments").style.display="none";
+        document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
+        document.getElementById("box-1").style.borderBottom="none";
+        document.getElementById("box-2").style.backgroundColor="#f0fbff";
+        document.getElementById("box-1").style.backgroundColor="#E7EDEF";
+
+    });
 
 
     function editCard(key){
