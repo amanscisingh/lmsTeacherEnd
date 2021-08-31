@@ -87,15 +87,15 @@
         <tbody>
             <tr>
                 <td>{{this.title}}</td>
-                <td>{{this.description}}</td>
+                <td>
+                    <p style="overflow-y: scroll; width: 250px; height: 100px;">{{this.description}}</p>
+                </td>
                 <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
                 <td>{{this.duration}} Hours</td>
-                <td id="btn-{{@key}}" onclick="openClassinNewWindow({{@key}})">{{this.classLink}}</td>
+                <td style="cursor: pointer;" id="btn-{{@key}}" onclick="openClassinNewWindow({{@key}})">{{this.classLink}}</td>
                 <td>
-                    {{#if this.classPassword}}
-                        {{this.classPassword}}
-                    {{/if}}
-                        No Password
+                    {{formatPassword this.classPassword}}
+                    
                 </td>
             </tr>
         </tbody>
