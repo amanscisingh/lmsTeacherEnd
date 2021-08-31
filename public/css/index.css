@@ -306,10 +306,6 @@ input {
     border-bottom-right-radius: 10px;
 }
 
-.nameAndPhoto {
-    display: flex;
-    padding: 20px;
-}
 
 .description {
     overflow-y: scroll;
