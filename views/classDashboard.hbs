@@ -1,47 +1,55 @@
 <style>
-    *{
+    * {
         font-family: 'Open Sans', sans-serif;
     }
-    body{    
+
+    body {
         background-color: rgb(231 237 239);
     }
-    #allSchedule{
+
+    #allSchedule {
         justify-content: center;
     }
-    th, td{
+
+    th,
+    td {
         border: 1px solid black;
     }
-    table{
+
+    table {
         margin-top: 5%;
         width: 60%;
         height: auto;
     }
-    tr>th{
+
+    tr>th {
         font-size: large;
         background-color: #d2f6ff;
         padding: 20px;
     }
-    tr>td{
+
+    tr>td {
         background-color: #f0fbff;
         padding: 20px;
     }
-    
 
-    .supremeClassDashboard{
+
+    .supremeClassDashboard {
         height: 25%;
         margin: 10px auto;
     }
 
-    .middleClassDashboard{
+    .middleClassDashboard {
         height: 10%;
         margin: 10px auto;
     }
 
-    .bottomClassDashboard{
+    .bottomClassDashboard {
         height: 40%;
         margin: 10px auto;
     }
-    .mainContainer{
+
+    .mainContainer {
         margin: 1.5% 10%;
         padding: 3px;
         background-color: #AEDAE4;
@@ -55,11 +63,11 @@
         overflow-y: scroll;
     }
 
-    .mainContainer-element{
+    .mainContainer-element {
         margin: 0% 2% 0 20%;
     }
 
-    .data{
+    .data {
         overflow-y: scroll;
         height: 160px;
     }
@@ -69,16 +77,87 @@
         width: 0;
         background: transparent;
     }
-    
+
+    .card {
+        border: 0.5px solid rgb(194, 189, 189);
+        margin: 30px;
+        width: 370px;
+        margin-top: 30px;
+        font-family: sans-serif;
+        background-color: white;
+        justify-content: center;
+        height: 20rem;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+    .data {
+        padding: 2px;
+        font-weight: 100;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .upperPart {
+        color: rgb(44, 24, 24);
+        background-color: #ddf6ff;
+        text-align: center;
+        padding: 15px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    }
+
+    .upperPart>div {
+        padding: 6px;
+    }
+
+    .teacherDashClassName {
+        font-size: larger;
+        font-weight: 600;
+    }
+
+    .lowerPart {
+        padding: 3%;
+        justify-content: center;
+        margin-bottom: 20px;
+        background-color: white;
+        text-align: center;
+    }
+
+
+    .description {
+        overflow-y: scroll;
+        height: 110px;
+        text-align: center;
+        padding: 20px;
+        color: rgb(122, 117, 117)
+    }
+
+    ::-webkit-scrollbar {
+        width: 0;
+        /* Remove scrollbar space */
+        background: transparent;
+        /* Optional: just make scrollbar invisible */
+    }
+
+    .box {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-gap: 5.5rem;
+        margin: 5%;
+    }
 </style>
 
 
 
 <div class="supremeClassDashboard">
     <div class="mainContainer">
-            <h1 style="font-size: xxx-large; padding: 5px;" class="mainContainer-element">{{classInfo.className}}</h1>
-            <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">Students Enrolled: {{classInfo.classStudents.length}}</h2>
-            <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">{{classInfo.classDescription}}</h2>
+        <h1 style="font-size: xxx-large; padding: 5px;" class="mainContainer-element">{{classInfo.className}}</h1>
+        <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">Students Enrolled:
+            {{classInfo.classStudents.length}}</h2>
+        <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">{{classInfo.classDescription}}</h2>
     </div>
 
 </div>
@@ -95,7 +174,7 @@
         <div style="font-size: x-large" class="box1" id="box-2">
             <h3 onclick="openClassShedule()">CLASSES</h3>
         </div>
-        
+
     </div>
 </div>
 
@@ -108,11 +187,14 @@
         <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
             <div class="upperPart">
                 <div style="font-size: xx-large;">{{this.title}}</div>
-                <div>
-                    <hr style="margin: 4%;">
-                </div>
+            <div>
+                <hr style="margin: 4%;">
+            </div>
+            </div>
+            <div class="lowerPart">
                 <div class="data" style="color: rgb(143, 138, 138);">{{this.description}}</div>     
             </div>
+                    
         </div>
 
         {{/each}}
@@ -124,14 +206,17 @@
     
         {{#each allTests}}
 
-        <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
+         <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
             <div class="upperPart">
-                <div>{{this.title}}</div>
-                <div>
-                    <hr style="margin: 4%;">
-                </div>
+                <div style="font-size: xx-large;">{{this.title}}</div>
+            <div>
+                <hr style="margin: 4%;">
+            </div>
+            </div>
+            <div class="lowerPart">
                 <div class="data" style="color: rgb(143, 138, 138);">{{this.description}}</div>     
             </div>
+                    
         </div>
 
         {{/each}}
@@ -141,92 +226,92 @@
 
     <div id="allSchedule">
         <table class="timeTable">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>start time</th>
-                <th>Duration</th>
-                <th>Class Link</th>
-            </tr>
-        </thead>
-        {{#each allScheduledClasses}}
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>start time</th>
+                    <th>Duration</th>
+                    <th>Class Link</th>
+                </tr>
+            </thead>
+            {{#each allScheduledClasses}}
 
-        <tbody>
-            <tr>
-                <td>{{this.title}}</td>
-                <td>{{this.description}}</td>
-                <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
-                <td>{{this.duration}}</td>
-                <td>{{this.classLink}}</td>
-            </tr>
-        </tbody>
-             {{/each}}
-         </table>
-      </div>
+            <tbody>
+                <tr>
+                    <td>{{this.title}}</td>
+                    <td>{{this.description}}</td>
+                    <td>{{formatDate this.startTime 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                    <td>{{this.duration}}</td>
+                    <td>{{this.classLink}}</td>
+                </tr>
+            </tbody>
+            {{/each}}
+        </table>
+    </div>
 </div>
 
 
 
 <script>
-    document.getElementById("allAssignments").style.display="flex";
-    document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
-    document.getElementById("box-1").style.backgroundColor="#f0fbff";
+    document.getElementById("allAssignments").style.display = "flex";
+    document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
+    document.getElementById("box-1").style.backgroundColor = "#f0fbff";
 
-    document.getElementById("box-1").addEventListener("click", function() {
-        document.getElementById("allAssignments").style.display="flex";
-        document.getElementById("allSchedule").style.display="none";
-        document.getElementById("allTests").style.display="none";
-        document.getElementById( 'allAssignments' ).scrollIntoView();
-        document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
-        document.getElementById("box-2").style.borderBottom="none";
-        document.getElementById("box-3").style.borderBottom="none";
-        document.getElementById("box-1").style.backgroundColor="#f0fbff";
-        document.getElementById("box-2").style.backgroundColor="#E7EDEF";
-        document.getElementById("box-3").style.backgroundColor="#E7EDEF";
+    document.getElementById("box-1").addEventListener("click", function () {
+        document.getElementById("allAssignments").style.display = "flex";
+        document.getElementById("allSchedule").style.display = "none";
+        document.getElementById("allTests").style.display = "none";
+        document.getElementById('allAssignments').scrollIntoView();
+        document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
+        document.getElementById("box-2").style.borderBottom = "none";
+        document.getElementById("box-3").style.borderBottom = "none";
+        document.getElementById("box-1").style.backgroundColor = "#f0fbff";
+        document.getElementById("box-2").style.backgroundColor = "#E7EDEF";
+        document.getElementById("box-3").style.backgroundColor = "#E7EDEF";
     });
-    document.getElementById("box-2").addEventListener("click", function() {
-        document.getElementById("allSchedule").style.display="flex";
-        document.getElementById("allAssignments").style.display="none";
-        document.getElementById("allTests").style.display="none";
-        document.getElementById( 'allSchedule' ).scrollIntoView();
-        document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
-        document.getElementById("box-1").style.borderBottom="none";
-        document.getElementById("box-3").style.borderBottom="none";
-        document.getElementById("box-2").style.backgroundColor="#f0fbff";
-        document.getElementById("box-1").style.backgroundColor="#E7EDEF";
-        document.getElementById("box-3").style.backgroundColor="#E7EDEF";
+    document.getElementById("box-2").addEventListener("click", function () {
+        document.getElementById("allSchedule").style.display = "flex";
+        document.getElementById("allAssignments").style.display = "none";
+        document.getElementById("allTests").style.display = "none";
+        document.getElementById('allSchedule').scrollIntoView();
+        document.getElementById("box-2").style.borderBottom = "2px solid #1e8dff";
+        document.getElementById("box-1").style.borderBottom = "none";
+        document.getElementById("box-3").style.borderBottom = "none";
+        document.getElementById("box-2").style.backgroundColor = "#f0fbff";
+        document.getElementById("box-1").style.backgroundColor = "#E7EDEF";
+        document.getElementById("box-3").style.backgroundColor = "#E7EDEF";
 
     });
 
 
-    document.getElementById("box-3").addEventListener("click", function() {
-        document.getElementById("allTests").style.display="flex";
-        document.getElementById("allAssignments").style.display="none";
-        document.getElementById("allSchedule").style.display="none";
-        document.getElementById( 'allSchedule' ).scrollIntoView();
-        document.getElementById("box-3").style.borderBottom="2px solid #1e8dff";
-        document.getElementById("box-1").style.borderBottom="none";
-        document.getElementById("box-2").style.borderBottom="none";
-        document.getElementById("box-3").style.backgroundColor="#f0fbff";
-        document.getElementById("box-1").style.backgroundColor="#E7EDEF";
-        document.getElementById("box-2").style.backgroundColor="#E7EDEF";
+    document.getElementById("box-3").addEventListener("click", function () {
+        document.getElementById("allTests").style.display = "flex";
+        document.getElementById("allAssignments").style.display = "none";
+        document.getElementById("allSchedule").style.display = "none";
+        document.getElementById('allSchedule').scrollIntoView();
+        document.getElementById("box-3").style.borderBottom = "2px solid #1e8dff";
+        document.getElementById("box-1").style.borderBottom = "none";
+        document.getElementById("box-2").style.borderBottom = "none";
+        document.getElementById("box-3").style.backgroundColor = "#f0fbff";
+        document.getElementById("box-1").style.backgroundColor = "#E7EDEF";
+        document.getElementById("box-2").style.backgroundColor = "#E7EDEF";
     });
-        
-    function editCard(key){
+
+    function editCard(key) {
         console.log(key);
         let id1 = `class-${key}`;
-        console.log('kkkk'+id1);
+        console.log('kkkk' + id1);
 
-        location.assign('/teacherDashboard/'+code+'assignment'+id);
+        location.assign('/teacherDashboard/' + code + 'assignment' + id);
     }
 
-    function openAssignment(key){
+    function openAssignment(key) {
         console.log(key);
         let id1 = `assignment-${key}`;
         console.log(id1);
 
-        location.assign( location.pathname+'/assignment/'+ document.getElementById(id1).classList[2]);
+        location.assign(location.pathname + '/assignment/' + document.getElementById(id1).classList[2]);
     }
 
 </script>

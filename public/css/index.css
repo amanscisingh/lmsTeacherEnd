@@ -263,10 +263,9 @@ input {
     width: 370px;
     margin-top: 30px;
     font-family: sans-serif;
-    background-color: #fff;
-    background-color: #f0fbff;
+    background-color: #ddf6ff;
     justify-content: center;
-    height: 17rem;
+    height: 18.05rem;
 }
 
 .card:hover {
@@ -279,14 +278,6 @@ input {
     padding: 2px;
     font-weight: 100;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-.imgCreateClass {
-    border-radius: 50px;
-    margin-top: 10px;
-    position: relative;
-    top: 0%;
-    z-index: 1;
 }
 
 .upperPart {
@@ -328,19 +319,6 @@ input {
     /* Remove scrollbar space */
     background: transparent;
     /* Optional: just make scrollbar invisible */
-}
-
-.delete_class_code {
-    display: flex;
-    justify-content: center;
-}
-
-.delete {
-    margin-left: 30%;
-}
-
-.delete:hover {
-    cursor: pointer;
 }
 
 .box {
