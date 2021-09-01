@@ -28,6 +28,10 @@ const userSchema = new mongoose.Schema( {
         type: String,
         required: false,
     },
+    about: {
+        type: String,
+        required: false,
+    },
     designation: {
         type: String,  //teacher or student
         required: true,

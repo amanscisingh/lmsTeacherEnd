@@ -47,6 +47,47 @@
             background-color: rgba(0, 0, 0, 0.384);
             box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.285);
         }
+
+        #joinClass{
+            height: 30px; 
+            display:none;
+            position: absolute;
+            top: 11%;
+            right: 14%;
+            width: 80px;
+            background-color: rgba(0, 0, 0, 0.562);
+            color: white;
+            border-radius: 10%;
+            align-items: center;
+        }
+
+        #openProfile{
+            height: 30px; 
+            display:none;
+            position: absolute;
+            top: 11%;
+            right: 8%;
+            width: 80px;
+            background-color: rgba(0, 0, 0, 0.562);
+            color: white;
+            border-radius: 10%;
+            align-items: center;
+            padding: 2px;
+        }
+
+        #logoutDone{
+            height: 30px; 
+            display:none;
+            position: absolute;
+            top: 11%;
+            right: 1.5%;
+            width: 80px;
+            background-color: rgba(0, 0, 0, 0.562);
+            color: white;
+            border-radius: 10%;
+            align-items: center;
+            padding: 2px;
+        }
     </style>
 </head>
 <body>
@@ -65,8 +106,11 @@
                 <a href="#" id="createAssignment" class="container-element">
                     <img src="/images/assignmentDesign.svg" name="submit" style="height: 100%; width: 100%;" alt="plus"/>
                 </a>
+                    <div style="text-align: center; padding: 2px;" id="joinClass">Create Class</div>
                 <a id='scheduleClass' href="#" class="container-element"><img style="height: 100%; width: 100%;" src="/images/classScheduleDesign.svg">  </a>
-                <a href="#" onclick="signOut()" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
+                <div style="text-align: center; padding: 2px;" id="openProfile">Schedule Class</div>
+                <a id="logoutBtn" href="#" onclick="signOut()" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
+                <div style="text-align: center; padding: 2px;" id="logoutDone">Logout</div>
             </span>
             
         </div>
@@ -102,6 +146,30 @@
             });
         });
         }
+
+        document.getElementById("createAssignment").addEventListener("mouseover", function(e) {
+            document.getElementById("joinClass").style.display="flex";
+            document.getElementById("joinClass").style.justifyContent="center";
+        });
+        document.getElementById("createAssignment").addEventListener("mouseout", function() {
+            document.getElementById("joinClass").style.display="none";
+        });
+
+        document.getElementById("scheduleClass").addEventListener("mouseover", function(e) {
+            document.getElementById("openProfile").style.display="flex";
+            document.getElementById("openProfile").style.justifyContent="center";
+        });
+        document.getElementById("scheduleClass").addEventListener("mouseout", function() {
+            document.getElementById("openProfile").style.display="none";
+        });
+
+        document.getElementById("logoutBtn").addEventListener("mouseover", function(e) {
+            document.getElementById("logoutDone").style.display="flex";
+            document.getElementById("logoutDone").style.justifyContent="center";
+        });
+        document.getElementById("logoutBtn").addEventListener("mouseout", function() {
+            document.getElementById("logoutDone").style.display="none";
+        });
     </script>
 
 
