@@ -4,10 +4,10 @@ var bodyParser = require('body-parser')
 const exphbs = require('express-handlebars');
 const cookieParser = require('cookie-parser');
 const path = require('path');
-const cors = require('cors');
 const moment = require('moment');
+const cors = require('cors');
 
-// imports for the file upload feature
+//imports for file upload
 const crypto = require('crypto');
 const multer = require('multer');
 const { GridFsStorage } = require('multer-gridfs-storage');
@@ -31,9 +31,23 @@ function parseToString(input) {
     return input.toString();
 };
 
-// helper functions
+
+// format marks assigned
+function formatAssignedMarks(marks) {
+  let temp;
+  if (marks === -1) {
+    return 'Not assigned'
+  } else {
+    return marks  }
+}
+
+// handlebars helpers
 function formatDate(date, format) {
-  return moment(date).format(format)
+    if (date === 'NA') {
+      return "NA"
+    } else {
+      return moment(date).format(format)
+    }
 };
 
 function formatPassword(password) {
@@ -44,7 +58,7 @@ function formatPassword(password) {
   }
 }
 
-app.engine('.hbs', exphbs({helpers:{ parseToString, formatDate, formatPassword }, defaultLayout: 'main', extname: '.hbs'}));
+app.engine('.hbs', exphbs({helpers:{ parseToString, formatDate, formatAssignedMarks, formatPassword}, defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 // setting up public folder
@@ -52,11 +66,14 @@ const __dirname__ = path.resolve();
 app.use(express.static(path.join(__dirname__, 'public')));
 
 // connecting to db and starting the server
-mongoose.connect(URL, { useNewUrlParser: true, useUnifiedTopology: true}).then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server started on port ${PORT} and DB connected as well!!!`);
-    })
-});
+mongoose.connect(URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(()=> {
+    app.listen(PORT, console.log(`Server running on port ${PORT} and DB is connected as Well!!! `))
+}).catch((err)=>{
+    console.log('Error: ', err.message);
+})
 
 
 // for file UPLOAD
@@ -97,6 +114,7 @@ const storage = new GridFsStorage({
       });
 }   
 });   
+
 const upload = multer({ storage });
 
 app.use(cors());
@@ -108,9 +126,8 @@ app.use(cookieParser());
 // routes
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
-app.use('/teacherDashboard', require('./routes/teacherDashboard'));
+app.use('/studentDashboard', require('./routes/studentDashboard'));
 app.use('/api', require('./routes/api'));
-// app.use('/upload', upload.single('file'), require('./routes/upload'));
 
 
 app.post('/upload', upload.single('file'), (req, res) => {
@@ -158,3 +175,4 @@ app.get('/open/:filename', (req, res) => {
         }
     });
 });
+

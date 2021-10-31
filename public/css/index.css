@@ -1,3 +1,8 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
 /* css for assignment dashboard */
 
 .paricularAssignment {
@@ -15,7 +20,7 @@
 }
 
 
-/* css for classDashboard ..........................................................*/
+/* css for classDashboard */
 
 .center {
     text-align: center;
@@ -28,7 +33,16 @@
     cursor: pointer;
 }
 
-
+.subjectContainer {
+    height: 100%;
+    width: 60%;
+    text-align: left;
+    color: white;
+    border-radius: 10px;
+    background-image: url('https://www.gstatic.com/classroom/themes/img_backtoschool.jpg');
+    font-family: cursive;
+    padding: 20px 20px;
+}
 
 .classNavbar {
     display: flex;
@@ -48,7 +62,6 @@
 
 #allAssignments {
     display: none;
-    justify-content: center;
 }
 
 #allSchedule {
@@ -56,44 +69,64 @@
 }
 
 
-/* css for createAssignment ..................................................*/
+/* css for createAssignment */
 
-.btn1 {
+.mainContainer2 {
+    background-image: url('https://c8.alamy.com/comp/2BW8349/open-notepad-and-pen-on-laptop-with-copy-space-2BW8349.jpg');
+    background-size: cover;
+    height: 89vh;
+    padding-top: 5%;
+}
+
+.btn {
     padding: 5px;
-    background-color: #4cbdff;
+    border-radius: 5px;
+    background-color: #b2aefc;
     border: none;
-    width: 170px;
+    width: 150px;
     height: 40px;
     font-size: large;
-    margin: 5px;
-    color: black;
 }
 
-.btn1:hover {
+.btn:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 4px 2px #44a8e2;
+    box-shadow: 0px 0px 4px 2px #8a86ce;
 }
 
-.btn1:disabled {
-    color: white;
-}
-.btn1:disabled:hover {
-    cursor: not-allowed;
-    box-shadow: none;
-}
+
+/* .margin {
+    margin: 10px;
+} */
+
+
+/* .className{
+    padding: 7px;
+    border-radius: 5px;
+} */
 
 .formContainer {
     width: 25%;
     padding: 20px;
     margin: 0%;
-    margin-top: 3%;
-    background-color: #94d8f8cb;
-    box-shadow: 0px 0px 6px 3px rgb(94, 93, 93);
-    color: black;
+    /* margin-top: 3%; */
+    margin-left: 60%;
+    background-color: #4b4949;
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 14px 8px black;
+}
+
+.textArea {
+    border-radius: 5px;
 }
 
 .className {
     padding: 10px;
+    border-radius: 8px;
+}
+
+#description {
+    border-radius: 8px;
 }
 
 * {
@@ -114,11 +147,11 @@
 
 .btn {
     padding: 5px;
-    background-color: #4cbdff;
+    border-radius: 5px;
+    background-color: rgb(127, 208, 255);
     border: none;
     width: 150px;
     height: 40px;
-    color: black;
 }
 
 .btn:hover {
@@ -128,9 +161,10 @@
 
 .className {
     padding: 7px;
+    border-radius: 5px;
 }
 
-.formContainer1 {
+.formContainer {
     margin-top: 8%;
     width: 28rem;
     height: 24.5rem;
@@ -139,11 +173,12 @@
     box-shadow: 0px 0px 14px 8px black;
     color: white;
 }
-.formContainer1>input{
-    margin: 10px;
+
+.textArea {
+    border-radius: 5px;
 }
 
-.imgCreateClass {
+.img {
     width: 28rem;
     height: 28rem;
     margin-left: 16%;
@@ -160,16 +195,17 @@
     justify-content: center;
 }
 
-.formContainer2 {
+.formContainer {
     width: 300px;
     height: fit-content;
     display: flex;
     flex-direction: column;
+    border-radius: 5px;
     border: 1px solid lightgray;
     padding: 20px;
 }
 
-.formContainer2>h1 {
+.formContainer>h1 {
     font-weight: 500;
     margin-bottom: 20px;
 }
@@ -217,10 +253,17 @@ input {
 
 /* css for scheduleClass */
 
+.mainContainer1 {
+    background-image: url('https://c8.alamy.com/comp/2BW8349/open-notepad-and-pen-on-laptop-with-copy-space-2BW8349.jpg');
+    background-size: cover;
+    height: 89vh;
+    padding-top: 5%;
+}
+
 .btn {
     padding: 5px;
     border-radius: 5px;
-    background-color: #4cbdff;
+    background-color: #b2aefc;
     border: none;
     width: 150px;
     height: 40px;
@@ -229,7 +272,7 @@ input {
 
 .btn:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 4px 2px #00b5ef;
+    box-shadow: 0px 0px 4px 2px #8a86ce;
 }
 
 
@@ -243,30 +286,47 @@ input {
     border-radius: 5px;
 } */
 
-/*.formContainer {
+.formContainer {
     width: 25%;
     padding: 20px;
     margin: 0%;
-    margin-top: 3%; 
+    /* margin-top: 3%; */
     margin-left: 60%;
     background-color: #4b4949;
     color: white;
     border-radius: 8px;
     box-shadow: 0px 0px 14px 8px black;
-}*/
+}
+
+.textArea {
+    border-radius: 5px;
+}
+
+.className {
+    padding: 10px;
+    border-radius: 8px;
+}
+
+#description {
+    border-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 
 /* css forteacherDashboard */
 
-.card {
+/* .card {
     border: 0.5px solid rgb(194, 189, 189);
+    height: 266px;
     margin: 30px;
     width: 370px;
     margin-top: 30px;
     font-family: sans-serif;
-    background-color: #ddf6ff;
-    justify-content: center;
-    height: 18.05rem;
-}
+} */
 
 .card:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -280,38 +340,18 @@ input {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.upperPart {
-    color: rgb(44, 24, 24);
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    text-align: center;
-    padding: 15px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
-}
-.upperPart>div{
-    padding: 6px;
-}
-.teacherDashClassName{
-    font-size: larger;
-    font-weight: 600;
-}
 .lowerPart {
-    padding: 0%;
+    padding: 23px;
     display: flex;
-    justify-content: center;
     margin-bottom: 20px;
     background-color: white;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
 
-
 .description {
     overflow-y: scroll;
     height: 110px;
-    text-align: center;
-    padding: 20px;
-    color: rgb(122, 117, 117)
 }
 
 ::-webkit-scrollbar {
@@ -335,7 +375,21 @@ input {
     display: flex;
     justify-content: flex-end;
     padding: 27px;
-    box-shadow: 0px 0px 10px 1px gray;
+    box-shadow: 2px 2px 10px 2px gray;
+}
+
+.add_assignment_icon {
+    text-decoration: none;
+    position: absolute;
+    top: 4%;
+    right: 20%;
+}
+
+.add_class_icon {
+    text-decoration: none;
+    position: absolute;
+    top: 4%;
+    right: 10%;
 }
 
 .heading_logo_text {
@@ -343,25 +397,19 @@ input {
     left: 5rem;
 }
 
-.single_heading_logo_img {
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    left: 1rem;
-    top: 0.7rem;
-}
+
 /* css for techerLoggedIn */
 
 .header {
     display: flex;
     justify-content: flex-end;
     padding: 27px;
-    box-shadow: 0px 0px 10px 1px gray;
+    box-shadow: 2px 2px 10px 2px gray;
     background-color: white;
     z-index: 1;
 }
 
-.addClassIcon {
+.add_class_icon {
     text-decoration: none;
     position: absolute;
     top: 4%;
@@ -373,10 +421,18 @@ input {
     left: 5rem;
 }
 
-.teacher_heading_logo_img {
+.heading_logo_img {
     height: 50px;
     width: 50px;
     position: absolute;
     left: 1rem;
-    top: 0.7rem;
+    top: 0.4rem;
+}
+
+.heading_logo_img {
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    left: 1rem;
+    top: 0.4rem;
 }

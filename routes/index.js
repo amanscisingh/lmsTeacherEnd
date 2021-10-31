@@ -1,15 +1,15 @@
 const express = require('express');
+const indexRoute = express.Router();
 const Users = require('../models/Users.js');
 
-const indexRoute = express.Router();
 
 indexRoute.get('/', (req, res) => {
     try {
         res.render('login', { layout: 'blank' })
     } catch (error) {
         res.send(error)
-    } 
-})
+    }
+});
 
 // /profile
 // @GET
@@ -19,14 +19,14 @@ indexRoute.get('/profile', async (req, res) => {
         let user = await Users.findOne({ email: email }).lean();
         console.log(email);
         // res.send({user: user})
-        res.render('profile', { layout: 'teacherLoggedIn', userSchema :user })
+        res.render('profile', { layout: 'studentLoggedIn', userSchema :user })
     } catch (error) {
         res.send(error);
     }
 });
 
 // /profile\
-// @POST
+// @PUT
 indexRoute.post('/profile', async (req, res) => {
     try {
         let email = req.cookies['email'];
@@ -44,9 +44,10 @@ indexRoute.post('/profile', async (req, res) => {
 
         user = await Users.findOneAndUpdate( { _id: user['_id'] },  user, { new: true, runValidators: true } );
 
-        res.redirect('/teacherDashboard');
+        res.redirect('/studentDashboard');
     } catch (error) {
         res.send(error);
     }
 });
+
 module.exports = indexRoute;

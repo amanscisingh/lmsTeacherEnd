@@ -12,6 +12,14 @@ const userSchema = new mongoose.Schema( {
     lastName: {
         type: String, //familyName
     },
+    phone: {
+        type: Number,
+        required : false,
+    },
+    about : {
+        type: String,
+        required : false,
+    },
     image: {
         type: String,
         required: false,
@@ -25,10 +33,6 @@ const userSchema = new mongoose.Schema( {
         required: false,
     },
     phone: {
-        type: String,
-        required: false,
-    },
-    about: {
         type: String,
         required: false,
     },

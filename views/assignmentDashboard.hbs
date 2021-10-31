@@ -1,213 +1,221 @@
 <style>
-    .tableContainer {
-        justify-content: center;
+    .MainBox{
+        height: 89vh;
+        padding-top: 2%;
         display: flex;
-        margin: 0px auto;
+        flex-direction: row;
+        background-color: rgb(231 237 239);
     }
 
-    th,
-    td {
-        border: 1px solid black;
+    .DetailsBox{
+        width: 72%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    table {
-        margin-top: 0.5%;
-        width: 100%;
-        height: auto;
+    .UploadBox{
+        border: 1px solid #1967d2;
+        width: 28%;
+        height: 300px;
+        box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 2px 6px 2px rgb(60 64 67 / 15%);
+        overflow: hidden;
+        margin: 1% 6% 0 0;
     }
 
-    tr>th {
+    .detail{
+        border: 1px solid #1967d2;
+        margin: 5px;
+        padding: 10px;
+        width: 80%;
+    }
+
+    .title{
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    {{!-- from createAssignment --}}
+
+    .btn{
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #b2aefc;
+        border: none;
+        width: 150px;
+        height: 40px;
         font-size: large;
-        background-color: #d2f6ff;
-        padding: 20px;
     }
-
-    tr>td {
-        background-color: #f0fbff;
-        padding: 20px;
-    }
-
-    h2 {
-        margin: 20px 0px;
-        padding: 4px;
-        text-align: center;
-    }
-
-    .AssignmentCard {
-        border: 0.5px solid rgb(194, 189, 189);
-        margin: 15px;
-        margin-top: 5px;
-        font-family: sans-serif;
-        background-color: #fff;
-        padding: 15px;
-    }
-
-    .AssignmentCard:hover {
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        transition: 0.3s;
+    .btn:hover{
         cursor: pointer;
+        box-shadow: 0px 0px 4px 2px #8a86ce;
+    }
+    .margin{
+        margin: 10px;
+    }
+    /* .className{
+        padding: 7px;
+        border-radius: 5px;
+    } */
+    .formContainer{
+        width: 25%;
+        padding: 20px;
+        margin: 0%;
+        /* margin-top: 3%; */
+        margin-left: 60%;
+        background-color: #4b4949;
+        color: white;
+        border-radius: 8px;
+        box-shadow: 0px 0px 14px 8px black;
+    }
+    .textArea{
+        border-radius: 5px;
+    }
+    .className{
+        padding: 10px;
+        border-radius: 8px;
+    }
+    #description{
+        letter-spacing: .01428571em;
+        font-family: Roboto,Arial,sans-serif;
+        font-size: 0.875rem;
+        font-weight: 400;
+        line-height: 1.25rem;
+        color: #5f6368;
+    }
+    #showFile{
+        height: 1000px;
     }
 
-    .assignmentEntry {
+    .marksAndDeadline{
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
-    .middleClassDashboard{
-        height: 10%;
-        margin: 10px auto;
+    #title{
+        font-family: 'Google Sans',Roboto,Arial,sans-serif;
+        color: #1967d2;
+        font-size: 2.5rem;
+        font-weight: 400;
+        line-height: 2.5rem;
     }
 
-    .bottomClassDashboard{
-        height: 40%;
-        margin: 10px auto;
+    #deadline{
+        letter-spacing: .01785714em;
+        font-family: 'Google Sans',Roboto,Arial,sans-serif;
+        font-size: 0.875rem;
+        font-weight: bold;
+        line-height: 1.25rem;
+        color: #3c4043;
     }
 
-    .assignmentInfo{
-        width: 70%;
-        margin: 0px auto;
+    #totalMarks{
+        letter-spacing: .01785714em;
+        font-family: 'Google Sans',Roboto,Arial,sans-serif;
+        font-size: 0.875rem;
+        font-weight: 500;
+        line-height: 1.25rem;
+        color: #3c4043;
     }
 
-    .assignmentInfo h3{
-        margin: 10px auto;
+    .fileUploader{
+        font-family: 'Google Sans',Roboto,Arial,sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.25px;
     }
 
-    .assignmentInfo button{
-        background-color: #f0fbff;
-        padding: 3px;
-        border: 1px solid #0090e5;
-        font-size: large;
+    .fileUploaderButton{
+        padding: 10px;
+        height: fit-content;
+        background-color: #1967d2;
+        color: white;
+        border-radius: 10px;
     }
+
 </style>
 
-
-<p style="display: none;" id="assignmentId">{{assignment._id}}</p>
-<p style="display: none;" id="arrayLength">{{assignment.allSubmissions.length}}</p>
-<p style="display: none;" id="totalMarks">{{assignment.totalMarks}}</p>
-
-<h2>{{assignment.title}}</h2>
-
-<div class="middleClassDashboard">
-    <div class="classNavbar">
-        <div class="box1" id="box-1">
-            <h3 style="font-size: x-large">DETAILS</h3>
+<div class="MainBox">
+    <div class="DetailsBox">
+        <div class="detail" id="title" style="border: none; margin-left:0px;">{{assignmentData.title}}</div>
+        <div class="detail" id="description" style="margin-top: 0px; padding-top: 0px; border: none;">{{assignmentData.description}}</div>
+        <div class="marksAndDeadline detail"  style="margin-top: 0px; border: none;">
+            <div id="totalMarks"><span class="marksObtained" style="font-weight: bold;">{{marks}}</span>/{{assignmentData.totalMarks}}</div>
+            <div id="deadline" class="{{isSubmitted}}">Due {{formatDate assignmentData.deadline 'MMMM Do YYYY, h:mm:ss a'}}</div>
         </div>
-        <div style="font-size: x-large" class="box1" id="box-2">
-            <h3>SUBMISSIONS</h3>
+        <div class="detail" id="showFile">
+            <iframe style="width: 100%;  height: 100%" src="/open/{{assignmentData.fileUploadName}}#view=fitH"  frameborder="0"></iframe>
         </div>
-        
+    </div>
+
+    <div class="UploadBox">
+        <h1 id="uploadText" style="margin-left: 15px;">Upload here</h1>
+
+        <form id="createAssignmentForm" action="#" method="POST" class="margin">
+            <div id="uploadForm">
+                <input type="file" name="file" id="file" class="custom-file-input margin fileUploader">
+                <br>
+                <label for="file" id="fileLabel" style="margin-left: 13px;">You Have Not Choosen Any File Yet!!!</label>
+            </div>
+
+            <input type="submit" value="+ Add or Create" id="createAssignment" class="fileUploaderButton margin">
+        </form>
     </div>
 </div>
-
-
-<div class="bottomClassDashboard">
-
-    <div id="allAssignments">
-        <div class="assignmentInfo">
-            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Description:</span>  {{assignment.description}}</h3>
-            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Maximum Marks:</span>  {{assignment.totalMarks}}</h3>
-            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Created At:</span>  {{formatDate assignment.createdAt "MMMM Do YYYY, h:mm:ss a"}}</h3>
-            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Deadline:</span>  {{formatDate assignment.deadline "MMMM Do YYYY, h:mm:ss a"}}</h3>
-            <h3><span style="background-color: #f0fbff73; padding: 3px; box-shadow: 0 0px 40px 0 #dbdbdb;">Total Submissions:</span>  {{assignment.allSubmissions.length}}</h3>
-            <div style="width: 100%; text-align: center;"><button class="{{assignment.fileUploadName}}" id="downloadAssignment">Click Here to Download the Assignment</button></div>
-            
-        </div>
-        
-
-    </div>
-
-
-    <div id="allSchedule">
-        <div class="tableContainer">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Student Name</th>
-                        <th>Student Email</th>
-                        <th>Download </th>
-                        <th>Submission Time</th>
-                        <th>Assign marks</th>
-                    </tr>
-                </thead>
-                {{#each assignment.allSubmissions }}
-                    <tbody>
-                        <tr>
-                            <td>{{this.studentInfo.studentName}}</td>
-                            <td>{{this.studentInfo.studentEmail}}</td>
-                            <td class="{{this.submission.uploadedFileName}}" id="download-{{@key}}">Click to Download</td>
-                            <td>{{formatDate this.submission.submissionTime "MMMM Do YYYY, h:mm:ss a"}}</td>
-                            <td>
-                                <form action="/{{this.studentInfo.studentEmail}}/" method="POST" id="{{@key}}">
-                                    <input type="number" name="marksAssigned" id="marksAssigned-{{@key}}"
-                                        placeholder="{{this.submission.marksAssigned}}">
-                                    <input style="background-color: #f0fbff; padding: 3px; border: 1px solid #0090e5;" type="submit" value="Assign✔">
-                                </form>
-                            </td>
-                        </tr>
-                    </tbody>
-                {{/each}}
-            </table>
-
-        </div>
-    </div>
-
-
-</div>
-
-
 
 <script>
-    const downloadAssignment = document.getElementById('downloadAssignment');
-    downloadAssignment.addEventListener('click', () => {
-        const fileUploadName = downloadAssignment.classList[0];
-        window.open(location.origin + '/open/' + fileUploadName);
-    })
+    const createAssignment = document.getElementById('createAssignment');
+    createAssignment.disabled = true;
+    const createAssignmentForm = document.getElementById('createAssignmentForm');
+    const uploadForm=document.getElementById('uploadForm')
+    const UploadBox=document.getElementsByClassName('UploadBox')
+    const uploadText=document.getElementById('uploadText')
+    const file = document.getElementById('file');
+    let fileName;
 
-    const assignmentId = document.getElementById('assignmentId').innerHTML;
-    const arrayLength = document.getElementById('arrayLength').innerHTML;
-    const totalMarks = document.getElementById('totalMarks').innerHTML;
-    for (let i = 0; i < arrayLength; i++) {
-        let marksAssigned = document.getElementById('marksAssigned-' + i);
-        marksAssigned.setAttribute('max', totalMarks);
-        let form = document.getElementById(i);
-        console.log(form);
-        let action = '/teacherDashboard/' + form.action.split('/')[3] + '/' + assignmentId;
-        form.setAttribute('action', action);
-        let button = document.getElementById('download-' + i);
-        button.style.cursor = 'pointer';
-        button.addEventListener('click', () => {
-            let fileUploadName = button.classList[0];
-            window.open(location.origin + '/open/' + fileUploadName);
-        });
+    // add event listener to file
+    file.addEventListener('change', (file)=>{
+        // get the file
+        console.log('click to hua yrr');
+        console.log(file.target.files[0]);
+        let formData = new FormData();           
+        formData.append("file", file.target.files[0]);
+        fetch('/upload', {
+            method: "POST",
+            body: formData
+        }).then(res => res.json()).then(data => {
+            fileName = data["file"].filename;
+            let action = location.pathname  + fileName;
+            createAssignmentForm.setAttribute('action', action);
+            console.log('unique file name: ' , fileName);
+            fileLabel.innerText = data["file"].originalname;
+            file.disabled = true; 
+            createAssignment.disabled = false;  
+            // dataDisplay.innerText = data.file.filename;   
+            
+    }); 
+    });
 
+    if({{hasUploaded}}){
+        uploadForm.style.display='none'
+        uploadText.innerHTML="Graded"
+        uploadText.style.textAlign="center"
+        uploadText.style.marginTop="130px"
+        createAssignment.style.display='none'
 
     }
 
-
-    ////////////
-
-    document.getElementById("allSchedule").style.display="none";
-    document.getElementById("allAssignments").style.display="grid";
-    document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
-    document.getElementById("box-1").style.backgroundColor="#f0fbff";
-
-    document.getElementById("box-1").addEventListener("click", function() {
-        document.getElementById("allAssignments").style.display="grid";
-        document.getElementById("allSchedule").style.display="none";
-        document.getElementById("box-1").style.borderBottom="2px solid #1e8dff";
-        document.getElementById("box-2").style.borderBottom="none";
-        document.getElementById("box-1").style.backgroundColor="#f0fbff";
-        document.getElementById("box-2").style.backgroundColor="#E7EDEF";
-    });
-    document.getElementById("box-2").addEventListener("click", function() {
-        document.getElementById("allSchedule").style.display="flex";
-        document.getElementById("allAssignments").style.display="none";
-        document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
-        document.getElementById("box-1").style.borderBottom="none";
-        document.getElementById("box-2").style.backgroundColor="#f0fbff";
-        document.getElementById("box-1").style.backgroundColor="#E7EDEF";
-
-    });
-
-
-
+    let submissionDisplay = document.getElementById('deadline');
+    
+    if (submissionDisplay.classList.contains('NA')) {
+        
+    } else {
+        let temp = submissionDisplay.classList[0] + " " + submissionDisplay.classList[1] + " " + submissionDisplay.classList[2] + " " + submissionDisplay.classList[3] + " " + submissionDisplay.classList[4] ;
+        if (temp.includes('undefined')) {
+            
+        } else {
+            submissionDisplay.innerHTML = 'Submitted At: ' +   temp;
+        }
+    }
 </script>
