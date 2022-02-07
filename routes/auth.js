@@ -102,11 +102,11 @@ authRoute.post('/customLogin', async (req, res)=> {
                 res.redirect('/studentDashboard');
             }
             else {
-                res.send('password mismatch');
+                res.send('Password Wrong! Please try again.');
             }
         }
         else {
-            res.send('user not found');
+            res.send('User not found!');
         }
     } catch (error) {
         res.send(error);

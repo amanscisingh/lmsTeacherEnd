@@ -27,12 +27,18 @@
     .card {
         border: 0.5px solid rgb(194, 189, 189);
         margin: auto;
-        width: 420px;
+        width: 400px;
         margin-top: 30px;
         font-family: sans-serif;
         background-color: white;
         justify-content: center;
         height: 25.75rem;
+    }
+
+    @media screen and (max-width: 600px) {
+        .card {
+            width: 350px;
+        }
     }
 
     .card:hover {
