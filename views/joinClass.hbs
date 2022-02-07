@@ -88,6 +88,14 @@
         width: 10rem;
         height: 100vh;
     }
+
+    form{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
 </style>
 <div class="joinClassContainer">
     <div class="bubbles "><img src="/images/blueBubble-removebg-preview.png" class="bubble b1"/></div>
@@ -96,10 +104,9 @@
     <div class="bubbles "><img src="/images/blueBubble-removebg-preview.png" class="bubble b4"/></div>
     
     <div style="text-align: center;" class="formContainer margin">
-        <h2>Form To Join Class</h2>
-
         <form action="/studentDashboard/join" method="POST" class="margin">
-            <input type="text" name="classCode" placeholder="Class Name" class="margin className"> 
+            <h2>Enter Class Code To Join Class</h2>
+            <input type="text" name="classCode" placeholder="e.g. asd-fds-jku" class="margin className"> 
             <div>
                 <input type="submit" value="Join Class" class="btn margin" style="margin-top: 4%;">
             </div>

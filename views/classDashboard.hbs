@@ -25,7 +25,7 @@
     }
 
     table {
-        margin-top: 5%;
+        margin: auto;
         width: 98%;
         height: auto;
     }
@@ -77,12 +77,30 @@
         margin: 0% 2% 0 26%;
     }
 
+    h1{
+        font-size: xxx-large;
+    }
+
+    @media screen and (max-width: 1000px) {
+        .mainContainer{
+            margin: 0;
+            background-position-x: -90px;
+        }
+
+        .mainContainer-element {
+            margin: 0% 2% 0 40%;
+        }
+
+        h1{
+            font-size: xx-large;
+        }
+    }
+
     ::-webkit-scrollbar {
         width: 0;
         background: transparent;
     }
     a{
-        margin-left: 27%;
         background-color: white;
         color: black;
         padding: 3px;
@@ -135,14 +153,19 @@
 
 }
 
+.table-custom {
+    margin: auto 10px;
+    overflow-x: auto;
+}
+
 </style>
 
 
 
 <div class="supremeClassDashboard">
     <div class="mainContainer">
-        <h1 style="font-size: xxx-large;" class="mainContainer-element">{{classData.className}}</h1>
-        <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">{{classData.classTeacher}}</h2>
+        <h1 class="mainContainer-element">{{classData.className}}</h1>
+        <h2 style="font-size: medium; padding: 5px;" class="mainContainer-element">-by {{classData.classTeacher}}</h2>
         <h2 style="font-size: medium; padding: 5px; margin-bottom: 5px;" class="mainContainer-element">
             Description-{{classData.classDescription}}</h2>
     </div>
@@ -151,14 +174,14 @@
 
 <div class="middleClassDashboard">
     <div class="classNavbar">
-        <div class="box1" id="box-1">
-            <h3 style="font-size: x-large" onclick="openAssignments()">ASSIGNMENTS</h3>
+        <div class="box2" id="box-1">
+            <h3 style="font-size: x-large" onclick="openAssignments()">Assignments</h3>
         </div>
-        <div class="box1" id="box-3">
-            <h3 style="font-size: x-large" onclick="openTests()">TESTS</h3>
+        <div class="box2" id="box-3">
+            <h3 style="font-size: x-large" onclick="openTests()">Tests</h3>
         </div>
-        <div style="font-size: x-large" class="box1" id="box-2">
-            <h3 onclick="openClassShedule()">CLASSES</h3>
+        <div style="font-size: x-large" class="box2" id="box-2">
+            <h3 onclick="openClassShedule()">Classes</h3>
         </div>
 
     </div>
@@ -166,7 +189,7 @@
 
 
 <div class="bottomClassDashboard"> 
-    <div id="allAssignments">
+    <div id="allAssignments" class="table-custom">
 
         <table class="timeTable">
             <tr>
@@ -207,7 +230,7 @@
 
 
 
-    <div id="allTests">
+    <div id="allTests" class="table-custom">
     
         <table class="timeTable">
             <tr>
@@ -248,7 +271,7 @@
     </div>
 
 
-    <div id="allSchedule">
+    <div id="allSchedule" class="table-custom">
         <table class="timeTable">
             <thead>
                 <tr>
@@ -278,12 +301,12 @@
 
 
 <script>
-    document.getElementById("allAssignments").style.display = "flex";
+    document.getElementById("allAssignments").style.display = "block";
     document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
     document.getElementById("box-1").style.backgroundColor = "#f0fbff";
 
     document.getElementById("box-1").addEventListener("click", function () {
-        document.getElementById("allAssignments").style.display = "flex";
+        document.getElementById("allAssignments").style.display = "block";
         document.getElementById("allSchedule").style.display = "none";
         document.getElementById("allTests").style.display = "none";
         document.getElementById("box-1").style.borderBottom = "2px solid #1e8dff";
@@ -295,7 +318,7 @@
     });
 
     document.getElementById("box-2").addEventListener("click", function () {
-        document.getElementById("allSchedule").style.display = "flex";
+        document.getElementById("allSchedule").style.display = "block";
         document.getElementById("allAssignments").style.display = "none";
         document.getElementById("allTests").style.display = "none";
         document.getElementById("box-2").style.borderBottom = "2px solid #1e8dff";
@@ -309,7 +332,7 @@
 
 
     document.getElementById("box-3").addEventListener("click", function () {
-        document.getElementById("allTests").style.display = "flex";
+        document.getElementById("allTests").style.display = "block";
         document.getElementById("allAssignments").style.display = "none";
         document.getElementById("allSchedule").style.display = "none";
         document.getElementById("box-3").style.borderBottom = "2px solid #1e8dff";

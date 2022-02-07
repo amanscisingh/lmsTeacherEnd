@@ -4,6 +4,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-signin-client_id" content="665729303262-pvgu50j2sjrbafq2jjibo4t08qmha2pr.apps.googleusercontent.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Dashboard</title>
     <style>
@@ -38,7 +39,7 @@
         }
 
         .container-element{
-            margin: 0px auto 0px auto;
+            margin-right: 15px;
         }
         
         {{!-- .container-element:hover{
@@ -96,30 +97,32 @@
     </style>
 </head>
 <body>
-     <div class="header">
+    <div class="supercontainer">
 
-        <div class="container">            
-            <span class="container-span" style="width:15%;">
-                <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" style="height: 60px; width: 60px;"/>
-                <h3 style="padding-left: 5%; padding-top:10%;">IIT-BHU</h3>
-            </span>
+        <div class="header">
 
-            <span style="width: 65%;">
-
-            </span>
-            
-            <span class="container-span" style="width:20%;">
-                <a href="/studentDashboard/join" class="container-element">
-                <img src="https://www.downloadclipart.net/large/plus-transparent-png.png" id="plusIcon" class="plusIcon" name="submit" style="height: 40px; width: 40px; padding: 7px" alt="plus"/>
-                    <div style="text-align: center; padding: 2px;" id="joinClass">Join Class</div>
-                <a href="/profile" id="profilebtn" class="addClassIcon2 container-element"><img style="height: 60px; width: 60px;" id='image' src="#" class="plusIcon">  </a>
-                <div style="text-align: center; padding: 2px;" id="openProfile">Edit Profile</div>
-                <a id="logoutBtn" href="#" onclick="signOut()" class="container-element"><img style="height: 100%; width: 100%;" src="/images/logoutDesign.svg">  </a>
-                <div style="text-align: center; padding: 2px;" id="logoutDone">Logout</div>
-            </span>
-            
+            <div class="container">            
+                <span class="container-span" style="width:50%; justify-content: start;">
+                    <a href="/studentDashboard"> <img src="http://old.iitbhu.ac.in/icmc2018/apm/images/IITBHU-Logo.jpg" alt="iit_bhu_logo" style="height: 60px; width: 60px;"/> </a>
+                    <h3 style="padding-left: 5%; margin: auto 0;">IIT-BHU</h3>
+                </span>
+                
+                <span class="container-span" style="width:50%; justify-content: end; flex-direction: row; align-items: center;">
+                    <a href="/studentDashboard/join" class="container-element">
+                    <img src="https://www.downloadclipart.net/large/plus-transparent-png.png" id="plusIcon" class="plusIcon" name="submit" style="height: 40px; width: 40px; padding: 7px" alt="plus"/>
+                        <div style="text-align: center; padding: 2px;" id="joinClass">Join Class</div>
+                    <a href="/profile" id="profilebtn" class="addClassIcon2 container-element"><img style="height: 60px; width: 60px;" id='image' src="#" class="plusIcon">  </a>
+                    <div style="text-align: center; padding: 2px;" id="openProfile">Edit Profile</div>
+                    <a id="logoutBtn" href="#" onclick="signOut()" class="container-element"><img style="height: 60px; width: 60px;" src="/images/logoutDesign.svg">  </a>
+                    <div style="text-align: center; padding: 2px;" id="logoutDone">Logout</div>
+                </span>
+                
+            </div>
         </div>
-    </div> 
+
+        {{{ body }}}
+                
+    </div>
 
     <script src="https://apis.google.com/js/platform.js" async defer> </script>
 
@@ -193,6 +196,6 @@
 
 
     </script>
-    {{{ body }}}
+   
 </body>
 </html>
