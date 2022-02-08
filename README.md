@@ -1,11 +1,10 @@
-# Flipr Hackathon X Teacher End | Student End
+# About Project
 This Repo consists of two branches:
 1. main - for teacher dashboard
 2. studentEnd - for student dashboard
 
+Parallel dashboards for students and teachers to interact for purposes of online education.
 
-In the teacher end we have created the web application which can be used by the teachers.
-In the student end we have created the web application which can be used by the students.
 This applications contains these features-
 1. Teacher/Student can login to his/her app by google or can either create account by giving email and password.
 2. Teacher/Student can create the classes by providing the class name and the description of the class.
@@ -17,7 +16,7 @@ This applications contains these features-
 8. Student can view thier all submissions and assess their marks as well.
 9. Teacher/Student can easily view the time table for various classes along with their timings.
 
----
+<hr>
 
 # Getting Started
 For setting up the development environment, follow the steps given below.
@@ -26,15 +25,15 @@ For setting up the development environment, follow the steps given below.
 
 2. Clone your fork or this repository, as applicable.
 
-    git clone https://github.com/username/lmsTeacherEnd.git
+    ```git clone https://github.com/username/lmsTeacherEnd.git```
     OR
-    git clone https://github.com/amanscisingh/lmsTeacherEnd.git
-     * cd lmsTeacherEnd
+    ```git clone https://github.com/amanscisingh/lmsTeacherEnd.git```
+     <br>``` cd lmsTeacherEnd```
   
 3. Install the required packages using npm. If npm isn't installed, refer here.
-  npm install
+  ```npm install```
 4. Run the development server.
-  npm run dev
+  ```npm run dev```
 If you are in main branch then you are viewing code of teacher Dashboard. Open http://localhost:4500 with your browser to see the results. Or open https://lms-teacher-team-dragon.herokuapp.com/ to view the deployed code.
 
 If you are in studentEnd branch then you are viewing code of student Dashboard. Open http://localhost:9000 with your browser to see the result. Or open https://lms-student-team-dragon.herokuapp.com/ to view the deployed code.
