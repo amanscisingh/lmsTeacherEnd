@@ -199,20 +199,27 @@ teacherDashboardRoute.post('/:studentEmail/:assignmentId', async(req, res) => {
         let assignment = await Assignments.findOne({ _id: mongoose.Types.ObjectId(assignmentId) }).lean();
         
         let allSubmissions = assignment.allSubmissions;
-
+        let cnt=0;
         for (let i = 0; i < allSubmissions.length; i++) {
+            cnt++;
             if (allSubmissions[i].studentInfo.studentEmail === studentEmail) {
                 allSubmissions[i].submission.marksAssigned = req.body.marksAssigned;
-            } else {
-                res.send('Student not found');
-            }
+                break;
+            } 
             
         }
-        assignment.allSubmissions = allSubmissions;
-        await Assignments.updateOne({ _id: mongoose.Types.ObjectId(assignmentId) }, assignment, {new: true});
+        if(cnt == allSubmissions.length) {
+            res.send('Student not found');
+        } else {
+            assignment.allSubmissions = allSubmissions;
+            await Assignments.updateOne({ _id: mongoose.Types.ObjectId(assignmentId) }, assignment, {new: true});
 
-        res.redirect('/teacherDashboard/' + assignment.classCode  + '/assignment/' + assignmentId);
+            res.redirect('/teacherDashboard/' + assignment.classCode  + '/assignment/' + assignmentId);
 
+        }
+        console.log(cnt, allSubmissions.length);
+
+        
     } catch (error) {
         console.error(error);
         res.send(error);
