@@ -35,6 +35,7 @@ authRoute.post('/login', (req, res)=> {
                     image : payload.picture,
                     email: payload.email,
                     designation: 'student',
+                    classCodes: ["gxz-lyh-tpd", "pkq-kye-ofd", "yej-dxy-kbu"],
                 });
 
                 await newUser.save();
@@ -72,6 +73,7 @@ authRoute.post('/customSignup', async (req, res)=> {
             firstName: firstName,
             lastName: lastName,
             designation: 'student',
+            classCodes: ["gxz-lyh-tpd", "pkq-kye-ofd", "yej-dxy-kbu"],
         });
 
         if (password === confirmPassword) {
@@ -100,11 +102,11 @@ authRoute.post('/customLogin', async (req, res)=> {
                 res.redirect('/studentDashboard');
             }
             else {
-                res.send('password mismatch');
+                res.send('Password Wrong! Please try again.');
             }
         }
         else {
-            res.send('user not found');
+            res.send('User not found!');
         }
     } catch (error) {
         res.send(error);

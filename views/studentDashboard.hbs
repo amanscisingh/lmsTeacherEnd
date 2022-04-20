@@ -11,7 +11,7 @@
         border: 1px solid black;
     }
     table{
-        margin-top: 5%;
+        margin: auto;
         width: 60%;
         height: auto;
     }
@@ -26,13 +26,19 @@
     }
     .card {
         border: 0.5px solid rgb(194, 189, 189);
-        margin: 30px;
-        width: 420px;
+        margin: auto;
+        width: 400px;
         margin-top: 30px;
         font-family: sans-serif;
         background-color: white;
         justify-content: center;
         height: 25.75rem;
+    }
+
+    @media screen and (max-width: 600px) {
+        .card {
+            width: 350px;
+        }
     }
 
     .card:hover {
@@ -113,7 +119,7 @@
         display: none;
     }
 
-.middleClassDashboard {
+    .middleClassDashboard {
         height: 10%;
         margin: 10px auto;
     }
@@ -123,10 +129,10 @@
 <div class="middleClassDashboard">
     <div class="classNavbar">
         <div class="box1" id="box-1" style="font-size: x-large ">
-            <h3>ALL CLASSES</h3>
+            <h3>Classes</h3>
         </div>
         <div style="font-size: x-large" class="box1" id="box-2">
-            <h3>SCHEDULED MEETINGS</h3>
+            <h3>Lectures</h3>
         </div>
 
     </div>
@@ -159,7 +165,8 @@
 {{/each}}
 </div>
 
-    <div class="tableTeacherDashboard" id="allScheduledMeetings">
+    <div class="tableTeacherDashboard" id="allScheduledMeetings" style="overflow-x: auto; margin: auto 10px;
+}" >
         <table border="2" class="timeTable">
         <thead>
             <tr>
@@ -214,7 +221,7 @@
         document.getElementById("box-2").style.backgroundColor = "#E7EDEF";
     });
     document.getElementById("box-2").addEventListener("click", function () {
-        document.getElementById("allScheduledMeetings").style.display = "flex";
+        document.getElementById("allScheduledMeetings").style.display = "block";
         document.getElementById("allClasses").style.display = "none";
         document.getElementById('allScheduledMeetings').scrollIntoView();
         document.getElementById("box-2").style.borderBottom = "2px solid #1e8dff";

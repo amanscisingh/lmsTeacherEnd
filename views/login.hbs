@@ -15,7 +15,7 @@
     <div class="formContainer">
         <h1 >Sign In with Email</h1>
         <form id="form" action="" method="POST">
-            <input name="email" type="email" placeholder="Enter Email here" id="email"> <a id='checkEmailBtn'>👉👉👉</a> <br>
+            <input name="email" type="email" placeholder="Enter Email here" id="email"> <a id='checkEmailBtn'> <u>  Click Me </u> </a>  <br>
             <input name="firstName" type="text" style="visibility: hidden;" placeholder="Enter First Name here" id="firstName">
             <input name="lastName" type="text" style="visibility: hidden;" placeholder="Enter Last Name here" id="lastName">
             <input name="password" id="inputPassword" style="visibility: hidden;" type="password" placeholder="Enter Password here" id="password"><br>
@@ -34,6 +34,7 @@ body{
 }
 
 .heading{
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,6 +42,11 @@ body{
     height: 60px;
     background-color: rgb(11, 88, 107);
     color: white;
+    
+}
+
+.heading h1{
+    margin: 5px;
 }
 
 .headContainer{
@@ -207,13 +213,13 @@ input{
             if (data['status'] == "success") {
                 if (data["isGoogle"]) {
                     // tell him to login with google
-                    checkEmailBtn.innerHTML = "🙏🙏🙏Login with Google🙏🙏🙏";
+                    checkEmailBtn.innerHTML = "Seems Like you are logged in via Google! Please try login with Google";
                     email.style.visibility = "hidden";
 
                 } else {
                     // tell him to login with custom email
                     form.setAttribute('action', '/auth/customLogin')
-                    checkEmailBtn.innerText = "👍👍👍";
+                    checkEmailBtn.innerText = "Email Exists! Now Enter Password.";
                     inputPassword.style.visibility = 'visible';
                     submitButton.style.visibility = 'visible';
                 }
@@ -221,7 +227,7 @@ input{
                 checkEmailBtn.innerText = "👎👎👎";
                 setTimeout(()=>{
                     setTimeout(()=>{
-                        checkEmailBtn.innerText = "Email Does-not Exists... Please Create A new Account🙏🙏🙏";
+                        checkEmailBtn.innerText = "Email Not Found! Create a New Account or login with Google.";
                         form.setAttribute('action', '/auth/customSignup')
                         firstName.style.visibility = 'visible';
                         lastName.style.visibility = 'visible';
@@ -229,7 +235,7 @@ input{
                         inputPassword.style.visibility = 'visible';
                         submitButton.style.visibility = 'visible';
                     }, 1000)
-                    checkEmailBtn.innerText = "👉👉👉";
+                    checkEmailBtn.innerText = "Click Me";
                 }, 1000)
             }
 
