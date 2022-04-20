@@ -27,10 +27,11 @@
         padding: 20px;
     }
 
-    h2 {
+    h1 {
         margin: 20px 0px;
         padding: 4px;
         text-align: center;
+        font-size: xx-large;
     }
 
     .AssignmentCard {
@@ -77,6 +78,25 @@
         border: 1px solid #0090e5;
         font-size: large;
     }
+
+    #downloadAssignment {
+        background-color: #0090e5;
+        color: #fff;
+        padding: 3px;
+        border: 1px solid #0090e5;
+        font-size: x-large;
+        padding: 8px;
+        margin: 10px;
+        cursor: pointer;
+    }
+
+    #downloadAssignment:hover {
+        transform: scale(1.1);
+        transition: 0.3s;
+        animation: 0.3s;
+    }
+
+    
 </style>
 
 
@@ -84,12 +104,12 @@
 <p style="display: none;" id="arrayLength">{{assignment.allSubmissions.length}}</p>
 <p style="display: none;" id="totalMarks">{{assignment.totalMarks}}</p>
 
-<h2>{{assignment.title}}</h2>
+<h1>{{assignment.title}}</h1>
 
 <div class="middleClassDashboard">
     <div class="classNavbar">
-        <div class="box1" id="box-1">
-            <h3 style="font-size: x-large">DETAILS</h3>
+        <div class="box1" id="box-1" style="font-size: x-large">
+            <h3>DETAILS</h3>
         </div>
         <div style="font-size: x-large" class="box1" id="box-2">
             <h3>SUBMISSIONS</h3>
@@ -137,9 +157,14 @@
                             <td>{{formatDate this.submission.submissionTime "MMMM Do YYYY, h:mm:ss a"}}</td>
                             <td>
                                 <form action="/{{this.studentInfo.studentEmail}}/" method="POST" id="{{@key}}">
-                                    <input type="number" name="marksAssigned" id="marksAssigned-{{@key}}"
-                                        placeholder="{{this.submission.marksAssigned}}">
-                                    <input style="background-color: #f0fbff; padding: 3px; border: 1px solid #0090e5;" type="submit" value="Assign✔">
+
+                                    {{#if (isAssigned this.submission.marksAssigned)}}
+                                        <input type="number" name="marksAssigned" id="marksAssigned-{{@key}}" style="background-color: #4bff00a3;" placeholder="{{this.submission.marksAssigned}}">
+                                    {{else}}
+                                        <input type="number" name="marksAssigned" id="marksAssigned-{{@key}}" placeholder="{{this.submission.marksAssigned}}" required>                                        
+                                    {{/if}}
+
+                                    <input style="background-color: #f0fbff; cursor:pointer; padding: 3px; border: 1px solid #0090e5;" type="submit" value="Assign✔">
                                 </form>
                             </td>
                         </tr>

@@ -186,7 +186,10 @@
 
 <div class="bottomClassDashboard">
     <div id="allAssignments">
-    
+        {{#if (isEmpty allAssignments)}} 
+            <div style="text-align: center; font-size: x-large; width:100%">No Items to show here<div>
+        {{/if}}
+
         {{#each allAssignments}}
 
         <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
@@ -208,7 +211,7 @@
 
 
     <div id="allTests">
-    
+
         {{#each allTests}}
 
          <div class="assignment card {{this._id}}" id="assignment-{{@key}}" onclick="openAssignment({{@key}})">
@@ -241,6 +244,7 @@
                 <th>Passcode </th>
             </tr>
         </thead>
+
         {{#each allScheduledClasses}}
 
         <tbody>

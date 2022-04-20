@@ -80,7 +80,7 @@ authRoute.post('/customSignup', async (req, res)=> {
             res.redirect('/teacherDashboard');
         }
         else {
-            res.send('password mismatch');
+            res.redirect('/?wrongPassword=yes');
         }
 
     } catch (error) {
@@ -100,11 +100,11 @@ authRoute.post('/customLogin', async (req, res)=> {
                 res.redirect('/teacherDashboard');
             }
             else {
-                res.send('password mismatch');
+                res.redirect('/?wrongPassword=yes');
             }
         }
         else {
-            res.send('user not found');
+            res.redirect('/?wrongPassword=yes');
         }
     } catch (error) {
         res.send(error);

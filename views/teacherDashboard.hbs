@@ -52,6 +52,7 @@
 <div class="bottomClassDashboard"> 
 
     <div class="box" id="allAssignments">
+
     {{#each allClasses}}
 
         <div class="card" id="card-{{@key}}" onclick="editCard({{@key}})">
@@ -141,7 +142,7 @@
         document.getElementById("box-2").style.backgroundColor="#E7EDEF";
     });
     document.getElementById("box-2").addEventListener("click", function() {
-        document.getElementById("allSchedule").style.display="block";
+        document.getElementById("allSchedule").style.display="flex";
         document.getElementById("allAssignments").style.display="none";
         document.getElementById("box-2").style.borderBottom="2px solid #1e8dff";
         document.getElementById("box-1").style.borderBottom="none";

@@ -6,6 +6,7 @@
     <meta name="google-signin-client_id" content="665729303262-pvgu50j2sjrbafq2jjibo4t08qmha2pr.apps.googleusercontent.com">
     <link rel="stylesheet" type="text/css" href="/css/index.css">
     <title>Dashboard</title>
+
     <style>
         *{
             font-family: 'Open Sans', sans-serif;
@@ -57,7 +58,7 @@
             background-color: rgba(0, 0, 0, 0.384);
             box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.285);
         }
-        #joinClass{
+        #createClass{
             height: 30px; 
             display:none;
             position: absolute;
@@ -97,7 +98,21 @@
             align-items: center;
             padding: 2px;
         }
+
+        @media only  screen and ( min-width: 1200px){
+            #createClass{
+                right: 8%;
+            }
+            #openProfile{
+                right: 5%;
+            }
+            #logoutDone{
+                right: 0%;
+            }
+        }
+            
     </style>
+
 </head>
 <body>
      <div class="header">
@@ -114,7 +129,7 @@
             <span class="container-span" style=" width: 50%; flex-direction: row; justify-content: end; align-items: center;" >
                 <a href="/teacherDashboard/create" class="container-element">
                 <img src="https://www.downloadclipart.net/large/plus-transparent-png.png" id="plusIcon" class="plusIcon" name="submit" style="height: 40px; width: 40px; padding: 7px" alt="plus"/>
-                    <div id="joinClass" style="padding: 5px; text-align:center;">Create Class</div></a>
+                <div id="createClass" style="text-align: center; padding: 2px;">Create Class</div></a>
                 <a id="profileBtn" href="/profile" class="addClassIcon2 container-element"><img style="height: 60px; width: 60px;" id='image' src="#" class="plusIcon">  </a>
                 <div style="text-align: center; padding: 2px;" id="openProfile">Edit Profile</div>
                 <a id="logoutBtn" href="#" onclick="signOut()" class="container-element"><img style="height: 60px; width: 60px;" src="/images/logoutDesign.svg">  </a>
@@ -170,12 +185,12 @@
                 
 
         document.getElementById("plusIcon").addEventListener("mouseover", function(e) {
-            document.getElementById("joinClass").style.display="flex";
-            document.getElementById("joinClass").style.justifyContent="center";
+            document.getElementById("createClass").style.display="flex";
+            document.getElementById("createClass").style.justifyContent="center";
             console.log('event fired')
         });
         document.getElementById("plusIcon").addEventListener("mouseout", function() {
-            document.getElementById("joinClass").style.display="none";
+            document.getElementById("createClass").style.display="none";
             console.log('event fired')
         });
 

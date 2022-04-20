@@ -25,7 +25,7 @@ const allClasses = new mongoose.Schema({
         type: String,
         required: false
     },
-    classStudents: [
+    classStudents: [    // array of emails of students
         {
             type: String,
             required: true

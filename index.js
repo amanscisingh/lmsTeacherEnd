@@ -44,7 +44,23 @@ function formatPassword(password) {
   }
 }
 
-app.engine('.hbs', exphbs({helpers:{ parseToString, formatDate, formatPassword }, defaultLayout: 'main', extname: '.hbs'}));
+function isEmpty(input) {
+  if (input.length === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function isAssigned(input) {
+  if (input <= -1) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+app.engine('.hbs', exphbs({helpers:{ parseToString, formatDate, formatPassword, isEmpty, isAssigned }, defaultLayout: 'main', extname: '.hbs'}));
 app.set('view engine', '.hbs');
 
 // setting up public folder

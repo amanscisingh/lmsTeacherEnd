@@ -1,132 +1,99 @@
-<div class="heading">
-    <h1>Welcome to Teachers Dashboard | Login to proceed</h1>
-</div>
-
-<div class="headContainer"> 
-    <div class="upperFlexBox">
-        <h1>Sign in With Google</h1>
-        <div class="googleForm">
-            <div class="g-signin2" id="googleSignIn" data-onsuccess="onSignIn"></div>
-        </div> 
-    </div>   
-
-    <h2 class="or">OR</h2>
-    
-    <div class="formContainer">
-        <h1 >Sign In with Email</h1>
-        <form id="form" action="" method="POST">
-            <input name="email" type="email" placeholder="Enter Email here" id="email"> <a id='checkEmailBtn'>👉👉👉</a> <br>
-            <input name="firstName" type="text" style="visibility: hidden;" placeholder="Enter First Name here" id="firstName">
-            <input name="lastName" type="text" style="visibility: hidden;" placeholder="Enter Last Name here" id="lastName">
-            <input name="password" id="inputPassword" style="visibility: hidden;" type="password" placeholder="Enter Password here" id="password"><br>
-            <input name="confirmPassword" id="inputPasswordAgain" style="visibility: hidden;" type="password" placeholder="Confirm Password here" id="password"><br>
-            <input id="submitButton" style="visibility: hidden;" type="submit" value="Login/SignUP">
-        </form>
-    </div>
-</div>
-
 <style>
+    body{
+        background-image: url('images/loginBackground.jpg');
+        background-size: cover;
+        font-size: .8rem;
+    }
 
-body{
-    background-image: url('images/loginBackground.jpg');
-    background-size: cover;
-    font-size: .8rem;
-}
+    .heading{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 20px;
+        height: 60px;
+        background-color: rgb(11, 88, 107);
+        color: white;
+        {{!-- width: 100px; --}}
+    }
 
-.heading{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    height: 60px;
-    background-color: rgb(11, 88, 107);
-    color: white;
-    {{!-- width: 100px; --}}
-}
+    .googleForm{
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.googleForm{
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    .upperFlexBox{
+        border: 2px solid red;
+        width: 300px;
+        border-radius: 5px;
+        border: 1px solid lightgray;
+        padding: 20px;
+        background-color: #94d8f8cb;
+        box-shadow: 0px 0px 6px 3px rgb(94 93 93);
+    }
 
-.upperFlexBox{
-    border: 2px solid red;
-    width: 300px;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    padding: 20px;
-    background-color: #94d8f8cb;
-    box-shadow: 0px 0px 6px 3px rgb(94 93 93);
-}
+    .or{
+        margin-top: 30px;
+    }
 
-.or{
-    margin-top: 30px;
-}
+    .formContainer {
+        width: 300px;
+        height: fit-content;
+        display: flex;
+        flex-direction: column;
+        border-radius: 5px;
+        border: 1px solid lightgray;
+        padding: 20px;
+    }
 
-.formContainer {
-    width: 300px;
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    border-radius: 5px;
-    border: 1px solid lightgray;
-    padding: 20px;
-}
+    .formContainer > h1 {
+        font-weight: bold;
+        margin-bottom: 20px;
+        margin-left: 10px;
+    }
 
-.formContainer > h1 {
-    font-weight: bold;
-    margin-bottom: 20px;
-    margin-left: 10px;
-  }
+    #googleSignIn{
+        background: #c32f10;
+    }
 
-{{!-- .headContainer > h1 {
-    font-weight: 500;
-    margin-bottom: 20px;
-  } --}}
+    #signOutButton{
+        border: 2px solid white;
+        width: 115px;
+        background-color: white;
+        color: #757575;
+        font-size: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 10px;
+        height: 30px;
+    }
 
-#googleSignIn{
-    background: #c32f10;
-}
+    #signOutButton:hover{
+        color:black;
+    }
 
-#signOutButton{
-    border: 2px solid white;
-    width: 115px;
-    background-color: white;
-    color: #757575;
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    height: 30px;
-}
+    #email{
+        height: 30px;
+        margin-bottom: 10px;
+        background-color: white;
+        width: 98%;
+    }
 
-#signOutButton:hover{
-    color:black;
-}
+    input{
+        height: 30px;
+        margin-bottom: 10px;
+        background-color: white;
+        width: 98%;
+    }
 
-#email{
+    #password{
     height: 30px;
     margin-bottom: 10px;
     background-color: white;
     width: 98%;
-  }
-
-input{
-    height: 30px;
-    margin-bottom: 10px;
-    background-color: white;
-    width: 98%;
-}
-
-#password{
-  height: 30px;
-  margin-bottom: 10px;
-  background-color: white;
-  width: 98%;
-}
+    }
 
   #submitButton{
     background: #f0c14b;
@@ -145,13 +112,58 @@ input{
     border: 1px solid;
     margin-top: 10px;
     border-color: darkgray;
-  } --}}
+  } 
+
+  #checkEmailBtn {
+    border: 1px solid lightgray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: white;
+    background-color: #393939;
+    cursor: pointer;
+  }
+
 </style>
+
+<div class="heading">
+    <h1>Welcome to Teachers Dashboard | Login to proceed</h1>
+</div>
+
+<div class="headContainer"> 
+    <div class="upperFlexBox">
+        <h1>Sign in With Google</h1>
+        <div class="googleForm">
+            <div class="g-signin2" id="googleSignIn" data-onsuccess="onSignIn"></div>
+        </div> 
+    </div>   
+
+    <h2 class="or">OR</h2>
+    
+    <div class="formContainer">
+        <h1 >Sign In with Email</h1>
+        <form id="form" action="" method="POST">
+            <input name="email" type="email" placeholder="Enter Email here" id="email"> <a id='checkEmailBtn'>Sign In</a> <br>
+            <input name="firstName" type="text" style="visibility: hidden;" placeholder="Enter First Name here" id="firstName">
+            <input name="lastName" type="text" style="visibility: hidden;" placeholder="Enter Last Name here" id="lastName">
+            <input name="password" id="inputPassword" style="visibility: hidden;" type="password" placeholder="Enter Password here" id="password"><br>
+            <input name="confirmPassword" id="inputPasswordAgain" style="visibility: hidden;" type="password" placeholder="Confirm Password here" id="password"><br>
+            <input id="submitButton" style="visibility: hidden;" type="submit" value="Login/SignUP">
+        </form>
+    </div>
+</div>
 
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
 
 <script>
+    // check for wrong password in query parameters.. If detected, show alert
+    const queryString = window.location.search;
+    if (queryString.includes('wrongPassword')) {
+        alert('Wrong Password');
+    }
+
+
     function onSignIn(googleUser) {
         // var profile = googleUser.getBasicProfile();
         var id_token = googleUser.getAuthResponse().id_token;
@@ -193,21 +205,21 @@ input{
             if (data['status'] == "success") {
                 if (data["isGoogle"]) {
                     // tell him to login with google
-                    checkEmailBtn.innerHTML = "🙏🙏🙏Login with Google🙏🙏🙏";
+                    checkEmailBtn.innerHTML = "Account already exists! Please Login with Google.";
                     email.style.visibility = "hidden";
 
                 } else {
                     // tell him to login with custom email
                     form.setAttribute('action', '/auth/customLogin')
-                    checkEmailBtn.innerText = "👍👍👍";
+                    checkEmailBtn.innerText = "Email Exists! Please Login.";
                     inputPassword.style.visibility = 'visible';
                     submitButton.style.visibility = 'visible';
                 }
             } else {
-                checkEmailBtn.innerText = "👎👎👎";
+                checkEmailBtn.innerText = "❌❌❌";
                 setTimeout(()=>{
                     setTimeout(()=>{
-                        checkEmailBtn.innerText = "Email Does-not Exists... Please Create A new Account🙏🙏🙏";
+                        checkEmailBtn.innerText = "Email Does not Exist! Please Sign Up.";
                         form.setAttribute('action', '/auth/customSignup')
                         firstName.style.visibility = 'visible';
                         lastName.style.visibility = 'visible';
@@ -215,7 +227,7 @@ input{
                         inputPassword.style.visibility = 'visible';
                         submitButton.style.visibility = 'visible';
                     }, 1000)
-                    checkEmailBtn.innerText = "👉👉👉";
+                    checkEmailBtn.innerText = "Sign In";
                 }, 1000)
             }
 
